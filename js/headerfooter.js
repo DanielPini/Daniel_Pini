@@ -1,0 +1,33 @@
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+
+header.innerHTML = `
+<div class="header">
+  <div class="logo-container">
+    <img src="./assets/logos/FA_Logo_Centered-circle.svg">
+  </div>
+  <nav class="header-nav">
+    <ul class="nav-list">
+      <li class="nav-list-item"><a href="./index.html">Home</a></li>
+      <li class="nav-list-item"><a href="./index.html">About</a></li>
+      <li class="nav-list-item"><a href="./index.html">Events</a></li>
+      <li class="nav-list-item"><a href="./index.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="socials">
+    <ul class="socials-list">
+      <li class="socials-list-item"><a href="https://www.instagram.com/daniel_pini/"><img src="./assets/icons/instagram_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+      <li class="socials-list-item"><a href="https://www.facebook.com/PiniConducts/"><img src="./assets/icons/facebook_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+      <li class="socials-list-item"><a href="https://www.youtube.com/@DanielEugenePini"><img src="./assets/icons/youtube_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+    </ul>
+  </div>
+</div`;
+
+
+footer.innerHTML = `
+  <div class="footer">
+    <div class="footer-left footer-div"></div>
+    <div class="footer-center footer-div">Copyright 2024 &copy</div>
+    <div class="footer-right footer-div"><a href="#">Contact Daniel</a></div>
+  </div>`;
+

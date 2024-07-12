@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./css/headerfooter.css" />
+    <link
+      rel="stylesheet"
+      href="./css/metronome.css" />
+    <title>Metronome</title>
+  </head>
+  <body>
+    <header></header>
+    <div class="filler">
+      <h1>This is a metronome app.</h1>
+      <div>
+        <div class="metronome-container">
+          <div class="metronome-inner-wrapper">
+            <p>Click on a button to set and play the metronome.</p>
+            <select
+              name="array selector"
+              id="array-selector"></select>
+            <div class="display-container">
+              <span class="tempo-display">120</span><span> bpm</span>
+            </div>
+            <div class="tempo-slider-container">
+              <button class="minus-tempo stepper">-</button>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="1"
+                id="tempo-slider"
+                value="120" />
+              <button class="plus-tempo stepper">+</button>
+            </div>
+            <div class="tempo-button-container"></div>
+            <button id="save-user-tempi">Save as new list</button>
+            <input
+              type="number"
+              min="20"
+              max="300"
+              step="1"
+              id="user-tempo"
+              placeholder="type tempo here" />
+            <button class="start-stop">Start</button>
+            <div class="subdiv-container">
+              <button class="minus-beats stepper">-</button>
+              <p class="subdiv-display">1</p>
+              <button class="plus-beats stepper">+</button>
+            </div>
+            <p class="subdiv-descriptive-text">Subdivisions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
+    <script src="./js/headerfooter.js"></script>
+    <script
+      type="module"
+      src="./js/metronome.js"></script>
+  </body>
+</html>

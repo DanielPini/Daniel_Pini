@@ -1,0 +1,142 @@
+body * {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  user-select: none;
+}
+button {
+  cursor: pointer;
+}
+.filler {
+  padding: 20px 0;
+}
+h1 {
+  text-align: center;
+  display: block;
+  line-height: 50px;
+}
+.metronome-container {
+  background-color: aliceblue;
+  width: 230px;
+  margin: 10px auto;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.metronome-inner-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0;
+  
+}
+.metronome-inner-wrapper p {
+  display: block;
+  max-width: 180px;
+}
+#array-selector {
+  width: 180px;
+}
+.tempo-display {
+  font-size: 24px;
+  font-weight: 600;
+}
+.tempo-slider-container {
+  margin: 0 auto;
+  display: flex;
+}
+#tempo-slider {
+  appearance: none;
+  background-color: transparent;
+  margin: 10px 0;
+  width: 100px;
+  padding: 0 10px;
+}
+#tempo-slider::-webkit-slider-thumb {
+  appearance: none;
+}
+#tempo-slider:focus {
+  outline: none;
+}
+#tempo-slider::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background-color: red;
+}
+#tempo-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+#tempo-slider::-webkit-slider-runnable-track {
+  width: 100px;
+  height: 1px;
+  background-color: blueviolet;
+}
+#tempo-slider::-moz-range-track {
+  width: 100px;
+  height: 1px;
+  background-color: blueviolet;
+}
+.tempo-button-container {
+  display: grid;
+  width: 90%;
+  grid: auto-flow / repeat(3, 1fr);
+}
+.tempo-button-item {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.tempo-button {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  background-color: aqua;
+}
+.delete {
+  font-family:'Courier New', Courier, monospace;
+  font-size: 7px;
+  font-weight: 600;
+  position: relative;
+  top: -15px;
+  background-color: rgb(230, 230, 230);
+  width: 8px;
+  height: 8px;
+  line-height: 5px;
+  margin-left: -7px;
+}
+#user-tempo {
+  background-color: antiquewhite;
+  width: 120px;
+  height: 20px;
+  text-align: center;
+  padding: 3px;
+}
+.start-stop {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  margin: 10px 0;
+}
+.subdiv-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+.stepper {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color:greenyellow;
+}
+.subdiv-display {
+  line-height: 20px;
+  display: block;
+  padding: 0 10px;
+}
+.running {
+  background-color: rgb(110, 171, 17);
+}

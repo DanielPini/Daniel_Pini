@@ -1,0 +1,94 @@
+body {
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: aliceblue;
+  width: 100vw;
+  height: 100px;
+}
+.logo-container {
+  width: 80px;
+  min-width: 80px;
+  margin: 10px;
+  transition: all 400ms ease;
+}
+.header-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: auto;
+  flex: 2 1 auto;
+}
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  flex: 2 1 auto;
+  list-style: none;
+  flex-flow: row nowrap;
+}
+.nav-list-item {
+  padding: 5px;
+  transition: all 400ms ease;
+}
+.nav-list-item a {
+  color: black;
+  font-style: italic;
+  text-decoration: none;
+}
+.socials {
+  min-width: 80px;
+  margin: auto 0;
+}
+.socials-list {
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+  margin-right: 5px;
+}
+.socials-list-item {
+  transition: all 400ms ease;
+  padding: 5px;
+  width: 20px;
+}
+.socials-list-item img {
+  width: 20px;
+}
+
+.nav-list-item:hover, 
+.socials-list-item:hover, 
+.logo-container:hover {
+  transform: scale(1.1);
+}
+
+.filler {
+  min-height: calc(100vh - 200px);
+  background-color: orange;
+}
+/* ------ */
+/* Footer */
+/* ------ */
+
+.footer {
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1 1 auto;
+  width: 100vw;
+  height: 100px;
+  background-color: aliceblue;
+  justify-content: space-between;
+}
+.footer-div {
+  width: 33%;
+  margin: auto 0;
+  text-align: center;
+}
+.footer a {
+  text-decoration: none;
+  color: black;
+  font-style: italic;
+}

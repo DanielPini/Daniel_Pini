@@ -94,6 +94,7 @@ h1 {
   height: 40px;
   margin: 5px;
   background-color: aqua;
+  border: 1px solid grey;
 }
 .delete {
   font-family:'Courier New', Courier, monospace;
@@ -139,4 +140,8 @@ h1 {
 }
 .running {
   background-color: rgb(110, 171, 17);
+}
+.is-playing {
+  border: 2px solid rgb(225, 72, 72);
+  box-shadow: 0 0 50px 50px rgba(72, 220, 225), 1;
 }

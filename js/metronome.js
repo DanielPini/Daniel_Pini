@@ -1,4 +1,5 @@
 import Timer from "./timer.js"
+import piecesArray from "./data/pieces.js";
 
 const metronomeApp = document.querySelector(".metronome-container");
 const tempoDisplay = metronomeApp.querySelector(".tempo-display");
@@ -15,52 +16,35 @@ const subdivDisplay = metronomeApp.querySelector(".subdiv-display");
 const arraySelector = document.getElementById("array-selector")
 const click1 = new Audio("../assets/audio/clicks/click1.mp3")
 const click2 = new Audio("../assets/audio/clicks/click2.mp3")
+click2.volume = 0.4;
 
-
-
-const piecesArray = [
-  {
-    name: "Magic Flute",
-    value: [60, 45, 80]
-  },
-  {
-    name: "Pure Imagination",
-    value: [144, 54, 62, 82, 62, 72, 62, 60, 52]
-  },
-  {
-    name: "Test",
-    value: [1, 2, 3, 4, 5, 6]
-  },
-  {
-    name: "Test 2",
-    value: [[60, 2], [80, 4], 70, 100]
-  }
-];
 
 updateArraySelector()
 
 let selectedPiece = piecesArray[arraySelector.selectedIndex];
 
-let bpm = 120;
+renderTempoList()
+
+const tempoButtons = Array.from(metronomeApp.querySelectorAll(".tempo-button"));
+
+let bpm = tempoButtons[0].innerText;
+tempoDisplay.innerText = tempoButtons[0].innerText;
 let beats = 1;
 let count = 0;
 let isRunning = false;
 
-renderTempoList()
 
 saveUserList.addEventListener("click", () => {
   addUserObject()
   updateArraySelector()
 })
 
-arraySelector.addEventListener("change", () => {
-  selectedPiece = piecesArray[arraySelector.selectedIndex];
-  renderTempoList();
-  bpm = selectedPiece.value[0];
-  arraySelector.blur()
-  updateMetronome()
-})
+//add style to playing button.
+tempoButtons[0].classList.add("is-playing")
 
+arraySelector.addEventListener("change", () => {
+  changePiece()
+})
 startStop.addEventListener("click", () => {
   count = 0;
   if (!isRunning) {
@@ -76,7 +60,6 @@ startStop.addEventListener("click", () => {
   }
   startStop.blur();
 })
-
 tempoMinus.addEventListener("click", () => {
   if (bpm <= 20) { return }
   bpm--;
@@ -121,10 +104,18 @@ userTempo.addEventListener("keydown", (e) => {
   }
 })
 
+function changePiece() {
+  selectedPiece = piecesArray[arraySelector.selectedIndex];
+  renderTempoList();
+  tempoButtonContainer.firstElementChild.firstElementChild.classList.add("is-playing")
+  beats = 1;
+  bpm = tempoButtonContainer.firstElementChild.firstElementChild.innerText;
+  arraySelector.blur();
+  updateMetronome();  
+}
 function updateArraySelector() {
   arraySelector.innerHTML = generateArraySelectorHtml(piecesArray);
 }
-
 function renderTempoList() {
   let tempoList = '';
   selectedPiece.value.forEach(element => {
@@ -145,6 +136,8 @@ function renderTempoList() {
   tempoButtonContainer.querySelectorAll(".tempo-button").forEach(button => {
     button.addEventListener("click", () => {
       count = 0;
+      metronomeApp.querySelector(".is-playing").classList.remove("is-playing")
+      button.classList.add("is-playing")
       bpm = button.innerText;
       beats = button.dataset.beats;
       updateMetronome();
@@ -173,6 +166,7 @@ function updateMetronome() {
   subdivDisplay.innerText = beats;
   metronome.timeInterval = 60000 / (bpm * beats);
 }
+//Add User Tempo List
 function addUserObject() {
   let array = [];
   tempoButtonContainer.querySelectorAll(".tempo-button").forEach(button => {
@@ -185,7 +179,6 @@ function addUserObject() {
     }
   piecesArray.push(userObject)
 }
-
 // Populate <select> tag HTML
 function generateArraySelectorHtml(array) {
   let list = ""
@@ -199,7 +192,7 @@ function generateArraySelectorHtml(array) {
   }
   return list
 }
-
+//Play the click sound
 function playClick() {
   if (count == beats) {
     count = 0;
@@ -230,7 +223,7 @@ function testBPM(element) {
 }
 
 const metronome = new Timer(playClick, 60000 / (bpm * beats), { immediate: true });
-
+//Play on Space Bar keydown
 window.addEventListener("keydown", (e) => {
   if (!(e.key == " ")) { return } 
   else {
@@ -248,11 +241,14 @@ window.addEventListener("keydown", (e) => {
     }
   } 
 })
-
+//Play on number entry.
 window.addEventListener("keydown", (e) => {
   tempoButtonContainer.querySelectorAll(".tempo-button").forEach((button, i) => {
     if (!(e.key == i + 1)) { return }
     else {
+      metronomeApp.querySelector(".is-playing").classList.remove("is-playing")
+      button.classList.add("is-playing")
+      console.log(button)
       bpm = button.innerText;
       beats = button.dataset.beats;
       updateMetronome();
@@ -264,3 +260,39 @@ window.addEventListener("keydown", (e) => {
     }
   })
 });
+window.addEventListener("keydown", (e) => {
+  let currentButton = metronomeApp.querySelector(".is-playing")
+  let prev = currentButton.parentElement.previousElementSibling.firstElementChild;
+  if (!(e.key == "ArrowLeft")) { return }
+  else if (prev == null) { return}
+  else {
+    currentButton.classList.remove("is-playing")
+    prev.classList.add("is-playing")
+    bpm = prev.innerText;
+    beats = prev.dataset.beats;
+    updateMetronome();
+    metronome.stop();
+    metronome.start();
+    startStop.classList.add("running")
+    startStop.innerText = "Stop";
+    isRunning = true;
+  }
+})
+window.addEventListener("keydown", (e) => {
+  let currentButton = metronomeApp.querySelector(".is-playing")
+  let next = currentButton.parentElement.nextElementSibling.firstElementChild;
+  if (!(e.key == "ArrowRight")) { return }
+  else if (next == null) { return}
+  else {
+    currentButton.classList.remove("is-playing")
+    next.classList.add("is-playing")
+    bpm = next.innerText;
+    beats = next.dataset.beats;
+    updateMetronome();
+    metronome.stop();
+    metronome.start();
+    startStop.classList.add("running")
+    startStop.innerText = "Stop";
+    isRunning = true;
+  }
+})

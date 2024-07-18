@@ -3,9 +3,9 @@ const footer = document.querySelector('footer');
 
 header.innerHTML = `
 <div class="header">
-  <div class="logo-container">
-    <img src="./assets/logos/FA_Logo_Centered-circle.svg">
-  </div>
+  <!-- <div class="logo-container">
+    <img src="">
+  </div> -->
   <nav class="header-nav">
     <ul class="nav-list">
       <li class="nav-list-item"><a href="./index.html">Home</a></li>
@@ -16,9 +16,9 @@ header.innerHTML = `
   </nav>
   <div class="socials">
     <ul class="socials-list">
-      <li class="socials-list-item"><a href="https://www.instagram.com/daniel_pini/"><img src="./assets/icons/instagram_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
-      <li class="socials-list-item"><a href="https://www.facebook.com/PiniConducts/"><img src="./assets/icons/facebook_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
-      <li class="socials-list-item"><a href="https://www.youtube.com/@DanielEugenePini"><img src="./assets/icons/youtube_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+      <li class="socials-list-item"><a href="https://www.instagram.com/daniel_pini/"><img src="../assets/icons/instagram_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+      <li class="socials-list-item"><a href="https://www.facebook.com/PiniConducts/"><img src="../assets/icons/facebook_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
+      <li class="socials-list-item"><a href="https://www.youtube.com/@DanielEugenePini"><img src="../assets/icons/youtube_icon.svg" alt="Circle with colours outlining a camera in white."></a></li>
     </ul>
   </div>
 </div`;

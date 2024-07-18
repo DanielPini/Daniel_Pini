@@ -20,7 +20,6 @@ click2.volume = 0.4;
 
 
 updateArraySelector()
-
 let selectedPiece = piecesArray[arraySelector.selectedIndex];
 
 renderTempoList()
@@ -96,9 +95,12 @@ subdivPlus.addEventListener("click", () => {
 userTempo.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     bpm = userTempo.value;
+
     userTempo.blur();
     updateMetronome();
-    selectedPiece.value.push(userTempo.value);
+    let userTempoData = [userTempo.value, beats];
+    console.log(userTempoData)
+    selectedPiece.value.push(userTempoData);
     userTempo.value = ""
     renderTempoList()
   }
@@ -261,11 +263,12 @@ window.addEventListener("keydown", (e) => {
   })
 });
 window.addEventListener("keydown", (e) => {
-  let currentButton = metronomeApp.querySelector(".is-playing")
-  let prev = currentButton.parentElement.previousElementSibling.firstElementChild;
+  const currentButton = metronomeApp.querySelector(".is-playing");
+  const prevParent = currentButton.parentElement.previousElementSibling;
   if (!(e.key == "ArrowLeft")) { return }
-  else if (prev == null) { return}
+  else if (prevParent == null) { return}
   else {
+    const prev = currentButton.parentElement.previousElementSibling.firstElementChild;
     currentButton.classList.remove("is-playing")
     prev.classList.add("is-playing")
     bpm = prev.innerText;
@@ -280,10 +283,11 @@ window.addEventListener("keydown", (e) => {
 })
 window.addEventListener("keydown", (e) => {
   let currentButton = metronomeApp.querySelector(".is-playing")
-  let next = currentButton.parentElement.nextElementSibling.firstElementChild;
+  let nextParent = currentButton.parentElement.nextElementSibling;
   if (!(e.key == "ArrowRight")) { return }
-  else if (next == null) { return}
+  else if (nextParent == null) { return}
   else {
+    const next = currentButton.parentElement.nextElementSibling.firstElementChild;
     currentButton.classList.remove("is-playing")
     next.classList.add("is-playing")
     bpm = next.innerText;

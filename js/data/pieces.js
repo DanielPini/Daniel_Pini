@@ -12,13 +12,17 @@ const piecesArray = [
     value: [72]
   },
   {
-    name: "Test",
-    value: [1, 2, 3, 4, 5, 6]
+    name: "The Lord of the Rings: The Two Towers",
+    value: [88, 60, 56, 80, [70, 2], 76, 104, 80]
   },
   {
-    name: "Test 2",
-    value: [[60, 2], [80, 4], 70, 100]
-  }
+    name: "Jurassic Park",
+    value: [56, 64, 58, 88]
+  },
+  {
+    name: "His Dark Materials",
+    value: [86]
+  },
 ];
 
 export default piecesArray;

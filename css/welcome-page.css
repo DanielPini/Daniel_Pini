@@ -20,7 +20,7 @@ body {
     transition: transform 1000ms ease;
   }
   p:hover {  
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
   a {
     cursor: pointer;

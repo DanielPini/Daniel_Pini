@@ -13,6 +13,7 @@ header.innerHTML = `
       <ul class="nav-list">
         <li class="nav-list-item"><a href="./index.html">Home</a></li>
         <li class="nav-list-item"><a href="./index.html">About</a></li>
+        <li class="nav-list-item"><a href="./index.html">BEING</a></li>
         <li class="nav-list-item"><a href="./index.html">Events</a></li>
         <li class="nav-list-item"><a href="./index.html">Contact</a></li>
       </ul>

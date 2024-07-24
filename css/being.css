@@ -1,0 +1,25 @@
+.album {
+  display: flex;
+  flex-flow: column;
+  width: 90vw;
+  margin: auto;
+}
+.being-album-image {
+  width: 90vw;
+  margin: 0 auto;
+}
+.listen-link {
+  width: 100px;
+  height: 100px;
+  border: 0;
+}
+.listen-link img {
+  height: 70px;
+  margin: 20px
+}
+.repertoire-list, .writers-list {
+  list-style-type: none;
+}
+.repertoire-list li, .writers-list li {
+  margin-top: 10px;
+}

@@ -1,0 +1,10 @@
+:root {
+  --background-color: rgb(221, 229, 225);
+}
+body * {
+  font-family: fantasy;
+  font-style: italic;
+}
+body {
+  background-color: var(--background-color);
+}

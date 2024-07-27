@@ -1,21 +1,56 @@
+/* BEING album section */
 .album {
   display: flex;
   flex-flow: column;
   width: 90vw;
-  margin: auto;
+  margin: 0px auto;
 }
+/* Main Heading */
+.being-heading {
+  display: block;
+  font-size: 60px;
+  margin: 50px auto;
+}
+/* Both album images */
 .being-album-image {
   width: 90vw;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 50px auto;
 }
+/* Text sections describing album and studio */
+.blurb, .studio {
+  display: block;
+  margin: 70px;
+}
+/* Description of where to purchase */
+.purchase-heading {
+  margin: 70px auto;
+}
+.purchase-para {
+  display: block;
+  margin: 70px 0 0 70px;
+}
+.listen-links-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+}  
 .listen-link {
   width: 100px;
   height: 100px;
   border: 0;
 }
 .listen-link img {
-  height: 70px;
-  margin: 20px
+  height: 90px;
+  margin: 30px;
+  transition: all 500ms ease;
+}
+.listen-link img:hover {
+  transform: scale(1.1);
+}
+/* Repertoire and more information of composers */
+.about-being, .writing-about-being {
+  margin: 70px ;
 }
 .repertoire-list, .writers-list {
   list-style-type: none;

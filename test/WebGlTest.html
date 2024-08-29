@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="webgl-canvas"
+      width="400"
+      height="400"></canvas>
+    <script type="module">
+      const canvas = document.getElementById("webgl-canvas");
+      const gl = canvas.getContext("webgl");
+      if (!gl) {
+        alert(
+          "Unable to initialise WebGL. Your browser or machine may not support it."
+        );
+        return;
+      }
+      // Set clear colour to black
+      gl.clearColor(0, 0, 0, 1);
+      // Clear the colour buffer with the specified clear colour
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DISTANCE_BUFFER_BIT);
+
+    </script>
+  </body>
+</html>

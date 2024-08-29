@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Poker table</title>
+    <script src="./js/blind-calculator.js"></script>
+    <style>
+      body {
+        background-color: rgb(230, 82, 82);
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      #optional {
+        cursor: pointer;
+      }
+      #optional > p {
+        color: blue;
+        text-decoration: underline;
+        margin-left: 3px;
+      }
+      .hidden {
+        display: none;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+      }
+      thead tr {
+        color: white;
+        background-color: rgb(0, 0, 0);
+      }
+      tr {
+        padding: 3px 5px;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        text-align: center;
+      }
+      tbody > tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="display">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Level</th>
+            <th>Small Blind</th>
+            <th>Big Blind</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <td>0:00</td>
+            <td>1</td>
+            <td>5</td>
+            <td>10</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>0:15</td>
+            <td>2</td>
+            <td>10</td>
+            <td>20</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>0:30</td>
+            <td>3</td>
+            <td>20</td>
+            <td>40</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>0:45</td>
+            <td>4</td>
+            <td>35</td>
+            <td>70</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>1:00</td>
+            <td>5</td>
+            <td>60</td>
+            <td>120</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>1:15</td>
+            <td>6</td>
+            <td>100</td>
+            <td>200</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>1:30</td>
+            <td></td>
+            <td>--BREAK--</td>
+            <td></td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>1:45</td>
+            <td>7</td>
+            <td>160</td>
+            <td>320</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>2:00</td>
+            <td>8</td>
+            <td>250</td>
+            <td>500</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>2:15</td>
+            <td>9</td>
+            <td>390</td>
+            <td>780</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>2:30</td>
+            <td>10</td>
+            <td>610</td>
+            <td>1220</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>2:45</td>
+            <td></td>
+            <td>--BREAK--</td>
+            <td></td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>3:0</td>
+            <td>11</td>
+            <td>950</td>
+            <td>1900</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>3:15</td>
+            <td>12</td>
+            <td>1480</td>
+            <td>2960</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>3:30</td>
+            <td>13</td>
+            <td>2300</td>
+            <td>4600</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="collect">
+      <form>
+        <p>
+          <label for="numberOfPlayers">Number of Players</label>
+          <input
+            type="number"
+            id="numberOfPlayers"
+            name="numberOfPlayers"
+            value="" />
+        </p>
+        <p>
+          <label for="gameDurationHours">Game Length</label>
+          <input
+            type="number"
+            id="gameDurationHours"
+            name="gameDurationHours"
+            value="" />
+        </p>
+        <p>
+          <label for="levelDuration">Level Length</label>
+          <input
+            type="number"
+            id="levelDuration"
+            name="levelDuration"
+            value="" />
+        </p>
+        <p>
+          <label for="startingStack">Starting Stack (in Big Blinds)</label>
+          <input
+            type="number"
+            id="startingStack"
+            name="startingStack"
+            value="" />
+        </p>
+        <p>
+          <label for="smallestChipValue">Smallest Chip Denomination</label>
+          <input
+            type="number"
+            id="smallestChipValue"
+            name="smallestChipValue"
+            value="" />
+        </p>
+        <div id="optional">
+          <p>
+            <img
+              src="./assets/icons/add-button-icon.svg"
+              alt=""
+              width="10" />
+            Optional
+          </p>
+          <div
+            class="hidden"
+            id="advanced-options">
+            <p>
+              <label for="breakLengthMinutes">Break Length</label>
+              <input
+                type="number"
+                id="breakLengthMinutes"
+                name="breakLengthMinutes"
+                value="" />
+            </p>
+            <p>
+              <label for="maxTimeBetweenBreaks"
+                >Maximum Time Between Breaks (minutes)</label
+              >
+              <input
+                type="number"
+                id="maxTimeBetweenBreaks"
+                name="maxTimeBetweenBreaks"
+                value="" />
+            </p>
+            <p>
+              <label for="startingSmallBlind">Starting Small Blind</label>
+              <input
+                type="number"
+                id="startingSmallBlind"
+                name="startingSmallBlind"
+                value="" />
+            </p>
+          </div>
+        </div>
+        <p>
+          <button id="btnSave">Save</button>
+        </p>
+      </form>
+    </div>
+    <script>
+      document.querySelector("#optional p").addEventListener("click", () => {
+        const advanced = document.getElementById("advanced-options");
+        advanced.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

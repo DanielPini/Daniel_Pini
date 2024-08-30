@@ -3,6 +3,8 @@ const APP = {
   time: 0,
   timeUntilBreak: 0,
   data: [],
+  intervalID: "",
+  breakIntervalID: "",
   init() {
       // add listeners to the site
       // work out the data that needs to fill the fields
@@ -17,6 +19,20 @@ const APP = {
     
     // open settings menu
     const settingsIcon = document.querySelector(".settings-section");
+
+    const customiseForm = document.querySelector("#form")
+    const customiseButton = document.querySelector(".customise-button")
+    customiseButton.addEventListener("click", () => {
+      customiseForm.style.transform = "scale(1)";
+      
+    })
+    
+    const minimiseButton = document.querySelector("#minimise-button");
+    minimiseButton.addEventListener("click", () => {
+      console.log("working");
+      
+      customiseForm.style.transform = "scale(0.0001)";
+    });
     
     const form = document.querySelector('#collect form');
     form.addEventListener('submit', APP.saveData);
@@ -38,22 +54,22 @@ const APP = {
     const playButton = document.querySelector(".js-play-pause");
     let playButtonClicked = false;
     let timer = false;
-    let intervalID
-    let breakIntervalID
+    // let intervalID;
+    // let breakIntervalID;
     
     playButton.addEventListener("click", () => {
       if (!playButtonClicked) {
         playButton.firstElementChild.src = "./assets/icons/pause.svg";
         playButtonClicked = true;
         timer = true;
-        intervalID = setInterval(APP.updateCountdown, APP.speed);
-        breakIntervalID = setInterval(APP.updateBreakTimer, APP.speed);
+        APP.intervalID = setInterval(APP.updateCountdown, APP.speed);
+        APP.breakIntervalID = setInterval(APP.updateBreakTimer, APP.speed);
       } else {
         playButton.firstElementChild.src = "./assets/icons/play.svg";
         playButtonClicked = false;
         timer = false;
-        clearInterval(intervalID);
-        clearInterval(breakIntervalID);
+        clearInterval(APP.intervalID);
+        clearInterval(APP.breakIntervalID);
       };
     });
 
@@ -70,11 +86,7 @@ const APP = {
     previous.addEventListener("click", () => {
       const table = document.querySelector("table");
       const currentLevel = table.querySelector(".current");
-      console.log(currentLevel)
-      console.log("next sibling", currentLevel.nextElementSibling)
-      console.log("previous sibling", currentLevel.previousElementSibling)
       if (currentLevel.children[1].innerText != 1) {
-        console.log("into the if statement of prev")
         APP.moveBackCurrent();
         APP.howLongUntilBreak();
       };
@@ -172,8 +184,6 @@ const APP = {
 
     // Initialise list
     let startingBlindIncrement = 1.1
-    let list = "";
-    let count = 1;
     
     loopThroughBlinds();
 
@@ -210,7 +220,7 @@ const APP = {
         time = time + Number(levelDuration);
         hours = Math.floor(time / 60);
         minutes = time % 60;
-        minutes < 10 ? (minutes = "0" + minutes) : minutes;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
     
         if (time >= ((gameDurationMinutes + numberOfBreaks * Number(breakLengthMinutes)) / (numberOfBreaks + 1)) * (breaks + 1)) {
           tableBody.innerHTML+= `
@@ -244,7 +254,6 @@ const APP = {
         startingBlindIncrement += 0.05;
         loopThroughBlinds();
       }
-      console.log(startingBlindIncrement)
       return;
     }
     APP.howLongUntilBreak();
@@ -255,43 +264,46 @@ const APP = {
     const rounds = table.children[1].children
     const currentLevel = table.querySelector(".current")
     const countDownClock = document.querySelector(".countdown-clock").firstElementChild;
+    
     countDownClock.innerText = currentLevel.children[5].innerText + ":00";
-    let startingMinutes = parseInt(countDownClock.innerText);
+    let startingMinutes = parseInt(currentLevel.children[5].innerText);
     APP.time = startingMinutes * 60;
     
     let index
-    let breaks = 0
-    let pokerLevels = 0
+    // let pokerLevels = 0
     let cumulativeTime = 0;
     // Get the index of the current level
     for (let j = 0; j < rounds.length; j++) {
       if (rounds[j].classList.contains("current")) {
         index = j;
+        break;
       };
     }
-    for (let l = 0; l < rounds.length; l++) {
-      if (rounds[l].classList.contains("level")) {
-        pokerLevels++
-      } else {
-        breaks++
-      }
-    }
+    // for (let l = 0; l < rounds.length; l++) {
+    //   if (rounds[l].classList.contains("level")) {
+    //     // pokerLevels++
+    //   } else {
+    //     // breaks++
+    //   }
+    // }
 
     // Loop through all the levels until you hit a break
-    for (let i = index; i < rounds.length - index + 1; i++) {
+    for (let i = index; i < rounds.length; i++) {
+      if (rounds[i].classList.contains("break")) {
+        break;
+      } else {
+        cumulativeTime += parseInt(rounds[i].children[5].innerText);
+      }
       // Accumulate the duration
       // if next level contains break reset timer to 0 and level counter to 0 and return the cumulative duration.
-      if (rounds[i + 1] != null && rounds[i + 1].classList.contains("level")) {
-        cumulativeTime += parseInt(rounds[i + 1].children[5].innerText);
-        console.log(cumulativeTime)
-      } else {
-        console.log("not adding time")
-        break;
-      }
+      // if (rounds[i + 1] != null && rounds[i + 1].classList.contains("level")) {
+      //   cumulativeTime += parseInt(rounds[i + 1].children[5].innerText);
+      // } else {
+      //   console.log("break")
+      //   break;
+      // }
     }
-    APP.timeUntilBreak = cumulativeTime * 60 + APP.time;
-    console.log(cumulativeTime)
-    
+    APP.timeUntilBreak = cumulativeTime * 60;
     APP.updateCountdown(startingMinutes);
     APP.updateBreakTimer();
     APP.updateFields(breakTimeField);
@@ -299,9 +311,9 @@ const APP = {
   updateBreakTimer() {
     const breakTimeField = document.querySelector(".break-time")
     const remainingTimeCountdown = breakTimeField.children[1]
-    if (APP.timeUntilBreak <= 0 | undefined | null ) {
-      APP.timeUntilBreak = 0
-      console.log("Tis break time")
+    if (APP.tiemUntilBreak <= 0 || undefined || null ) {
+      clearInterval(APP.breakIntervalID);
+      APP.timeUntilBreak = 0;
       return;
     } else {
       APP.timeUntilBreak--;
@@ -339,6 +351,8 @@ const APP = {
     breakTimeField.innerHTML = `
     <h3 class="time-to-break_title">Time until break</h3>
     <div class="time-to-break_clock js-time-to-break_clock">-</div>`
+    nextBlinds.style.display = "block";
+    nextAnte.style.display = "block";
 
     breakClock = document.querySelector(".js-time-to-break_clock")
     breakMinutes = Math.floor(APP.timeUntilBreak / 60);
@@ -352,9 +366,9 @@ const APP = {
       breakClock.innerText = `${breakMinutes}:${breakSeconds}`;
       smallBlindText.innerText = currentLevel.children[2].innerText;
       bigBlindText.innerText = currentLevel.children[3].innerText;
-      nextBlinds.innerText = "Last Round";
+      nextBlinds.style.display = "none";
       anteText.innerText = currentLevel.children[4].innerText;
-      nextAnte.innerText = "Last Round"
+      nextAnte.style.display = "none";
       countDownClock.innerText = currentLevel.children[5].innerText + ":00";
       //If the next round is a break
     } else if (currentLevel.nextElementSibling.classList.contains("break")) {
@@ -383,10 +397,13 @@ const APP = {
       nextAnteText.innerText = currentLevel.nextElementSibling.children[4].innerText;
       countDownClock.innerText = currentLevel.children[5].innerText + ":00";
     } else if (!currentLevel.classList.contains("break") && currentLevel.previousElementSibling != null && currentLevel.previousElementSibling.classList.contains("break")) {
-        // Previous level was a break
+      // Previous level was a break
       console.log("Previous level was break")
       currentRoundText.innerText = `Level ${levelNumber} of ${numberOfLevels}`;
       breakClock.innerText = `${breakMinutes}:${breakSeconds}`;
+      console.log(breakMinutes, breakSeconds)
+      console.log(Math.floor(APP.timeUntilBreak / 60))
+      console.log(APP.timeUntilBreak)
       smallBlindText.innerText = currentLevel.children[2].innerText;
       bigBlindText.innerText = currentLevel.children[3].innerText;
       nextSmallBlindText.innerText = currentLevel.nextElementSibling.children[2].innerText;
@@ -407,60 +424,68 @@ const APP = {
       countDownClock.innerText = currentLevel.children[5].innerText + ":00";
     }
   },
-  updateCountdown(startingMinutes) {
+  updateCountdown() {
     const countDownClock = document.querySelector(".countdown-clock").firstElementChild;
     const progressBar = document.querySelector(".time-left-graphic")
-    let counter = 0;
-    counter++
+    const currentLevel = document.querySelector(".current")
+
     APP.time--
+    if (APP.time < 0) {
+      clearInterval(APP.intervalID); // Stop the current countdown
+      APP.updateCurrent();       // Update to the next round
+      APP.howLongUntilBreak();   // Recalculate break time
+      return;
+    }
     let minutes = Math.floor( APP.time / 60 );
     let seconds = APP.time % 60;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     
     countDownClock.innerText = `${minutes}:${seconds}`
-    progressBar.style.width = counter * 100 / (startingMinutes * 60) + "%";
-  
-    let newIntervalID
-    if (APP.time < 6 && APP.time >= 1) {
-      newIntervalID = setInterval(function () {
-        if (APP.time < 6 && time % 2 == 0 && time > 0 ) {
-          document.body.style.backgroundColor = "red";
-        } else if (APP.time < 6 && APP.time % 2 != 0 && APP.time > 0 ) {
-          clearInterval(newIntervalID);
-          document.body.style.backgroundColor = "rgb(22, 22, 22)";
-        }
-      }, APP.speed);
-    }
+
+    const totalLevelTime = parseInt(currentLevel.children[5].innerText) * 60;
+    progressBar.style.width = ((totalLevelTime - APP.time) / totalLevelTime * 100) + "%";
+
+    if (APP.time < 6 && APP.time > 0) {
+      if (APP.time % 2 === 0) {
+        document.body.style.backgroundColor = "red";
+      } else {
+        document.body.style.backgroundColor = "rgb(22, 22, 22)";
+      }
+    };
     if (APP.time <= 0) {
-      progressBar.style.width = 0
-      updateCurrent();
-      updateFields(breakTime);
-      startingMinutes = parseInt(countDownClock.innerText);
+      clearInterval(APP.intervalID);
+      progressBar.style.width = "0%"
+      APP.updateCurrent();
+      APP.updateFields();
+      const startingMinutes = parseInt(currentLevel.children[5].innerText);
       APP.time = startingMinutes * 60;
-      counter = 0;
-      clearInterval(intervalID);
-      intervalID = setInterval(updateCountdown, APP.speed);
+      APP.intervalID = setInterval(APP.updateCountdown, APP.speed);
     }
   },
   updateCurrent() {
     const table = document.querySelector("table");
     let currentLevel = table.querySelector(".current");
-    currentLevel.nextElementSibling.classList.add("current");
     currentLevel.classList.remove("current");
-    currentLevel = document.querySelector(".current");
+    
+    if (currentLevel.nextElementSibling) {
+      currentLevel.nextElementSibling.classList.add("current");
+    } else {
+      alert("Time's Up. End of planned blinds")
+    }
+    // currentLevel.nextElementSibling.classList.add("current");
+    // currentLevel = document.querySelector(".current");
+    APP.updateFields();
+    APP.howLongUntilBreak();
   },
   moveBackCurrent() {
-    console.log("moveBackCurrent working")
     const table = document.querySelector("table");
     let currentLevel = table.querySelector(".current");
     currentLevel.classList.add("temporary")
-    console.log(currentLevel)
     let temporary = table.querySelector(".temporary")
     temporary.previousElementSibling.classList.add("current");
     temporary.classList.remove("current");
     temporary.classList.remove("temporary");
     currentLevel = document.querySelector(".current");
-    console.log(currentLevel);
   }
 };
 

@@ -107,8 +107,13 @@
           <tbody id="table-body"></tbody>
         </table>
       </div>
+      <div class="customise-button">
+        <h2 class="customise-button_heading">Customise Settings</h2>
+      </div>
       <div id="collect">
-        <form>
+        <form
+          class="hidden"
+          id="form">
           <p>
             <label for="numberOfPlayers"
               >Number of Players: <span></span
@@ -157,14 +162,7 @@
               value="" />
           </p>
           <div id="optional">
-            <!-- <img
-              src="./assets/icons/add-button-icon.svg"
-              alt=""
-              width="10" /> -->
-            <p>Optional</p>
-            <div
-              class="hidden"
-              id="advanced-options">
+            <div id="advanced-options">
               <p>
                 <label for="breakLengthMinutes"
                   >Break Length: <span></span>
@@ -200,15 +198,12 @@
           <p>
             <button id="btnSave">Save</button>
           </p>
+          <p>
+            <button id="minimise-button">Minimise Custom Settings</button>
+          </p>
         </form>
       </div>
     </section>
-    <script>
-      document.querySelector("#optional p").addEventListener("click", () => {
-        const advanced = document.getElementById("advanced-options");
-        advanced.classList.toggle("hidden");
-      });
-    </script>
     <script
       type="module"
       src="./js/blindsfunction.js"></script>

@@ -41,7 +41,7 @@ footer.innerHTML = `
         </ul>
       </div>
     </div>
-    <div class="footer-center footer-div">Copyright 2024 &copy</div>
+    <div class="footer-center footer-div">&copy 2024 Daniel Pini</div>
     <div class="footer-right footer-div"><a href="#">Contact Daniel</a></div>
   </div>`;
 

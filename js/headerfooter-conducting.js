@@ -12,10 +12,8 @@ header.innerHTML = `
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-list-item"><a href="./index.html">Home</a></li>
-        <li class="nav-list-item"><a href="./about.html">About</a></li>
-        <li class="nav-list-item"><a href="./being.html">BEING</a></li>
-        <li class="nav-list-item"><a href="./teaching.html">Students</a></li>
-        <li class="nav-list-item"><a href="./index.html">Events</a></li>
+        <li class="nav-list-item"><a href="./about-conducting.html">About</a></li>
+        <li class="nav-list-item"><a href="./events.html">Events</a></li>
         <li class="nav-list-item"><a href="./contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -41,7 +39,7 @@ footer.innerHTML = `
         </ul>
       </div>
     </div>
-    <div class="footer-center footer-div">Copyright 2024 &copy</div>
+    <div class="footer-center footer-div">&copy 2024 Daniel Pini</div>
     <div class="footer-right footer-div"><a href="#">Contact Daniel</a></div>
   </div>`;
 

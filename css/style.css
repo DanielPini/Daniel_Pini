@@ -1,10 +1,26 @@
 :root {
   --background-color: rgb(221, 229, 225);
+  --default-font-family: arial, sans-serif;
 }
-body * {
-  font-family: fantasy;
-  font-style: italic;
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
-  background-color: var(--background-color);
+  background: radial-gradient(rgb(255, 255, 255), rgb(113, 113, 113));
+  overflow-x: hidden;
+}
+body * {
+  font-family: var(--default-font-family);
+  font-style: italic;
+}
+header * {
+  font-size: 24px;
+}
+.filler {
+  width: 100vw;
+  height: calc(100vw * .57);
+  min-height: calc(1500px * .57);
+  display: flex;
+  flex-flow: column;
 }

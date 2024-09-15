@@ -220,6 +220,7 @@ body {
         list-style: none;
         transition: all 1000ms ease;
         .nav-list-item {
+          display: block;
           opacity: 0;
           box-sizing: border-box;
           padding: 0;
@@ -233,9 +234,12 @@ body {
       .nav-list {
         width: 90vw;
         .nav-list-item {
+          flex-grow: 1;
           opacity: 1;
-          padding: 0px 10vw;
         }
+      }
+      .nav-list:first-child {
+        margin-left: 20px;
       }
     }
   }
@@ -257,6 +261,7 @@ body {
     width: 80vw;
     div {
       margin: 0 40px;
+      white-space: nowrap;
     }  
   }
   .footer-socials {

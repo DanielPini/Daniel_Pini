@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./css/headerfooter.css" />
+    <link
+      rel="stylesheet"
+      href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="./css/contact.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <title>Daniel Pini | Home</title>
+  </head>
+  <body>
+    <header></header>
+    <main
+      id="contact"
+      class="filler">
+      <h1>Contact</h1>
+      <!-- Contact form -->
+      <div class="container">
+        <form
+          id="form"
+          class="form">
+          <div class="explaination">
+            <p>Contact Daniel by filling out the form below.</p>
+          </div>
+          <div class="form-control">
+            <label for="username">Name</label>
+            <input
+              type="text"
+              placeholder="Name"
+              id="username" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Email</label>
+            <input
+              type="email"
+              placeholder="email@email.com"
+              id="email" />
+            <i
+              src="./assets/images/icons/circle-check-solid.svg"
+              class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Subject</label>
+            <input
+              type="text"
+              placeholder="Subject"
+              id="subject" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Message</label>
+            <textarea
+              type="message"
+              placeholder="Write a message."
+              id="message"></textarea>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="subscribe-option">
+            <input
+              type="checkbox"
+              name="subscribe"
+              id="subscribe-check" />
+            <p>
+              To keep up to date on our events, please click this box to
+              subscribe.
+            </p>
+          </div>
+          <button
+            id="submit-btn"
+            type="submit"
+            value="send">
+            Submit
+          </button>
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+    <script src="./js/headerfooter-cello.js"></script>
+    <script src="./js/contact.js"></script>
+  </body>
+</html>

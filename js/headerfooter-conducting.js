@@ -14,7 +14,7 @@ header.innerHTML = `
         <li class="nav-list-item"><a href="./index.html">Home</a></li>
         <li class="nav-list-item"><a href="./about-conducting.html">About</a></li>
         <li class="nav-list-item"><a href="./events.html">Events</a></li>
-        <li class="nav-list-item"><a href="./contact.html">Contact</a></li>
+        <li class="nav-list-item"><a href="./contact-conducting.html">Contact</a></li>
       </ul>
     </nav>
     <!-- <div class="socials">
@@ -36,7 +36,7 @@ footer.innerHTML = `
         <input
           type="email"
           name="email"
-          id="email" />
+          id="email" autocomplete="true" />
         <input
           type="submit"
           value="Submit" />

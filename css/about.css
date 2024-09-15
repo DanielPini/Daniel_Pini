@@ -1,13 +1,15 @@
 #biography {
   width: 90vw;
   margin: 10px auto;
+  height: fit-content;
   background: rgba(0, 128, 0, 0.101);
   h1, p {
-    padding: 20px;
+    padding: 5%;
     padding-bottom: 0;
   }
   h1 {
     font-size: clamp(30px, 5vw, 100px);
+    padding-top: 5%;
   }
   div {
     display: flex;
@@ -26,5 +28,29 @@
     #cv:hover {
       transform: scale(1.1);
     }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  #biography {
+    background-image: url(../assets/photos/conducting-headshot.webp);
+    background-position: top 60% left 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    p, h1 {
+      padding: 0;
+      padding-right: 5%;
+      padding-left: 50%;
+      text-shadow: 0 0 10px rgb(255, 255, 255);
+    }
+    h1 {
+      padding-top: 3%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #biography {
+    background-position: top 60% left 0;
   }
 }

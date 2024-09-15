@@ -38,7 +38,7 @@ footer.innerHTML = `
         <input
           type="email"
           name="email"
-          id="email" />
+          id="email" autocomplete="true" />
         <input
           type="submit"
           value="Submit" />

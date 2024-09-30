@@ -25,6 +25,10 @@
     font-size: clamp(18px, 3vw, 80px);
     text-align: right;
   }
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 #filler-button {
   min-height: calc(1500px * .665);

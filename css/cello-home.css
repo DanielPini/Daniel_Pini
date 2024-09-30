@@ -1,0 +1,36 @@
+#image-container {
+  position: relative;
+  width: 100vw;
+}
+#cello-image {
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  width: 100vw;
+  min-width: 1200px;
+}
+#welcome {
+  position: absolute;
+  z-index: 2;
+  top: 45%;
+  left: 50%;
+  color: white;
+  text-shadow: 0 1px 5px white;
+  translate: -50%;
+  h1 {
+    font-size: clamp(25px, 5vw, 100px);
+  }
+  h2 {
+    font-size: clamp(18px, 3vw, 80px);
+    text-align: right;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+#filler-button {
+  min-height: calc(1500px * .665);
+  height: calc(100vw * .645);
+}

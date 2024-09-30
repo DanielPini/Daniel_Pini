@@ -29,7 +29,9 @@ body {
   background-color: transparent;
   transition: var(--transition);
   .nav__logo {
+    opacity: 1;
     position: relative;
+    transition: all 100ms ease;
     .line {
       position: absolute;
       background-color: black;
@@ -202,6 +204,10 @@ body {
   .nav__button {
     margin-left: 20px;
     transform: rotate(360deg);
+    .nav__logo {
+      opacity: 0;
+      transition: all 100ms ease;
+    }
     .nav {
       position: absolute;
       top: 0px;
@@ -218,18 +224,16 @@ body {
         width: 0vw;
         height: 5px;
         list-style: none;
-        transition: all 1000ms ease;
         .nav-list-item {
           display: block;
           opacity: 0;
           box-sizing: border-box;
           padding: 0;
-          transition: all 1000ms ease;
         }
       }
     }
   }
-  .nav__button:hover {
+  .nav__button {
     .nav {
       .nav-list {
         width: 90vw;
@@ -237,9 +241,6 @@ body {
           flex-grow: 1;
           opacity: 1;
         }
-      }
-      .nav-list:first-child {
-        margin-left: 20px;
       }
     }
   }

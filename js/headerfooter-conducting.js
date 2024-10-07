@@ -3,7 +3,7 @@ const footer = document.querySelector('footer');
 
 header.innerHTML = `
 <div class="header">
-  <button class="nav__button">
+  <button class="nav__button js-nav__button">
     <div class="nav__logo">
       <div class="line line-1"></div>
       <div class="line line-2"></div>

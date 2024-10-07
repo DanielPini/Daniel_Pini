@@ -34,13 +34,14 @@ body {
     transition: all 100ms ease;
     .line {
       position: absolute;
-      background-color: black;
+      background-color: rgb(255, 255, 255);
       width: 22px;
       height: 2px;
       margin: auto;
       border-radius: 10px;
       left: -2px;
       transition: var(--transition);
+      box-shadow: 0 0 20px 1px white;
     }
     .line-1 {
       top: -8px;
@@ -51,29 +52,20 @@ body {
     .line-3 {
       top: 8px;
     }
-  }
-}
-.nav__button:hover, .nav__button:active, .nav-list:hover {
-  .line-2 {
-    opacity: 0
-  }
-  .line-1 {
-    top: 0;
-    transform: rotate(45deg);
-  }
-  .line-3 {
-    top: 0;
-    transform: rotate(-45deg);
-  }
-  .nav {
-    .nav-list {
-      .nav-list-item {
-        padding: 12px 0;
-        opacity: 1;
-      }
+    .line-2.open {
+      opacity: 0
+    }
+    .line-1.open {
+      top: 0;
+      transform: rotate(45deg);
+    }
+    .line-3.open {
+      top: 0;
+      transform: rotate(-45deg);
     }
   }
 }
+
 .nav__button {
   .nav {
     position: absolute;
@@ -97,6 +89,10 @@ body {
         a {
           line-height: 10px;
         }
+      }
+      .nav-list-item.open {
+        padding: 12px 0;
+        opacity: 1;
       }
     }
   }

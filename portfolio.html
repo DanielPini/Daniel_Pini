@@ -6,115 +6,65 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
     <title>Coding Portfolio</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-      }
-      html {
-        scroll-snap-type: y mandatory;
-      }
-      header {
-        height: 50px;
-        background-color: rgb(150, 150, 226);
-      }
-      section {
-        scroll-snap-align: start;
-        min-height: 100vh;
-      }
-      #section1 {
-        height: calc(100vh - 50px);
-        background-color: rgb(98, 142, 98);
-        scroll-margin-top: 50px;
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        align-items: center;
-        h1 {
-          font-size: clamp(30px, 6vw, 120px);
-        }
-      }
-      h1,
-      h2 {
-        text-transform: uppercase;
-      }
-      #section2 {
-        background-color: rgb(234, 165, 234);
-        padding: 4vw;
-        display: flex;
-        flex-flow: row wrap;
-        align-content: start;
-        h2 {
-          padding: 2vw;
-          width: 100%;
-        }
-      }
-      #project-card-container {
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-      }
-      .card {
-        position: relative;
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        width: calc((100vw / 3) - 7vw);
-        height: calc((100vw / 3) - 7vw);
-        margin: 2vw;
-        background-color: white;
-        border-radius: 10px;
-        img {
-          margin-top: 5%;
-          width: calc(((100vw / 3) - 7vw) * 0.9);
-          height: calc(((100vw / 3) - 7vw) * 0.8);
-          border-radius: 5px;
-        }
-        .overlay,
-        a {
-          position: absolute;
-          opacity: 0;
-          width: 90%;
-          height: 80%;
-          top: 5%;
-          left: 5%;
-          background-color: rgba(255, 255, 255, 0.5);
-        }
-        .overlay:hover {
-          opacity: 1;
-        }
-      }
-      #section3 {
-        height: calc(100vh - 50px);
-      }
-      footer {
-        height: 50px;
-      }
-
-      @media only screen and (max-width: 600px) {
-        #project-card-container {
-          flex-flow: column;
-        }
-        .card {
-          min-width: 85vw;
-          min-height: 85vw;
-          img {
-            min-width: calc(85vw * 0.9);
-            min-height: calc(85vw * 0.8);
-          }
-        }
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="./css/portfolio.css" />
   </head>
   <body>
-    <header>Header</header>
-    <section id="section1">
-      <h1>Daniel Pini</h1>
-      <h2>Web Developer</h2>
+    <header>
+      <a href=""><p>Item</p></a>
+      <a href=""><p>Item</p></a>
+      <a href=""><p>Item</p></a>
+      <a href=""><p>Item</p></a>
+    </header>
+    <section id="about-me-section">
+      <div id="headshot"></div>
+      <div id="nameplate">
+        <h1>Daniel Pini</h1>
+        <h2>Web Developer</h2>
+        <div id="buttons">
+          <a href="#projects-section"
+            ><div id="latest">See the latest works</div></a
+          >
+          <a href="./contact-cello.html"
+            ><div id="contact-me">Contact me</div></a
+          >
+        </div>
+      </div>
     </section>
-    <section id="section2">
+    <section id="what-we-do-section">
+      <div id="what-we-do">
+        <h2>What we do?</h2>
+      </div>
+    </section>
+    <section id="business-offers-section">
+      <div id="business-offers">
+        <h2>Unique Ideas For Your Business</h2>
+        <div id="offer-container">
+          <div class="offer">
+            <h3>Website design</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button>Info</button>
+          </div>
+          <div class="offer">
+            <h3>Custom Web App Creation</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button>Info</button>
+          </div>
+          <div class="offer">
+            <h3>Desktop App Builds</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button>Info</button>
+          </div>
+          <div class="offer">
+            <h3>Branding</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button>Info</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects-section">
       <h2>Projects</h2>
       <h2>Websites</h2>
       <div id="project-card-container">
@@ -225,7 +175,10 @@
         </div>
       </div>
     </section>
-    <section id="section3">section3</section>
-    <footer>Footer</footer>
+    <footer>
+      <a href=""><p>Item</p></a>
+      <a href=""><p>Item</p></a>
+      <a href=""><p>Item</p></a>
+    </footer>
   </body>
 </html>

@@ -6,6 +6,7 @@
       }
       html {
         scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
       }
       header {
         scroll-snap-align: start;
@@ -17,13 +18,11 @@
         background: linear-gradient(20deg, rgb(89, 172, 89), rgb(56, 91, 48))
       }
       section {
-        scroll-snap-align: start;
-        min-height: 100vh;
+        scroll-snap-align: center;
+        height: 100vh;
       }
       #about-me-section {
-        height: calc(100vh - 50px);
         background-color: rgb(167, 167, 167);
-        scroll-margin-top: 50px;
         display: flex;
         flex-flow: row;
         justify-content: center;
@@ -132,6 +131,10 @@
           margin: 10px;
         }
       }
+      a {
+        text-decoration: none;
+        color: inherit
+      }
       #project-card-container {
         width: 100%;
         display: flex;
@@ -142,15 +145,15 @@
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: calc((100vw / 3) - 7vw);
-        height: calc((100vw / 3) - 7vw);
+        width: calc((100vw / 4) - 8vw);
+        height: calc((100vw / 4) - 8vw);
         margin: 2vw;
         background-color: white;
         border-radius: 10px;
         img {
           margin-top: 5%;
-          width: calc(((100vw / 3) - 7vw) * 0.9);
-          height: calc(((100vw / 3) - 7vw) * 0.8);
+          width: calc((((100vw / 4) - 8vw)) * 0.9);
+          height: calc((((100vw / 4) - 8vw)) * 0.8);
           border-radius: 5px;
         }
         .overlay,

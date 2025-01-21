@@ -1,5 +1,5 @@
-const header = document.querySelector('header');
-const footer = document.querySelector('footer');
+const header = document.querySelector("header");
+const footer = document.querySelector("footer");
 
 header.innerHTML = `
 <div class="header">
@@ -13,6 +13,7 @@ header.innerHTML = `
       <ul class="nav-list">
         <li class="nav-list-item"><a href="./index.html">Home</a></li>
         <li class="nav-list-item"><a href="./about-conducting.html">About</a></li>
+        <li class="nav-list-item"><a href="./being.html">BEING</a></li>
         <li class="nav-list-item"><a href="./events.html">Events</a></li>
         <li class="nav-list-item"><a href="./contact-conducting.html">Contact</a></li>
       </ul>
@@ -26,7 +27,6 @@ header.innerHTML = `
     </div> -->
   </button>
 </nav>`;
-
 
 footer.innerHTML = `
   <div class="footer">
@@ -56,4 +56,3 @@ footer.innerHTML = `
       <div class="footer-right footer-div"><a href="#">Contact Daniel</a></div>
     </div>
   </div>`;
-

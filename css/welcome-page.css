@@ -3,34 +3,17 @@ body {
   flex-flow: column;
   margin: 0;
 }
-.conducting, .cello {
-  position: relative;
+.conducting {
+  position: absolute;
   width: 100vw;
-  height: 50vh;
+  height: 100vh;
   overflow: hidden;
-  p {
-    display: block;
-    line-height: 51vh;
-    font-size: 24px;
-    font-style: italic;
-    color: white;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.495);
-    text-align: center;
-    margin-top: -1vh;
-    transition: transform 1000ms ease;
-  }
-  p:hover {  
-    transform: scale(1.2);
-  }
-  a {
-    cursor: pointer;
-    text-decoration: none;
-  }
-  a:hover {
-    cursor: pointer;
-  }
+  background-image: url("../assets/photos/conducting-headshot.webp");
+  background-size: cover;
+  background-position: left bottom;
+  transition: opacity 1000ms ease;
 }
-.conducting-link:hover, .cello-link:hover {
+.conducting-link:hover {
   position: absolute;
   display: block;
   top: 0;
@@ -39,30 +22,9 @@ body {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.157);
 }
-.conducting {
-  background-image: url("../assets/photos/conducting-headshot.webp");
-  background-size: cover;
-  background-position: center;
-}
-.cello {
-  background-image: url("../assets/photos/cello-photo.webp");
-  background-size: cover;
-  background-position: 40%;
-}
-
 
 @media only screen and (min-width: 900px) {
-  body {
-    flex-flow: row;
-  }
-  .conducting, .cello {
-    width: 50vw;
-    height: 100vh;
-    p {
-      line-height: 101vh;
-    }
-  }
   .conducting {
-    background-position-x: 10%;
+    background-position-y: 15%;
   }
 }

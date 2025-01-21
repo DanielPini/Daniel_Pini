@@ -1,19 +1,20 @@
-const burgerIcon = document.querySelector(".js-nav__button")
-const lines = document.querySelectorAll(".line")
-const nav = document.querySelector(".nav")
-const navList = document.querySelector(".nav-list")
-const navListItem = document.querySelectorAll(".nav-list-item")
+const burgerIcon = document.querySelector(".js-nav__button");
+const lines = document.querySelectorAll(".line");
+const nav = document.querySelector(".nav");
+const navList = document.querySelector(".nav-list");
+const navListItem = document.querySelectorAll(".nav-list-item");
 
 burgerIcon.addEventListener("click", () => {
   // Div opens
-  lines.forEach(line => {
-    line.classList.toggle("open")
+  lines.forEach((line) => {
+    line.classList.toggle("open");
   });
-  nav.classList.toggle("open")
-  navList.classList.toggle("open")
-  navListItem.forEach(item => {
-    item.classList.toggle("open")
-  })
+  nav.classList.toggle("open");
+  navList.classList.toggle("open");
+  navListItem.forEach((item) => {
+    item.classList.toggle("open");
+    console.log("working", item);
+  });
   // .nav__logo {
   //   opacity: 1;
   //   position: relative;
@@ -58,4 +59,4 @@ burgerIcon.addEventListener("click", () => {
   //   }
   // }
   // Then drop-down ripples down after 300ms
-})
+});

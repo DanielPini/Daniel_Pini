@@ -31,6 +31,6 @@
   }
 }
 #filler-button {
-  min-height: calc(1500px * .665);
-  height: calc(100vw * .645);
+  min-height: calc(1500px * 0.665);
+  height: calc(100vw * 0.645);
 }

@@ -14,3 +14,8 @@ window.addEventListener("click", () => {
   removeSplash();
   window.removeEventListener("click", removeSplash);
 });
+
+const video = document.querySelector("video");
+const videoContainer = document.querySelector("#video-container");
+
+console.log(video.videoHeight);

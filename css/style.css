@@ -7,7 +7,7 @@
   padding: 0;
 }
 body {
-  background: radial-gradient(rgb(255, 255, 255), rgb(113, 113, 113));
+  background: radial-gradient(rgb(133, 133, 133), rgb(81, 81, 81));
   overflow-x: hidden;
 }
 body * {

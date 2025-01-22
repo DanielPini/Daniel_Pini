@@ -29,3 +29,16 @@ body {
     background-position-y: 15%;
   }
 }
+
+/* meter {
+  margin: 0 auto;
+  width: 15em;
+  height: 3em;
+  background: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewbox="0, 0, 100, 300"><text font-size="100" y=".5em" opacity=".2">⋆</text></svg>')
+    0 / auto 100%;
+  background-color: none;
+}
+meter::-webkit-meter-optimum-value {
+  background: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewbox="0, 0, 100, 300"><text font-size="100" y=".5em">⋆</text></svg>')
+    0 / auto 100%;
+} */

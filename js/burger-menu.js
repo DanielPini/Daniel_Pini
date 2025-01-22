@@ -4,7 +4,10 @@ const nav = document.querySelector(".nav");
 const navList = document.querySelector(".nav-list");
 const navListItem = document.querySelectorAll(".nav-list-item");
 
+let burgerOpenFlag = false;
+
 burgerIcon.addEventListener("click", () => {
+  burgerOpenFlag = false ? true : false;
   // Div opens
   lines.forEach((line) => {
     line.classList.toggle("open");
@@ -13,7 +16,6 @@ burgerIcon.addEventListener("click", () => {
   navList.classList.toggle("open");
   navListItem.forEach((item) => {
     item.classList.toggle("open");
-    console.log("working", item);
   });
   // .nav__logo {
   //   opacity: 1;
@@ -59,4 +61,15 @@ burgerIcon.addEventListener("click", () => {
   //   }
   // }
   // Then drop-down ripples down after 300ms
+});
+burgerIcon.addEventListener("focusout", () => {
+  burgerOpenFlag = false;
+  lines.forEach((line) => {
+    line.classList.remove("open");
+  });
+  nav.classList.remove("open");
+  navList.classList.remove("open");
+  navListItem.forEach((item) => {
+    item.classList.remove("open");
+  });
 });

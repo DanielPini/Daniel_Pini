@@ -12,5 +12,5 @@ setTimeout(() => {
 
 window.addEventListener("click", () => {
   removeSplash();
-  window.removeEventListener("click");
+  window.removeEventListener("click", removeSplash);
 });

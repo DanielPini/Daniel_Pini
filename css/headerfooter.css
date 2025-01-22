@@ -78,13 +78,13 @@ body {
       align-items: flex-end;
       width: 35px;
       list-style: none;
-      transition: all 1000ms ease;
+      transition: all 500ms linear;
       .nav-list-item {
         opacity: 0;
         box-sizing: border-box;
         padding: 0px;
         margin-bottom: -17px;
-        transition: all 1000ms ease;
+        transition: all 500ms linear;
         width: 90px;
         a {
           line-height: 10px;
@@ -180,11 +180,11 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   background-color: grey;
-  padding: 30px;
-  border-radius: 10px;
-  width: clamp(300px, 30vw, 800px);
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
   box-shadow: 0 0 5px 1px rgb(58, 58, 58);
-  margin: 10px auto;
+  margin: 0 auto;
   p {
     text-align: center;
     display: block;
@@ -192,8 +192,13 @@ body {
     color: var(--default-text-color);
   }
   input {
-    width: 300px;
+    width: calc(90% / 2);
+    min-width: 150px;
     margin: 5px 0;
+  }
+  #submit {
+    width: 60px;
+    min-width: unset;
   }
 }
 
@@ -210,7 +215,7 @@ body {
       top: 0px;
       left: 0px;
       opacity: 1;
-      transition: all 1000ms ease;
+      transition: all 500ms linear;
       .nav-list {
         position: absolute;
         left: 0;

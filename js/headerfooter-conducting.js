@@ -38,6 +38,7 @@ footer.innerHTML = `
           name="email"
           id="email" autocomplete="true" />
         <input
+          id="submit"
           type="submit"
           value="Submit" />
       </form>

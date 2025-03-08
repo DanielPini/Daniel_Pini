@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .event-container {
+        margin: 30px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .event {
+        width: 600px;
+        box-shadow: 0 1px 5px 2px rgba(128, 128, 128, 0.437);
+        border-radius: 20px;
+        margin: 20px 0;
+      }
+      .month-header {
+        width: 100%;
+        text-align: center;
+        margin: 40px 0 20px 0;
+        font-size: 2em;
+      }
+      .event-image {
+        width: 100%;
+        max-height: 500px;
+        border-radius: 20px 20px 0 0;
+      }
+      .event-title {
+        padding: 20px;
+        padding-bottom: 0;
+      }
+      .event-time {
+        padding: 10px 20px;
+        font-weight: normal;
+      }
+      .event-description {
+        padding: 0 20px;
+        font-size: 1.2em;
+      }
+      .event-location {
+        padding: 20px;
+        padding-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Initialise container for calendar data
+      let calendarData = [];
+
+      // Define Google Calendar URL with API key
+      const api =
+        "https://www.googleapis.com/calendar/v3/calendars/c_21145c452d313eb536e448603c41126fa393c892bad0f89a64fea83205ca2a91@group.calendar.google.com/events?key=AIzaSyA8X5z472la9T2AxpfcHEyEykm2UeyqoMc";
+
+      // Fetch data from Google Calendar
+      fetch(api)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          constructCalendarArray(data, calendarData);
+
+          // Then sort using the raw dates
+          sortCalendarEvents(calendarData);
+          renderEvents(calendarData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      function renderEvents(array) {
+        const eventContainer = document.createElement("div");
+        eventContainer.classList.add("event-container");
+        document.body.appendChild(eventContainer);
+
+        let currentMonth = "";
+
+        for (let i = 0; i < array.length; i++) {
+          // Get month name from Start_Raw date
+          const eventDate = new Date(array[i].Start_Raw);
+          const monthYear = eventDate.toLocaleString("en-GB", {
+            month: "long",
+            year: "numeric",
+          });
+
+          // Create new month header if month changes
+          if (monthYear !== currentMonth) {
+            currentMonth = monthYear;
+            const monthHeader = document.createElement("h2");
+            monthHeader.classList.add("month-header");
+            monthHeader.textContent = monthYear;
+            eventContainer.append(monthHeader);
+          }
+
+          const event = document.createElement("div");
+          event.classList.add("event");
+          const title = document.createElement("h1");
+          title.classList.add("event-title");
+          title.textContent = array[i].Name;
+
+          const time = document.createElement("h2");
+          time.classList.add("event-time");
+          time.textContent = `${array[i].Start_Date} to ${array[i].End_Date} (${array[i].Length}).`;
+
+          const description = document.createElement("p");
+          description.classList.add("event-description");
+          description.textContent = array[i].Description;
+
+          const location = document.createElement("p");
+          location.classList.add("event-location");
+          location.textContent = array[i].Location;
+
+          // Create image element if URL exists
+          if (array[i].Image) {
+            const img = document.createElement("img");
+            img.classList.add("event-image");
+            // Decode HTML entities in the URL
+            img.src = decodeURIComponent(array[i].Image.replace(/&amp;/g, "&"));
+            img.alt = "Event image";
+            event.append(img);
+          }
+
+          event.append(title, time, description, location);
+          eventContainer.append(event);
+        }
+      }
+
+      function extractImageFromDescription(description) {
+        if (!description) return "";
+
+        // First decode HTML entities
+        const decoded = description
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/&amp;/g, "&");
+
+        // Extract URL from the nested structure
+        // First try to match the direct URL within the <a> tag
+        const urlMatch = decoded.match(/href="([^"]+)"/);
+        if (urlMatch && urlMatch[1]) {
+          return urlMatch[1];
+        }
+
+        // Fallback to looking for direct img src if no href found
+        const imgMatch = decoded.match(/img[^>]+src="([^"]+)"/);
+        if (imgMatch && imgMatch[1]) {
+          return imgMatch[1];
+        }
+
+        return "";
+      }
+
+      function formatDateTime(dateObj) {
+        // Check if we have a date string or datetime string
+        const date = dateObj.date
+          ? new Date(dateObj.date)
+          : new Date(dateObj.dateTime);
+
+        // Format the date as DD/MM/YYYY
+        const dateString = date.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+
+        // If there's no time component (all-day event), return just the date
+        if (dateObj.date) {
+          return dateString;
+        }
+
+        // Format the time as HH:MM
+        const timeString = date.toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        // Return combined date and time
+        return `${timeString} ${dateString}`;
+      }
+
+      function calculateDuration(startObj, endObj) {
+        // Convert both dates to milliseconds for calculation
+        const start = startObj.date
+          ? new Date(startObj.date)
+          : new Date(startObj.dateTime);
+        const end = endObj.date
+          ? new Date(endObj.date)
+          : new Date(endObj.dateTime);
+
+        // Calculate difference in milliseconds
+        const diff = end - start;
+
+        // Convert to days if it's an all-day event
+        if (startObj.date) {
+          const days = diff / (1000 * 60 * 60 * 24);
+          return days === 1 ? "1 day" : `${days} days`;
+        }
+
+        // For timed events, calculate hours and minutes
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Format the duration string
+        if (hours === 0) {
+          return `${minutes} mins`;
+        } else if (minutes === 0) {
+          return hours === 1 ? "1 hour" : `${hours} hours`;
+        } else {
+          return `${hours}h ${minutes}m`;
+        }
+      }
+
+      // Sort events by start time
+      function sortCalendarEvents(array) {
+        array.sort((a, b) => new Date(a.Start_Raw) - new Date(b.Start_Raw));
+      }
+
+      // Make Calendar Array of events from data
+      function constructCalendarArray(input, array) {
+        input.items.forEach((item) => {
+          array.push({
+            Name: item.summary,
+            Start_Date: formatDateTime(item.start),
+            Start_Raw: item.start.date || item.start.dateTime, // Store original date
+            End_Date: formatDateTime(item.end),
+            End_Raw: item.end.date || item.end.dateTime, // Store original date
+            Length: calculateDuration(item.start, item.end),
+            Location: item.location ? item.location : "",
+            Description: item.description
+              ? item.description
+                  // First decode HTML entities
+                  .replace(/&lt;/g, "<")
+                  .replace(/&gt;/g, ">")
+                  .replace(/&amp;/g, "&")
+                  // Remove img tags and their wrapped anchor tags
+                  .replace(/<a[^>]*>(?:[^<]|<(?!\/a>))*<\/a>/g, "")
+                  // Remove any remaining img tags
+                  .replace(/<img[^>]*>/g, "")
+                  // Clean up whitespace
+                  .replace(/\s+/g, " ")
+                  .trim()
+              : "",
+            Image: item.description
+              ? extractImageFromDescription(item.description)
+              : "",
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

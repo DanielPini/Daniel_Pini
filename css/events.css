@@ -2,8 +2,9 @@
   width: 90vw;
   margin: 10px auto;
   height: fit-content;
-  background: rgba(0, 128, 0, 0.101);
-  > h1, > p {
+  background: var(--background-color);
+  > h1,
+  > p {
     padding: 20px;
     padding-bottom: 0;
   }

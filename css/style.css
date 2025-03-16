@@ -7,7 +7,7 @@
   padding: 0;
 }
 body {
-  background: radial-gradient(rgb(133, 133, 133), rgb(81, 81, 81));
+  background: var(--background-color);
   overflow-x: hidden;
 }
 body * {
@@ -15,11 +15,4 @@ body * {
 }
 header * {
   font-size: 24px;
-}
-.filler {
-  width: 100vw;
-  height: calc(100vw * 0.57);
-  min-height: calc(1500px * 0.57);
-  display: flex;
-  flex-flow: column;
 }

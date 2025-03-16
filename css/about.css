@@ -5,10 +5,11 @@
   background: url(../assets/photos/conducting-headshot.webp);
   background-position: 51%;
   background-size: cover;
-  h1, p {
+  h1,
+  p {
     padding: 5%;
     padding-bottom: 0;
-    text-shadow: 0 0 3px white;
+    /* text-shadow: 0 0 3px white; */
   }
   h1 {
     font-size: clamp(30px, 5vw, 100px);
@@ -21,14 +22,16 @@
     margin-top: auto;
     margin-bottom: 20px;
     width: 100%;
-    #cv, #repertoire {
+    #cv,
+    #repertoire {
       width: 120px;
       height: 60px;
       border-radius: 10px;
       transition: all 250ms ease;
       cursor: pointer;
     }
-    #cv:hover, #repertoire:hover {
+    #cv:hover,
+    #repertoire:hover {
       transform: scale(1.1);
     }
   }
@@ -40,11 +43,12 @@
     background-position: top 60% left 0;
     background-size: cover;
     background-repeat: no-repeat;
-    p, h1 {
+    p,
+    h1 {
       padding: 0;
       padding-right: 5%;
       padding-left: 50%;
-      text-shadow: 0 0 10px rgb(255, 255, 255);
+      /* text-shadow: 0 0 10px rgb(255, 255, 255); */
     }
     h1 {
       padding-top: 3%;

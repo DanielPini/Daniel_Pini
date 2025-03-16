@@ -15,7 +15,7 @@
   z-index: 2;
   top: 45%;
   left: 50%;
-  color: white;
+  color: var(--default-text-color);
   text-shadow: 0 1px 5px white;
   translate: -50%;
   h1 {
@@ -26,11 +26,11 @@
     text-align: right;
   }
   a {
-    color: white;
+    color: inherit;
     text-decoration: none;
   }
 }
 #filler-button {
-  min-height: calc(1500px * .665);
-  height: calc(100vw * .645);
+  min-height: calc(1500px * 0.665);
+  height: calc(100vw * 0.645);
 }

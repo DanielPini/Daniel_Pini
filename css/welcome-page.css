@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-flow: column;
@@ -6,12 +10,12 @@ body {
 }
 .conducting {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-image: url("../assets/photos/conducting-headshot.webp");
   background-size: cover;
-  background-position: left bottom;
+  background-position: left center;
   transition: opacity 1000ms ease;
 }
 .conducting-link:hover {
@@ -22,10 +26,4 @@ body {
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.157);
-}
-
-@media only screen and (min-width: 900px) {
-  .conducting {
-    background-position-y: 15%;
-  }
 }

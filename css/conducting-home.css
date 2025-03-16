@@ -1,26 +1,31 @@
 #video-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 .filler {
-  max-width: 100vw;
-  overflow-x: hidden;
+  display: flex;
+  padding: 20px 0;
+  flex-flow: column;
+  margin: 0 auto;
+  width: 90vw;
+  height: calc(90vw * 9 / 16);
+  overflow: hidden;
 }
+
 .shadow {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
 
-  box-shadow: inset 0 0 50px 0.5px rgba(255, 255, 255, 0.491);
+  /* box-shadow: inset 0 0 50px 0.5px rgba(255, 255, 255, 0.491); */
 }
 #locus-video {
   margin: 0 auto;
   position: relative;
   left: 50%;
   translate: -50%;
-  width: 100vw;
-  min-width: 1500px;
+  width: 100%;
 }
 #welcome {
   position: absolute;
@@ -29,8 +34,7 @@
   z-index: 2;
   top: 45%;
   left: 50%;
-  color: white;
-  text-shadow: 0 1px 5px white;
+  color: var(--default-text-color);
   translate: -50%;
   h1 {
     font-size: clamp(25px, 5vw, 100px);
@@ -42,7 +46,7 @@
     text-align: center;
   }
   a {
-    color: white;
+    color: inherit;
     text-decoration: none;
   }
 }

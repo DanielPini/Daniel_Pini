@@ -108,7 +108,6 @@ body {
   text-decoration: none;
   color: var(--default-text-color);
   font-weight: bold;
-  /* text-shadow: 0 1px 15px rgb(255, 255, 255); */
   text-transform: uppercase;
   text-align: center;
 }

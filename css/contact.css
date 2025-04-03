@@ -120,9 +120,6 @@
 #subscribe-check {
   margin: 10px;
 }
-#subscribe:hover {
-  transform: scale(1.1);
-}
 .subscribe-option p {
   margin-left: 10px;
   font-size: 14px;
@@ -149,5 +146,5 @@ button:disabled:hover {
   background: rgb(155, 168, 159);
   color: var(--default-text-color);
   cursor: default;
-  scale: 1;
+  transform: scale(1);
 }

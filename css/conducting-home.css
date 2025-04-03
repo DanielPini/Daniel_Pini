@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
 }
+
 .filler {
   display: flex;
   padding: 20px 0;
@@ -17,8 +18,6 @@
   top: 0;
   width: 100%;
   height: 100%;
-
-  /* box-shadow: inset 0 0 50px 0.5px rgba(255, 255, 255, 0.491); */
 }
 #locus-video {
   margin: 0 auto;

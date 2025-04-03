@@ -3,13 +3,14 @@
   margin: 10px auto;
   height: fit-content;
   background: url(../assets/photos/conducting-headshot.webp);
+  filter: grayscale(1) contrast(1.3) brightness(1.5);
   background-position: 51%;
   background-size: cover;
   h1,
   p {
     padding: 5%;
-    padding-bottom: 0;
-    /* text-shadow: 0 0 3px white; */
+    /* text-shadow: 0 0 10px white; */
+    background: rgba(255, 255, 255, 0.2);
   }
   h1 {
     font-size: clamp(30px, 5vw, 100px);
@@ -22,18 +23,23 @@
     margin-top: auto;
     margin-bottom: 20px;
     width: 100%;
-    #cv,
-    #repertoire {
-      width: 120px;
-      height: 60px;
-      border-radius: 10px;
-      transition: all 250ms ease;
-      cursor: pointer;
-    }
-    #cv:hover,
-    #repertoire:hover {
-      transform: scale(1.1);
-    }
+  }
+}
+.downloads-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  #cv,
+  #repertoire {
+    width: 120px;
+    height: 60px;
+    border-radius: 10px;
+    transition: all 250ms ease;
+    cursor: pointer;
+  }
+  #cv:hover,
+  #repertoire:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -43,11 +49,12 @@
     background-position: top 60% left 0;
     background-size: cover;
     background-repeat: no-repeat;
+    filter: grayscale(1) contrast(1.2) brightness(1.1);
     p,
     h1 {
-      padding: 0;
-      padding-right: 5%;
+      padding: 5%;
       padding-left: 50%;
+      background: rgba(255, 255, 255, 0.15);
       /* text-shadow: 0 0 10px rgb(255, 255, 255); */
     }
     h1 {

@@ -1,82 +1,129 @@
-body * {
+:root {
+  --body-background-color: rgb(255, 255, 255);
+  --text-color: black;
+  --metronome-color: rgb(241, 246, 246);
+  --stepper-color: black;
+  --stepper-font-color: white;
+  --box-shadow: 0 1px 6px 0px rgba(0, 0, 0, 0.5);
+  --border-radius: 5px;
+}
+
+* {
   margin: 0;
   padding: 0;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  user-select: none;
+  font-family: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  box-sizing: border-box;
+  color: var(--text-color);
 }
-button {
-  cursor: pointer;
+
+body {
+  background-color: var(--body-background-color);
 }
-.filler {
+
+.full-page-height-div {
+  min-height: calc(100vh - 250px);
   padding: 20px 0;
 }
+
+/* ******************* */
+/* General text Styles */
+/* ******************* */
 h1 {
   text-align: center;
   display: block;
   line-height: 50px;
 }
+
+/* ********************************** */
+/* Metronome containers and structure */
+/* ********************************** */
 .metronome-container {
-  background-color: aliceblue;
-  width: 230px;
+  background-color: var(--metronome-color);
+  width: 500px;
+  height: 500px;
   margin: 10px auto;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 .metronome-inner-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
   padding: 20px 0;
-  
 }
+
+/* ************** */
+/* Metronome text */
+/* ************** */
 .metronome-inner-wrapper p {
   display: block;
   max-width: 180px;
 }
-#array-selector {
-  width: 180px;
+
+/* ******************* */
+/* Repertoire selector */
+/* ******************* */
+#repertoire-selector {
+  width: fit-content;
+  height: 40px;
+  font-size: 20px;
+  border-radius: var(--border-radius);
+  padding: 5px;
+  text-align: center;
 }
+
+/* ************* */
+/* Tempo section */
+/* ************* */
 .tempo-display {
   font-size: 24px;
   font-weight: 600;
+  background: whitesmoke;
+  padding: 8px;
+  display: inline-block;
+  border-radius: var(--border-radius);
 }
 .tempo-slider-container {
   margin: 0 auto;
   display: flex;
 }
-#tempo-slider {
+.tempo-slider {
   appearance: none;
   background-color: transparent;
   margin: 10px 0;
   width: 100px;
   padding: 0 10px;
 }
-#tempo-slider::-webkit-slider-thumb {
+.tempo-slider::-webkit-slider-thumb {
   appearance: none;
 }
-#tempo-slider:focus {
+.tempo-slider:focus {
   outline: none;
 }
-#tempo-slider::-webkit-slider-thumb {
+.tempo-slider::-webkit-slider-thumb {
   width: 15px;
   height: 15px;
   margin-top: -7px;
   border-radius: 50%;
   background-color: red;
+  cursor: pointer;
 }
-#tempo-slider::-moz-range-thumb {
+.tempo-slider::-moz-range-thumb {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: red;
+  cursor: pointer;
 }
-#tempo-slider::-webkit-slider-runnable-track {
+.tempo-slider::-webkit-slider-runnable-track {
   width: 100px;
   height: 1px;
   background-color: blueviolet;
 }
-#tempo-slider::-moz-range-track {
+.tempo-slider::-moz-range-track {
   width: 100px;
   height: 1px;
   background-color: blueviolet;
@@ -84,36 +131,70 @@ h1 {
 .tempo-button-container {
   display: grid;
   width: 90%;
-  grid: auto-flow / repeat(3, 1fr);
-}
-.tempo-button-item {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  grid: auto / repeat(8, 1fr);
+  border-radius: var(--border-radius);
 }
 .tempo-button {
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 45px;
+  height: 45px;
   margin: 5px;
-  background-color: aqua;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border: 1px solid grey;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
 }
 .delete {
-  font-family:'Courier New', Courier, monospace;
-  font-size: 7px;
-  font-weight: 600;
-  position: relative;
-  top: -15px;
-  background-color: rgb(230, 230, 230);
-  width: 8px;
-  height: 8px;
-  line-height: 5px;
-  margin-left: -7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "Courier New", Courier, monospace;
+  background-color: transparent;
+  border: none;
+  width: 17%;
+  margin: 3px;
+  line-height: 17%;
 }
+.close-button rect {
+  fill: black;
+}
+
+#save-user-tempi {
+  cursor: pointer;
+  width: 20%;
+  height: 30px;
+  border-radius: var(--border-radius);
+  border: 1px solid black;
+  background-color: white;
+}
+
+/* ************************************* */
+/* Hide spinners from number input field */
+/* ************************************* */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 #user-tempo {
   background-color: antiquewhite;
-  width: 120px;
-  height: 20px;
+  width: 20%;
+  height: 30px;
   text-align: center;
   padding: 3px;
+  border-radius: var(--border-radius);
 }
 .start-stop {
   border-radius: 50%;
@@ -121,6 +202,7 @@ h1 {
   height: 60px;
   background-color: red;
   margin: 10px 0;
+  font-size: 20px;
 }
 .subdiv-container {
   display: flex;
@@ -131,7 +213,9 @@ h1 {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color:greenyellow;
+  background-color: var(--stepper-color);
+  color: var(--stepper-font-color);
+  cursor: pointer;
 }
 .subdiv-display {
   line-height: 20px;
@@ -144,4 +228,46 @@ h1 {
 .is-playing {
   border: 2px solid rgb(225, 72, 72);
   box-shadow: 0 0 50px 50px rgba(72, 220, 225), 1;
+}
+.instructions {
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  margin: 10px auto;
+}
+.instructions p {
+  font-family: serif;
+}
+
+/* *********** */
+/* Tap Section */
+/* *********** */
+.tap-section {
+  background-color: var(--metronome-color);
+  width: 500px;
+  height: 500px;
+  margin: 10px auto;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+.tap-button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform: rotate(30deg);
+  background: yellow;
+  & svg {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+}
+.tap-button:active {
+  background: greenyellow;
 }

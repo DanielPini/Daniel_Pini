@@ -11,10 +11,10 @@ header.innerHTML = `
     </div>
     <nav class="nav">
       <ul class="nav-list">
-        <li class="nav-list-item"><a href="./index.html">Home</a></li>
-        <li class="nav-list-item"><a href="./about.html">About</a></li>
-        <li class="nav-list-item"><a href="./being.html">BEING</a></li>
-        <li class="nav-list-item"><a href="./events.html">Events</a></li>
+        <li class="nav-list-item"><a href="/">Home</a></li>
+        <li class="nav-list-item"><a href="/about">About</a></li>
+        <li class="nav-list-item"><a href="/being">BEING</a></li>
+        <li class="nav-list-item"><a href="/events">Events</a></li>
       </ul>
     </nav>
     <!-- <div class="socials">
@@ -44,27 +44,27 @@ footer.innerHTML = `<div class="footer">
     </form>
   </div>
   <div id="social-links-copyright-and-contact" class="footer-right">
-    <div class="contact"><a href="#">CONTACT</a></div>
+    <div class="contact"><a href="/contact">CONTACT</a></div>
       <div class="footer-socials">
         <ul class="socials-list">
           <li class="socials-list-item">
             <a href="https://www.instagram.com/daniel_pini/"
               ><img
-                src="./assets/icons/instagram_icon.svg"
+                src="/assets/icons/instagram_icon.svg"
                 alt="Circle with colours outlining a camera in white."
             /></a>
           </li>
           <li class="socials-list-item">
             <a href="https://www.facebook.com/PiniConducts/"
               ><img
-                src="./assets/icons/facebook_icon.svg"
+                src="/assets/icons/facebook_icon.svg"
                 alt="Circle with colours outlining a camera in white."
             /></a>
           </li>
           <li class="socials-list-item">
             <a href="https://www.youtube.com/@DanielEugenePini"
               ><img
-                src="./assets/icons/youtube_icon.svg"
+                src="/assets/icons/youtube_icon.svg"
                 alt="Circle with colours outlining a camera in white."
             /></a>
           </li>

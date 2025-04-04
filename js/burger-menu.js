@@ -7,6 +7,13 @@ const navListItem = document.querySelectorAll(".nav-list-item");
 let burgerOpenFlag = false;
 
 burgerIcon.addEventListener("click", () => {
+  if (!burgerOpenFlag) {
+    navList.style.pointerEvents = "auto";
+    navList.style.visibility = "visible";
+  } else {
+    navList.style.pointerEvents = "none";
+    navList.style.visibility = "hidden";
+  }
   burgerOpenFlag = !burgerOpenFlag;
   // Div opens
   lines.forEach((line) => {

@@ -1,7 +1,44 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
-header.innerHTML = `
+// Add desktop option for code with hover-friendly dropdown
+const desktopCode = ` 
+  <li class="nav-list-item nav__about">
+    <a href="/about">About</a>
+    <ul class="dropdown">
+      <li class="nav-list-item nav__bio"><a href="/about">BIOGRAPHY</a></li>
+      <li class="nav-list-item nav__disc">
+        <a href="/being">DISCOGRAPHY</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-list-item">
+    <a href="/web_dev">WEB DEV</a>
+  </li>`;
+
+// Add option without dropdown for mobile devices
+const mobileCode = ` 
+  <li class="nav-list-item nav__about">
+    <a href="/about">About</a>
+  </li>
+  <li class="nav-list-item">
+    <a href="/being">BEING</a>
+  </li>`;
+let mobile = true;
+
+// Set flag for screen width
+isMobile();
+
+// Listen for changes in screen size
+window.addEventListener("resize", isMobile);
+
+// Determine window size and set mobile flag and return the correct code for the flag set.
+function isMobile() {
+  mobile = window.innerWidth > 600 ? false : true;
+  header.innerHTML = generateHeaderHTML();
+}
+function generateHeaderHTML() {
+  return `
 <div class="header">
   <button class="nav__button js-nav__button">
     <div class="nav__logo">
@@ -12,13 +49,13 @@ header.innerHTML = `
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-list-item"><a href="/">Home</a></li>
-        <li class="nav-list-item"><a href="/about">About</a></li>
-        <li class="nav-list-item"><a href="/being">BEING</a></li>
+          ${mobile ? mobileCode : desktopCode}
         <li class="nav-list-item"><a href="/events">Events</a></li>
       </ul>
     </nav>
   </button>
 </nav>`;
+}
 
 footer.innerHTML = `<div class="footer">
   <div id="subscribe" class="footer-left">

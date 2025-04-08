@@ -30,7 +30,7 @@ body {
   width: 30px;
   height: 30px;
   border: none;
-  background: var(--background-color);
+  background: transparent;
   transition: var(--transition);
   .nav__logo {
     opacity: 1;

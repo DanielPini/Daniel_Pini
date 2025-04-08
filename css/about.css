@@ -31,6 +31,7 @@
   flex-flow: column;
   justify-content: center;
   background: rgba(255, 255, 255, 0.15);
+  padding-left: 50%;
   #cv,
   #repertoire {
     height: 25px;
@@ -45,7 +46,6 @@
   #cv:hover,
   #repertoire:hover {
     transform: scale(1.05) skew(-20deg);
-    transform-origin: center;
   }
 }
 
@@ -68,10 +68,6 @@
     h1 {
       padding-top: 3%;
     }
-  }
-  #cv,
-  #repertoire {
-    padding-left: 50%;
   }
   .downloads-container {
     padding-bottom: 200px;

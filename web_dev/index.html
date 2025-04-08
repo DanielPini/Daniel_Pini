@@ -11,25 +11,98 @@
     <link
       rel="stylesheet"
       href="/css/style.css" />
-    <title>Web Development| Daniel Pini</title>
-  </head>
-  <body>
-    <header></header>
-    <div
-      class="filler"
-      style="
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: white;
+      }
+      .filler {
         min-height: 80vh;
         display: flex;
         flex-flow: column;
         justify-content: center;
-        align-items: center;
-        max-width: 90%;
-      ">
-      <h1>Web Development portfolio to come...</h1>
-      <h2>Watch this space</h2>
+      }
+      .title,
+      .subtitle {
+        text-transform: uppercase;
+        margin: 20px;
+        margin-left: 2.5%;
+      }
+      .title {
+        margin-bottom: 0;
+      }
+      .project-container {
+        display: flex;
+        flex-flow: row wrap;
+        width: 95%;
+        margin: 0 auto;
+        gap: 30px;
+        max-width: 1400px;
+      }
+      .project {
+        position: relative;
+        border: 1px solid black;
+        flex: 1 1 400px;
+        overflow: hidden;
+        background: rgb(128, 128, 128);
+      }
+      .project-name,
+      .project-type,
+      .project-stack img,
+      .project-image {
+        margin: 10px;
+      }
+      .project-video {
+        width: 100%;
+      }
+      .project-stack img {
+        width: 30px;
+      }
+      .project-description {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .project-description p {
+        color: white;
+        width: 100%;
+        font-size: 20px;
+        padding: 10px;
+        text-align: center;
+        background: rgba(60, 59, 43, 0.503);
+      }
+      .project:hover .project-description {
+        opacity: 1;
+      }
+    </style>
+    <title>Web Development| Daniel Pini</title>
+  </head>
+  <body>
+    <header></header>
+    <div class="filler">
+      <h1 class="title">Fullstack Web & <br />Software Developer</h1>
+      <h2 class="subtitle">Projects</h2>
+      <div class="projects"></div>
+      <h2 class="subtitle">Services</h2>
+      <div class="services"></div>
+      <h2 class="subtitle">Collaborate</h2>
+      <div class="collaborate"></div>
     </div>
     <footer></footer>
     <script src="/js/headerfooter.js"></script>
     <script src="/js/burger-menu.js"></script>
+    <script
+      type="module"
+      src="/js/portfolio.js"></script>
   </body>
 </html>

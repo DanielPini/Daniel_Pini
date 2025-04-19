@@ -136,7 +136,8 @@ body {
   list-style: none;
   font-size: 16px;
   z-index: 1000;
-  text-align: left;
+  width: 100%;
+  text-align: center;
 }
 
 .nav__about:hover .dropdown,
@@ -146,13 +147,10 @@ body {
   pointer-events: auto;
 }
 .dropdown li {
-  transform: translateX(40%);
+  /* transform: translateX(40%); */
   line-height: 50px;
   padding: 5px 10px;
   z-index: 1000;
-}
-.dropdown li:hover {
-  transform: translateX(40%) scale(1.1);
 }
 
 .socials {

@@ -1,7 +1,17 @@
+.full-page-height-div {
+  height: calc(100vh - 180px);
+}
+
+#tool {
+  background: rgb(255, 255, 255);
+  min-height: 10px;
+  min-width: 10px;
+}
+
 :root {
   --body-background-color: rgb(255, 255, 255);
   --text-color: black;
-  --metronome-color: rgb(241, 246, 246);
+  --metronome-color: rgb(255, 255, 255);
   --stepper-color: black;
   --stepper-font-color: white;
   --box-shadow: 0 1px 6px 0px rgba(0, 0, 0, 0.5);
@@ -34,7 +44,6 @@ h1 {
   line-height: 50px;
 }
 h2 {
-  margin-top: 100px;
   text-align: center;
   display: block;
   line-height: 50px;
@@ -92,7 +101,7 @@ h2 {
   display: inline-block;
   border-radius: var(--border-radius);
 }
-.tempo-slider-container {
+.tempo-change-container {
   margin: 0 auto;
   display: flex;
 }
@@ -110,16 +119,17 @@ h2 {
   outline: none;
 }
 .tempo-slider::-webkit-slider-thumb {
-  width: 15px;
-  height: 15px;
-  margin-top: -7px;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
   border-radius: 50%;
   background-color: red;
   cursor: pointer;
 }
 .tempo-slider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
   border-radius: 50%;
   background-color: red;
   cursor: pointer;
@@ -134,16 +144,99 @@ h2 {
   height: 1px;
   background-color: blueviolet;
 }
-.tempo-button-container {
+.tempo-button-container,
+.repertoire-tempos-container {
   display: grid;
-  width: 90%;
+  width: 70%;
   grid: auto / repeat(8, 1fr);
   border-radius: var(--border-radius);
+  height: 100px;
+  overflow: scroll;
+  border: 1px solid black;
+  box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.23);
+  background: rgba(255, 255, 255, 0.394);
 }
-.tempo-button {
+.common-tempos-container {
   position: relative;
-  width: 45px;
-  height: 45px;
+  display: flex;
+  gap: 30px;
+  flex-flow: row nowrap;
+  flex: 0 0 25px;
+  overflow-x: scroll;
+  background: rgb(146, 169, 164);
+  width: 60%;
+  align-items: center;
+  scrollbar-width: none;
+  cursor: grab;
+  /* box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.419); */
+  overflow-y: hidden;
+}
+
+.common-tempos-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 750%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0) 70%,
+    rgba(0, 0, 0, 0.4)
+  );
+  z-index: 1;
+}
+
+.common-tempo {
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 0 0 40px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 1.2rem;
+  height: 40px;
+  text-align: center;
+  background: #eeeeee7a;
+}
+
+.common-tempo:first-of-type {
+  margin-left: 30px;
+}
+.common-tempo:last-of-type {
+  margin-right: 30px;
+}
+
+.common-tempos-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.common-tempos-container .common-tempo:hover {
+  background: #ccc;
+}
+
+/* End GPT Code */
+
+.tempo-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.tempo-button:active {
+  background: lightgray;
+  box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.tempo-button-item {
+  position: relative;
+  width: 40px;
+  height: 40px;
   margin: 5px;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
@@ -194,10 +287,16 @@ input[type="number"] {
   appearance: textfield;
 }
 
+.tempo-tap {
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 15px;
+}
+
 #user-tempo {
-  background-color: antiquewhite;
+  background-color: rgba(250, 235, 215, 0.262);
   width: 20%;
-  height: 30px;
+  height: 40px;
   text-align: center;
   padding: 3px;
   border-radius: var(--border-radius);
@@ -206,8 +305,25 @@ input[type="number"] {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  max-width: 100%;
+  max-height: 100%;
   background-color: red;
   margin: 10px 0;
+  font-size: 20px;
+}
+.tempo-section {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 20px;
+  height: 40px;
+  margin-top: 30px;
+}
+.tapper_play-button {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: red;
   font-size: 20px;
 }
 .svg {
@@ -274,10 +390,25 @@ input[type="number"] {
   transform: rotate(30deg);
   background: yellow;
   & svg {
-    margin-top: 15px;
-    margin-left: 15px;
+    margin-top: 18px;
+    margin-left: 7px;
   }
 }
 .tap-button:active {
   background: greenyellow;
+  box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.551);
+}
+.tap-results {
+  height: 250px;
+  width: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.268);
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+.tap-results--text {
+  margin: auto;
 }

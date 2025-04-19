@@ -1,785 +1,393 @@
-import Timer from "./Timer.js";
-import piecesArray from "./data/pieces.js";
-import Tapper from "./Tapper.js";
-
-const metronomeApp = document.querySelector(".metronome-container");
-const metronomeTempoDisplay = metronomeApp.querySelector(
-  ".js-metronome_tempo-display"
-);
-const metronomeTempoSlider = document.getElementById("metronome_tempo-slider");
-const metronomeTempoMinus = metronomeApp.querySelector(
-  ".js-metronome_minus-tempo-stepper"
-);
-const metronomeTempoPlus = metronomeApp.querySelector(
-  ".js-metronome_plus-tempo-stepper"
-);
-const tempoButtonContainer = metronomeApp.querySelector(
-  ".tempo-button-container"
-);
-const saveUserList = document.getElementById("save-user-tempi");
-const userTempo = document.getElementById("metronome_user-tempo");
-const startStop = metronomeApp.querySelector(".start-stop");
-const subdivMinus = metronomeApp.querySelector(".minus-beats");
-const subdivPlus = metronomeApp.querySelector(".plus-beats");
-const subdivDisplay = metronomeApp.querySelector(".subdiv-display");
-const arraySelector = document.getElementById("repertoire-selector");
-const click1 = new Audio("../assets/audio/clicks/click1.mp3");
-const click2 = new Audio("../assets/audio/clicks/click2.mp3");
-click2.volume = 0.4;
-
-updateArraySelector();
-let selectedPiece = piecesArray[arraySelector.selectedIndex];
-
-renderTempoList();
-
-const tempoButtons = Array.from(metronomeApp.querySelectorAll(".tempo-button"));
-
-let bpm = tempoButtons[0].innerText;
-metronomeTempoDisplay.innerText = tempoButtons[0].innerText;
-metronomeTempoSlider.value = bpm;
-let beats = 1;
-let count = 0;
-let isRunning = false;
-
-saveUserList.addEventListener("click", () => {
-  addUserObject();
-  updateArraySelector();
-});
-
-//add style to playing button.
-tempoButtons[0].classList.add("is-playing");
-
-arraySelector.addEventListener("change", () => {
-  changePiece();
-});
-startStop.addEventListener("click", () => {
-  count = 0;
-  if (!isRunning) {
-    metronome.start();
-    startStop.classList.add("running");
-    startStop.innerHTML = `<svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 67 67"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
-      <defs>
-        <rect
-          id="path-1"
-          x="-4"
-          y="0"
-          width="8"
-          height="35"
-          fill="white"></rect>
-        <mask
-          id="mask-2"
-          maskContentUnits="userSpaceOnUse"
-          maskUnits="objectBoundingBox"
-          x="0"
-          y="0"
-          width="8"
-          height="35"
-          fill="white">
-          <use xlink:href="#path-1"></use>
-        </mask>
-        <rect
-          id="path-3"
-          x="11"
-          y="0"
-          width="8"
-          height="35"
-          fill="white"></rect>
-        <mask
-          id="mask-4"
-          maskContentUnits="userSpaceOnUse"
-          maskUnits="objectBoundingBox"
-          x="0"
-          y="0"
-          width="8"
-          height="35"
-          fill="white">
-          <use xlink:href="#path-3"></use>
-        </mask>
-      </defs>
-      <g
-        id="Page-1"
-        stroke="none"
-        stroke-width="1"
-        fill="none"
-        fill-rule="evenodd">
-        <g
-          id="pause"
-          transform="translate(1.000000, 1.000000)">
-          <g id="play-copy">
-            <g id="Group">
-              <g
-                id="Group-2"
-                transform="translate(25.000000, 15.000000)"
-                stroke="#4A4A4A"
-                stroke-width="2">
-                <use
-                  id="Rectangle-1"
-                  mask="url(#mask-2)"
-                  xlink:href="#path-1"></use>
-                <use
-                  id="Rectangle-1-Copy"
-                  mask="url(#mask-4)"
-                  xlink:href="#path-3"></use>
-              </g>
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>`;
-    isRunning = true;
-  } else {
-    metronome.stop();
-    startStop.classList.remove("running");
-    startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="play"
-            transform="translate(1.000000, 1.000000)">
-            <g id="Group">
-              <polygon
-                id="Triangle-1"
-                stroke="#4A4A4A"
-                fill="#FFFFFF"
-                transform="translate(30.000000, 28.500000) rotate(-30.000000) translate(-30.000000, -28.500000) "
-                points="30 14.0312405 46.5 42.9687595 13.5 42.9687595"></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-    isRunning = false;
-  }
-  startStop.blur();
-});
-metronomeTempoMinus.addEventListener("click", () => {
-  if (bpm <= 20) {
-    return;
-  }
-  bpm--;
-  metronomeTempoMinus.blur();
-  updateMetronome();
-});
-metronomeTempoPlus.addEventListener("click", () => {
-  if (bpm >= 300) {
-    return;
-  }
-  bpm++;
-  metronomeTempoPlus.blur();
-  updateMetronome();
-});
-metronomeTempoSlider.addEventListener("input", () => {
-  bpm = metronomeTempoSlider.value;
-  metronomeTempoSlider.blur();
-  updateMetronome();
-});
-subdivMinus.addEventListener("click", () => {
-  if (beats <= 1) {
-    return;
-  }
-  beats--;
-  subdivDisplay.innerText = beats;
-  count = 0;
-  subdivMinus.blur();
-  updateMetronome();
-});
-subdivPlus.addEventListener("click", () => {
-  if (beats >= 8) {
-    return;
-  }
-  beats++;
-  subdivDisplay.innerText = beats;
-  count = 0;
-  subdivPlus.blur();
-  updateMetronome();
-});
-userTempo.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    bpm = userTempo.value;
-
-    userTempo.blur();
-    updateMetronome();
-    let userTempoData = [userTempo.value, beats];
-    console.log(userTempoData);
-    selectedPiece.value.push(userTempoData);
-    userTempo.value = "";
-    renderTempoList();
-  }
-});
-
-function changePiece() {
-  selectedPiece = piecesArray[arraySelector.selectedIndex];
-  renderTempoList();
-  tempoButtonContainer.firstElementChild.firstElementChild.classList.add(
-    "is-playing"
-  );
-  beats = 1;
-  bpm = tempoButtonContainer.firstElementChild.firstElementChild.innerText;
-  arraySelector.blur();
-  updateMetronome();
-}
-function updateArraySelector() {
-  arraySelector.innerHTML = generateArraySelectorHtml(piecesArray);
-}
-function renderTempoList() {
-  let tempoList = "";
-  selectedPiece.value.forEach((element) => {
-    const html = `
-      <div class="tempo-button-item">
-        <div
-          class="tempo-button"
-          data-beats="${testBeats(element)}">
-          ${testBPM(element)}
-          <button class="delete modify-tempo-button">
-            <svg
-              viewBox="0 0 30 30"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              class="close-button">
-              <g
-                id="Homepage"
-                stroke="none"
-                stroke-width="1"
-                fill="none"
-                fill-rule="evenodd">
-                <g
-                  id="Mobile-Portrait-Copy"
-                  transform="translate(-279.000000, -78.000000)"
-                  fill="#D8D8D8">
-                  <g
-                    id="Close"
-                    transform="translate(279.000000, 78.000000)">
-                    <g id="Group-2">
-                      <rect
-                        id="Rectangle-113-Copy-3"
-                        transform="translate(14.849242, 14.849242) rotate(-45.000000) translate(-14.849242, -14.849242) "
-                        x="-4.1507576"
-                        y="12.8492424"
-                        width="38"
-                        height="4"
-                        rx="1"></rect>
-                      <rect
-                        id="Rectangle-113-Copy-4"
-                        transform="translate(14.849242, 14.849242) rotate(45.000000) translate(-14.849242, -14.849242) "
-                        x="-4.1507576"
-                        y="12.8492424"
-                        width="38"
-                        height="4"
-                        rx="1"></rect>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </button>
-        </div>
-      </div>
-    `;
-    tempoList += html;
-  });
-  tempoButtonContainer.innerHTML = tempoList;
-
-  tempoButtonContainer.querySelectorAll(".tempo-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      count = 0;
-      metronomeApp.querySelector(".is-playing").classList.remove("is-playing");
-      button.classList.add("is-playing");
-      bpm = button.innerText;
-      beats = button.dataset.beats;
-      updateMetronome();
-      metronome.stop();
-      metronome.start();
-      startStop.classList.add("running");
-      startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <rect
-            id="path-1"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white"></rect>
-          <mask
-            id="mask-2"
-            maskContentUnits="userSpaceOnUse"
-            maskUnits="objectBoundingBox"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white">
-            <use xlink:href="#path-1"></use>
-          </mask>
-          <rect
-            id="path-3"
-            x="11"
-            y="0"
-            width="4"
-            height="35"
-            fill="white"></rect>
-          <mask
-            id="mask-4"
-            maskContentUnits="userSpaceOnUse"
-            maskUnits="objectBoundingBox"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white">
-            <use xlink:href="#path-3"></use>
-          </mask>
-        </defs>
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="pause"
-            transform="translate(1.000000, 1.000000)">
-            <g id="play-copy">
-              <g id="Group">
-                <circle
-                  id="Oval-33"
-                  stroke="#424242"
-                  cx="32.5"
-                  cy="32.5"
-                  r="32.5"></circle>
-                <g
-                  id="Group-2"
-                  transform="translate(25.000000, 15.000000)"
-                  stroke="#4A4A4A"
-                  stroke-width="2">
-                  <use
-                    id="Rectangle-1"
-                    mask="url(#mask-2)"
-                    xlink:href="#path-1"></use>
-                  <use
-                    id="Rectangle-1-Copy"
-                    mask="url(#mask-4)"
-                    xlink:href="#path-3"></use>
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-      isRunning = true;
-      button.blur();
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-  });
-
-  // Add delete functionality
-  tempoButtonContainer.querySelectorAll(".delete").forEach((button, index) => {
-    button.addEventListener("click", () => {
-      selectedPiece.value.splice(index, 1);
-      renderTempoList();
-    });
-  });
-}
-// Update Metronome
-function updateMetronome() {
-  count = 0;
-  metronomeTempoDisplay.innerText = bpm;
-  metronomeTempoSlider.value = bpm;
-  subdivDisplay.innerText = beats;
-  metronome.timeInterval = 60000 / (bpm * beats);
-}
-//Add User Tempo List
-function addUserObject() {
-  let array = [];
-  tempoButtonContainer.querySelectorAll(".tempo-button").forEach((button) => {
-    array.push(button.innerText);
-  });
-  const objectName = prompt("Please enter a name for your tempi list.");
-  let userObject = {
-    name: objectName,
-    value: array,
-  };
-  piecesArray.push(userObject);
-}
-// Populate <select> tag HTML
-function generateArraySelectorHtml(array) {
-  let list = "";
-  for (let i = 0; i < array.length; i++) {
-    list += `
-    <option
-    value="${array[i]}"
-    class="array-selector__option"
-    selected>${array[i].name}</option>
-    `;
-  }
-  return list;
-}
-//Play the click sound
-function playClick() {
-  if (count == beats) {
-    count = 0;
-  }
-  if (count == 0) {
-    click1.play();
-    click1.currentTime = 0;
-  } else {
-    click2.play();
-    click2.currentTime = 0;
-  }
-  count++;
-}
-
-function testBeats(element) {
-  if (element.length == undefined) {
-    return 1;
-  } else {
-    return element[1];
-  }
-}
-function testBPM(element) {
-  if (element.length == undefined) {
-    return element;
-  } else {
-    return element[0];
-  }
-}
-
-const metronome = new Timer(playClick, 60000 / (bpm * beats), {
-  immediate: true,
-});
-//Play on Space Bar keydown
-window.addEventListener("keydown", (e) => {
-  if (!(e.key == " ")) {
-    return;
-  } else {
-    count = 0;
-    if (!isRunning) {
-      metronome.start();
-      startStop.classList.add("running");
-      startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <rect
-            id="path-1"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white"></rect>
-          <mask
-            id="mask-2"
-            maskContentUnits="userSpaceOnUse"
-            maskUnits="objectBoundingBox"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white">
-            <use xlink:href="#path-1"></use>
-          </mask>
-          <rect
-            id="path-3"
-            x="11"
-            y="0"
-            width="4"
-            height="35"
-            fill="white"></rect>
-          <mask
-            id="mask-4"
-            maskContentUnits="userSpaceOnUse"
-            maskUnits="objectBoundingBox"
-            x="0"
-            y="0"
-            width="4"
-            height="35"
-            fill="white">
-            <use xlink:href="#path-3"></use>
-          </mask>
-        </defs>
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="pause"
-            transform="translate(1.000000, 1.000000)">
-            <g id="play-copy">
-              <g id="Group">
-                <circle
-                  id="Oval-33"
-                  stroke="#424242"
-                  cx="32.5"
-                  cy="32.5"
-                  r="32.5"></circle>
-                <g
-                  id="Group-2"
-                  transform="translate(25.000000, 15.000000)"
-                  stroke="#4A4A4A"
-                  stroke-width="2">
-                  <use
-                    id="Rectangle-1"
-                    mask="url(#mask-2)"
-                    xlink:href="#path-1"></use>
-                  <use
-                    id="Rectangle-1-Copy"
-                    mask="url(#mask-4)"
-                    xlink:href="#path-3"></use>
-                </g>
-              </g>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-      isRunning = true;
-    } else {
-      metronome.stop();
-      startStop.classList.remove("running");
-      startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="play"
-            transform="translate(1.000000, 1.000000)">
-            <g id="Group">
-              <polygon
-                id="Triangle-1"
-                stroke="#4A4A4A"
-                fill="#FFFFFF"
-                transform="translate(30.000000, 28.500000) rotate(-30.000000) translate(-30.000000, -28.500000) "
-                points="30 14.0312405 46.5 42.9687595 13.5 42.9687595"></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-      isRunning = false;
-    }
-  }
-});
-//Play on number entry.
-window.addEventListener("keydown", (e) => {
-  tempoButtonContainer
-    .querySelectorAll(".tempo-button")
-    .forEach((button, i) => {
-      if (!(e.key == i + 1)) {
-        return;
-      } else {
-        metronomeApp
-          .querySelector(".is-playing")
-          .classList.remove("is-playing");
-        button.classList.add("is-playing");
-        console.log(button);
-        bpm = button.innerText;
-        beats = button.dataset.beats;
-        updateMetronome();
-        metronome.stop();
-        metronome.start();
-        startStop.classList.add("running");
-        startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="play"
-            transform="translate(1.000000, 1.000000)">
-            <g id="Group">
-              <polygon
-                id="Triangle-1"
-                stroke="#4A4A4A"
-                fill="#FFFFFF"
-                transform="translate(30.000000, 28.500000) rotate(-30.000000) translate(-30.000000, -28.500000) "
-                points="30 14.0312405 46.5 42.9687595 13.5 42.9687595"></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-        isRunning = true;
-      }
-    });
-});
-window.addEventListener("keydown", (e) => {
-  const currentButton = metronomeApp.querySelector(".is-playing");
-  const prevParent = currentButton.parentElement.previousElementSibling;
-  if (!(e.key == "ArrowLeft")) {
-    return;
-  } else if (prevParent == null) {
-    return;
-  } else {
-    const prev =
-      currentButton.parentElement.previousElementSibling.firstElementChild;
-    currentButton.classList.remove("is-playing");
-    prev.classList.add("is-playing");
-    bpm = prev.innerText;
-    beats = prev.dataset.beats;
-    updateMetronome();
-    metronome.stop();
-    metronome.start();
-    startStop.classList.add("running");
-    startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="play"
-            transform="translate(1.000000, 1.000000)">
-            <g id="Group">
-              <polygon
-                id="Triangle-1"
-                stroke="#4A4A4A"
-                fill="#FFFFFF"
-                transform="translate(30.000000, 28.500000) rotate(-30.000000) translate(-30.000000, -28.500000) "
-                points="30 14.0312405 46.5 42.9687595 13.5 42.9687595"></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-    isRunning = true;
-  }
-});
-window.addEventListener("keydown", (e) => {
-  let currentButton = metronomeApp.querySelector(".is-playing");
-  let nextParent = currentButton.parentElement.nextElementSibling;
-  if (!(e.key == "ArrowRight")) {
-    return;
-  } else if (nextParent == null) {
-    return;
-  } else {
-    const next =
-      currentButton.parentElement.nextElementSibling.firstElementChild;
-    currentButton.classList.remove("is-playing");
-    next.classList.add("is-playing");
-    bpm = next.innerText;
-    beats = next.dataset.beats;
-    updateMetronome();
-    metronome.stop();
-    metronome.start();
-    startStop.classList.add("running");
-    startStop.innerHTML = `<svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 67 67"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g
-          id="Page-1"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd">
-          <g
-            id="play"
-            transform="translate(1.000000, 1.000000)">
-            <g id="Group">
-              <polygon
-                id="Triangle-1"
-                stroke="#4A4A4A"
-                fill="#FFFFFF"
-                transform="translate(30.000000, 28.500000) rotate(-30.000000) translate(-30.000000, -28.500000) "
-                points="30 14.0312405 46.5 42.9687595 13.5 42.9687595"></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-    isRunning = true;
-  }
-});
-
-const tapperTempoDisplay = document.querySelector(".js-tapper_tempo-display");
-const tapperTempoSlider = document.getElementById("tapper_tempo-slider");
-const tapperTempoPlus = document.querySelector(".js-tapper_plus-tempo-stepper");
-const tapperTempoMinus = document.querySelector(
-  ".js-tapper_minus-tempo-stepper"
-);
-const tapButton = document.querySelector(".js-tapper");
-let tapperBpm = 123; // Initial BPM
-
-tapperTempoSlider.value = tapperBpm;
-tapperTempoDisplay.innerText = tapperBpm;
-
-const tapper = new Tapper({ tempo: tapperBpm });
-
-// Update the Tapper display and tempo
-const updateTapperDisplay = () => {
-  tapperTempoDisplay.innerText = tapperBpm;
-  tapperTempoSlider.value = tapperBpm;
-  console.log(tapperBpm);
-  tapper.setTempo(tapperBpm); // Update the Tapper instance
 };
-
-// Attach event listeners for tempo controls
-tapperTempoPlus.addEventListener("click", () => {
-  if (tapperBpm < 300) {
-    tapperBpm++;
-    updateTapperDisplay();
-  }
-});
-
-tapperTempoMinus.addEventListener("click", () => {
-  if (tapperBpm > 20) {
-    tapperBpm--;
-    updateTapperDisplay();
-  }
-});
-
-tapperTempoSlider.addEventListener("input", () => {
-  tapperBpm = parseInt(tapperTempoSlider.value, 10);
-  updateTapperDisplay();
-});
-
-// Register taps
-tapper.registerTaps(tapButton);
+import Timer from "./Timer.js";
+import piecesArray from "./pieces.js";
+import commonTempos from "./tempos.js";
+export default class Metronome {
+    constructor(config = {}) {
+        this.tempo = config.tempo || 120; // Default tempo is 120 BPM
+        this.metronomeWrapper = null;
+        this.repertoireSelector = null;
+        this.repertoireSelectorTemposContainer = null;
+        this.repertoireTempoArray = null;
+        this.tempoDisplay = null;
+        this.tempoSlider = null;
+        this.tempoDecrementButton = null;
+        this.tempoIncrementButton = null;
+        this.commonTemposContainer = null;
+        this.zoomContent = null;
+        this.tempoInput = null;
+        this.playButton = null;
+        this.click1 = new Audio("/assets/audio/clicks/click1.mp3");
+        this.click2 = new Audio("/assets/audio/clicks/click2.mp3");
+        this.count = 0;
+        this.beats = 1;
+        this.isRunning = false;
+        this.metronome = new Timer(this.playClick.bind(this), 60000 / (this.tempo * this.beats), {
+            immediate: true,
+        });
+        this.intervalId = null;
+        this.selectedPiece = 0;
+    }
+    // Make all the elements of the metronome for loading on the page
+    createElements(container) {
+        // Create a wrapper for all the metronome elements
+        const metronomeWrapper = document.createElement("div");
+        metronomeWrapper.classList.add("metronome-inner-wrapper");
+        const tempoSection = document.createElement("div");
+        tempoSection.classList.add("tempo-section");
+        // Make the display for the tempo
+        const tempoDisplay = document.createElement("h2");
+        tempoDisplay.classList.add("tempo-display");
+        tempoSection.append(tempoDisplay);
+        // Create a dropdown for the saved pieces
+        const repertoireSelector = document.createElement("select");
+        repertoireSelector.id = "repertoire-selector";
+        // Include the pieces from piecesArray in the dropdown
+        repertoireSelector.innerHTML = this.makeRepertoireSelectorHTML(piecesArray);
+        // Create a container for the tempo buttons from teh pieces
+        const repertoireSelectorTemposContainer = document.createElement("div");
+        repertoireSelectorTemposContainer.classList.add("repertoire-tempos-container");
+        // Create a container for the tempo change controls
+        const tempoChangeContainer = document.createElement("div");
+        tempoChangeContainer.classList.add("tempo-change-container", "tempo-slider-container");
+        const tempoSlider = document.createElement("input");
+        tempoSlider.classList.add("tempo-slider");
+        tempoSlider.type = "range";
+        tempoSlider.min = "10";
+        tempoSlider.max = "300";
+        tempoSlider.value = this.tempo.toString();
+        const tempoIncrementButton = document.createElement("button");
+        tempoIncrementButton.classList.add("tempo-button");
+        tempoIncrementButton.textContent = "+";
+        const tempoDecrementButton = document.createElement("button");
+        tempoDecrementButton.classList.add("tempo-button");
+        tempoDecrementButton.textContent = "-";
+        const commonTemposContainer = document.createElement("div");
+        commonTemposContainer.classList.add("common-tempos-container");
+        // Tap input button for tempo
+        const tempoTap = document.createElement("button");
+        tempoTap.classList.add("tempo-tap");
+        tempoTap.textContent = "Tap";
+        // Text input button for tempo
+        const tempoInput = document.createElement("input");
+        tempoInput.id = "user-tempo";
+        tempoInput.type = "number";
+        tempoInput.step = "1";
+        tempoInput.max = "300";
+        tempoInput.min = "10";
+        tempoInput.placeholder = "Type tempo here";
+        tempoChangeContainer.append(tempoDecrementButton, tempoSlider, tempoIncrementButton);
+        const playButton = document.createElement("button");
+        playButton.classList.add("start-stop");
+        this.setButtonIcon(playButton, "/assets/icons/play.svg");
+        metronomeWrapper.append(tempoSection, tempoChangeContainer, commonTemposContainer, tempoTap, tempoInput, repertoireSelector, repertoireSelectorTemposContainer, playButton);
+        container.append(metronomeWrapper);
+        // Assign DOM elements to class properties
+        this.metronomeWrapper = metronomeWrapper;
+        this.repertoireSelector = repertoireSelector;
+        this.repertoireSelectorTemposContainer = repertoireSelectorTemposContainer;
+        this.tempoDisplay = tempoDisplay;
+        this.tempoSlider = tempoSlider;
+        this.tempoDecrementButton = tempoDecrementButton;
+        this.tempoIncrementButton = tempoIncrementButton;
+        this.commonTemposContainer = commonTemposContainer;
+        this.tempoInput = tempoInput;
+        this.playButton = playButton;
+    }
+    // Attach event listeners
+    attachEventListeners() {
+        var _a, _b, _c, _d, _e, _f;
+        // Link tempo slider input to tempo
+        (_a = this.tempoSlider) === null || _a === void 0 ? void 0 : _a.addEventListener("input", () => {
+            this.tempo = parseInt(this.tempoSlider.value, 10);
+            this.updateTempoDisplay();
+            this.metronome.updateTempo(this.tempo, this.beats);
+            this.resetFlash();
+        });
+        // Add click listeners to tempo minus and plus buttons
+        (_b = this.tempoDecrementButton) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
+            this.changeTempo(-1);
+            this.resetFlash();
+        });
+        (_c = this.tempoIncrementButton) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
+            this.changeTempo(1);
+            this.resetFlash();
+        });
+        // Add tempo input "enter" listener
+        (_d = this.tempoInput) === null || _d === void 0 ? void 0 : _d.addEventListener("keydown", (e) => {
+            var _a;
+            if (!this.tempoInput)
+                return;
+            if (this.tempo !== null) {
+                if (e.key !== "Enter") {
+                    return;
+                }
+                else {
+                    // Add safety for if number is too high or low!
+                    this.tempo =
+                        parseInt(this.tempoInput.value) < 10
+                            ? 10
+                            : parseInt(this.tempoInput.value) > 300
+                                ? 300
+                                : parseInt(this.tempoInput.value);
+                    this.updateTempoDisplay();
+                    this.tempoInput.value = "";
+                    (_a = this.tempoInput) === null || _a === void 0 ? void 0 : _a.blur();
+                }
+            }
+        });
+        if (this.commonTemposContainer) {
+            let isDragging = false; // Tracks whether the user is currently dragging
+            let startX = 0; // Initial horizontal position of the mouse on mousedown
+            let scrollStart = 0; // The container's scrollLeft value at the start of the drag
+            let moved = false; // Tracks whether the mouse moved significantly (to differentiate drag from click)
+            this.commonTemposContainer.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                startX = e.pageX; // Record the initial mouse x position
+                scrollStart = this.commonTemposContainer.scrollLeft; // Record initial scroll position
+                moved = false; // Reset moved status
+                // Handle mouse movement while dragging
+                const onMouseMove = (e) => {
+                    const distance = e.pageX - startX; // Calculate how far the mouse has moved
+                    if (Math.abs(distance) > 5) {
+                        moved = true; // It's a drag if moved enough
+                    }
+                    if (isDragging) {
+                        this.commonTemposContainer.scrollLeft = scrollStart - distance;
+                    }
+                };
+                // Handle mouse button release
+                const onMouseUp = (e) => {
+                    stopDragging(e);
+                };
+                // Handle mouse leaving the container — stop dragging
+                const onMouseLeave = (e) => {
+                    stopDragging(e);
+                };
+                // Shared cleanup and logic for end of drag
+                const stopDragging = (e) => {
+                    isDragging = false;
+                    this.commonTemposContainer.removeEventListener("mousemove", onMouseMove);
+                    this.commonTemposContainer.removeEventListener("mouseup", onMouseUp);
+                    this.commonTemposContainer.removeEventListener("mouseleave", onMouseLeave);
+                    if (!moved) {
+                        const target = e.target;
+                        if (target.classList.contains("common-tempo")) {
+                            const tempo = target.dataset.tempo;
+                            this.tempo = Number(tempo);
+                            this.updateTempoDisplay();
+                            this.updateTempo();
+                        }
+                    }
+                };
+                this.commonTemposContainer.addEventListener("mousemove", onMouseMove);
+                this.commonTemposContainer.addEventListener("mouseup", onMouseUp);
+                this.commonTemposContainer.addEventListener("mouseleave", onMouseLeave);
+            });
+        }
+        // Add click listeners to start-stop button
+        if (this.playButton) {
+            this.playButton.addEventListener("click", () => {
+                this.togglePlay(this.playButton);
+            });
+        }
+        (_e = this.repertoireSelector) === null || _e === void 0 ? void 0 : _e.addEventListener("input", () => {
+            this.updateRepertoireSelector();
+            this.generateRepertoireTempoButtonsArray();
+        });
+        (_f = this.repertoireSelectorTemposContainer) === null || _f === void 0 ? void 0 : _f.addEventListener("click", (e) => {
+            var _a;
+            const target = e.target;
+            // Handle delete button
+            if (target.classList.contains("delete")) {
+                const index = Array.from(this.repertoireSelectorTemposContainer.children).indexOf(target.closest(".tempo-button-item"));
+                piecesArray[this.selectedPiece].value.splice(index, 1);
+                this.renderTempoList();
+                return;
+            }
+            // Handle tempo button
+            const tempoButton = target.closest(".tempo-button-item");
+            if (tempoButton) {
+                const bpm = (_a = tempoButton.querySelector("p")) === null || _a === void 0 ? void 0 : _a.textContent;
+                this.tempo = bpm ? Number(bpm) : this.tempo;
+                this.updateTempo();
+                this.renderTempoList();
+            }
+        });
+    }
+    generateRepertoireTempoButtonsArray() {
+        var _a;
+        this.repertoireTempoArray = ((_a = this.repertoireSelectorTemposContainer) === null || _a === void 0 ? void 0 : _a.children)
+            ? Array.from(this.repertoireSelectorTemposContainer.children).map((child) => child)
+            : [];
+    }
+    // Add functionality for flash to change with new tempo
+    resetFlash() {
+        if (this.isRunning) {
+            if (this.intervalId !== null)
+                clearInterval(this.intervalId);
+            this.flash(); // restart flash at new tempo
+        }
+    }
+    // Generate the piece options for the dropdown select menu
+    makeRepertoireSelectorHTML(array) {
+        let list = "";
+        for (let piece of array) {
+            list += `
+      <option
+      value="${piece}"
+      class="array-selector__option"> ${piece.name}</option>
+      `;
+        }
+        return list;
+    }
+    updateRepertoireSelector() {
+        var _a;
+        this.selectedPiece = Number((_a = this.repertoireSelector) === null || _a === void 0 ? void 0 : _a.selectedIndex);
+        this.renderTempoList();
+    }
+    testBeats(tempo) {
+        if (Array.isArray(tempo)) {
+            return tempo[1]; // beats
+        }
+        else {
+            return 1; // default beat value for a simple number
+        }
+    }
+    testBPM(tempo) {
+        if (Array.isArray(tempo)) {
+            return tempo[0]; // bpm
+        }
+        else {
+            return tempo; // it's already a number
+        }
+    }
+    renderTempoList() {
+        if (this.repertoireSelectorTemposContainer != null &&
+            this.selectedPiece != null) {
+            // Clear the container
+            this.repertoireSelectorTemposContainer.innerHTML = "";
+            // Render buttons
+            piecesArray[this.selectedPiece].value.forEach((tempo) => {
+                const html = `
+          <div class="tempo-button-item" data-beats="${this.testBeats(tempo)}">
+            <p>${this.testBPM(tempo)}</p>
+            <button class="delete modify-tempo-button">x</button>
+          </div>
+        `;
+                this.repertoireSelectorTemposContainer.insertAdjacentHTML("beforeend", html);
+            });
+        }
+    }
+    renderCommonTempos() {
+        if (this.commonTemposContainer != null && commonTempos != null) {
+            commonTempos.forEach((tempo) => {
+                var _a;
+                const html = `
+        <div class="common-tempo" data-tempo="${tempo}">${tempo}</div>
+        `;
+                (_a = this.commonTemposContainer) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML("beforeend", html);
+            });
+        }
+    }
+    // Set button icon to SVG text
+    setButtonIcon(button, path) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield fetch(path);
+            const svgText = yield response.text();
+            button.innerHTML = svgText;
+        });
+    }
+    // Toggle button state and metronome start/stop state
+    togglePlay(playButton) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.count = 0;
+            if (!this.isRunning) {
+                this.metronome.start();
+                this.flash();
+                playButton.classList.add("running");
+                yield this.setButtonIcon(playButton, "/assets/icons/pause.svg");
+                this.isRunning = true;
+            }
+            else {
+                this.metronome.stop();
+                if (this.intervalId !== null)
+                    clearInterval(this.intervalId);
+                this.intervalId = null;
+                playButton.classList.remove("running");
+                yield this.setButtonIcon(playButton, "/assets/icons/play.svg");
+                this.isRunning = false;
+            }
+            playButton.blur();
+        });
+    }
+    playClick() {
+        if (this.count == this.beats)
+            this.count = 0; // Check if this.count and this.beats are the same and assign 0
+        if (this.count == 0) {
+            this.click1.play();
+            this.click1.currentTime = 0;
+        }
+        else {
+            this.click2.play();
+            this.click2.currentTime = 0;
+        }
+        this.count++;
+    }
+    // Set up flash for metronome
+    flash(pulseColor = "yellow") {
+        const flashOnce = () => {
+            if (this.metronomeWrapper)
+                this.metronomeWrapper.style.background = pulseColor;
+            setTimeout(() => {
+                if (this.metronomeWrapper)
+                    this.metronomeWrapper.style.background = "white";
+            }, 80);
+        };
+        // Flash immediately
+        flashOnce();
+        // Set up repeating interval
+        this.intervalId = setInterval(flashOnce, 60000 / this.tempo);
+    }
+    // Take step param and update metronome tempo accordingly
+    changeTempo(step) {
+        const newTempo = this.tempo + step;
+        this.tempo = Math.min(300, Math.max(10, newTempo));
+        if (this.tempoSlider) {
+            this.tempoSlider.value = this.tempo.toString();
+        }
+        this.updateTempo();
+    }
+    // Update tempo display element
+    updateTempoDisplay() {
+        if (this.tempoDisplay) {
+            this.tempoDisplay.textContent = `${this.tempo.toString()} bpm`;
+        }
+        if (this.tempoSlider) {
+            this.tempoSlider.value = this.tempo.toString();
+        }
+    }
+    updateTempo() {
+        this.metronome.updateTempo(this.tempo, this.beats);
+        this.resetFlash();
+        this.updateTempoDisplay();
+    }
+    // Initialize the metronome by attaching event listeners and setting up the UI
+    init(container) {
+        this.createElements(container); // Elements are created here
+        this.updateTempoDisplay(); // Set initial tempo display
+        this.renderTempoList();
+        this.renderCommonTempos();
+        this.generateRepertoireTempoButtonsArray();
+        this.attachEventListeners(); // Attach listeners to elements
+    }
+}
+//# sourceMappingURL=Metronome.js.map

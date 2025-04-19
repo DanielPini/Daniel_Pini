@@ -69,7 +69,11 @@ export default class Metronome {
     const tempoDisplay = document.createElement("h2");
     tempoDisplay.classList.add("tempo-display");
 
-    tempoSection.append(tempoDisplay);
+    const playButton = document.createElement("button");
+    playButton.classList.add("tapper_play-button");
+    this.setButtonIcon(playButton, "/assets/icons/play.svg");
+
+    tempoSection.append(tempoDisplay, playButton);
     // Create a dropdown for the saved pieces
     const repertoireSelector = document.createElement("select");
     repertoireSelector.id = "repertoire-selector";
@@ -127,19 +131,14 @@ export default class Metronome {
       tempoIncrementButton
     );
 
-    const playButton = document.createElement("button");
-    playButton.classList.add("start-stop");
-    this.setButtonIcon(playButton, "/assets/icons/play.svg");
-
     metronomeWrapper.append(
       tempoSection,
       tempoChangeContainer,
       commonTemposContainer,
-      tempoTap,
       tempoInput,
+      tempoTap,
       repertoireSelector,
-      repertoireSelectorTemposContainer,
-      playButton
+      repertoireSelectorTemposContainer
     );
 
     container.append(metronomeWrapper);

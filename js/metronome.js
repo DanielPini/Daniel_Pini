@@ -46,7 +46,10 @@ export default class Metronome {
         // Make the display for the tempo
         const tempoDisplay = document.createElement("h2");
         tempoDisplay.classList.add("tempo-display");
-        tempoSection.append(tempoDisplay);
+        const playButton = document.createElement("button");
+        playButton.classList.add("tapper_play-button");
+        this.setButtonIcon(playButton, "/assets/icons/play.svg");
+        tempoSection.append(tempoDisplay, playButton);
         // Create a dropdown for the saved pieces
         const repertoireSelector = document.createElement("select");
         repertoireSelector.id = "repertoire-selector";
@@ -85,10 +88,7 @@ export default class Metronome {
         tempoInput.min = "10";
         tempoInput.placeholder = "Type tempo here";
         tempoChangeContainer.append(tempoDecrementButton, tempoSlider, tempoIncrementButton);
-        const playButton = document.createElement("button");
-        playButton.classList.add("start-stop");
-        this.setButtonIcon(playButton, "/assets/icons/play.svg");
-        metronomeWrapper.append(tempoSection, tempoChangeContainer, commonTemposContainer, tempoTap, tempoInput, repertoireSelector, repertoireSelectorTemposContainer, playButton);
+        metronomeWrapper.append(tempoSection, tempoChangeContainer, commonTemposContainer, tempoInput, tempoTap, repertoireSelector, repertoireSelectorTemposContainer);
         container.append(metronomeWrapper);
         // Assign DOM elements to class properties
         this.metronomeWrapper = metronomeWrapper;

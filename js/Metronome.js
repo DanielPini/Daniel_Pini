@@ -31,9 +31,9 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-import Timer from "../js/Timer.js";
-import piecesArray from "../js/pieces.js";
-import commonTempos from "../js/tempos.js";
+import Timer from "/js/Timer.js";
+import piecesArray from "/js/pieces.js";
+import commonTempos from "/js/tempos.js";
 
 export default class Metronome {
   constructor(config = {}) {

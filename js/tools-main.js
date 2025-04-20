@@ -1,7 +1,6 @@
-import Metronome from "../js/Metronome.js";
-import Tapper from "../js/Tapper.js";
-import tempoDatabase from "../js/examples.js";
-const selector = document.querySelector("#toolSelector");
+import Metronome from "./Metronome.js";
+import Tapper from "./Tapper.js";
+import tempoDatabase from "./examples.js";
 const toolContainer = document.querySelector(".tool");
 toolContainer.classList.add("metronome-container");
 const checkbox = document.querySelector(".switch input");

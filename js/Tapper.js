@@ -31,8 +31,8 @@ var __awaiter =
       step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
   };
-import commonTempos from "../js/tempos.js";
-import Timer from "../js/Timer.js";
+import commonTempos from "/js/tempos.js";
+import Timer from "/js/Timer.js";
 export default class Tapper {
   constructor(config = {}) {
     this.tempo = config.tempo || 80; // Default tempo is 80 BPM

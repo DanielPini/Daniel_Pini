@@ -34,22 +34,22 @@ window.addEventListener("resize", isMobile);
 
 function generateHeaderHTML() {
   return `
-<div class="header">
-  <button class="nav__button js-nav__button">
-    <div class="nav__logo">
-      <div class="line line-1"></div>
-      <div class="line line-2"></div>
-      <div class="line line-3"></div>
-    </div>
-    <nav class="nav">
-      <ul class="nav-list">
-        <li class="nav-list-item"><a href="/">Home</a></li>
+    <div class="header">
+      <button class="nav__button js-nav__button">
+        <div class="nav__logo">
+          <div class="line line-1"></div>
+          <div class="line line-2"></div>
+          <div class="line line-3"></div>
+        </div>
+      </button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="nav-list-item"><a href="/">Home</a></li>
           ${mobile ? mobileCode : desktopCode}
-        <li class="nav-list-item"><a href="/events">Events</a></li>
-      </ul>
-    </nav>
-  </button>
-</nav>`;
+          <li class="nav-list-item"><a href="/events">Events</a></li>
+        </ul>
+      </nav>
+    </div>`;
 }
 
 footer.innerHTML = `<div class="footer">
@@ -100,27 +100,28 @@ footer.innerHTML = `<div class="footer">
 </div>`;
 
 function initialiseBurgerMenu() {
-  const burgerIcon = document.querySelector(".js-nav__button");
+  const burgerButton = document.querySelector(".js-nav__button");
   const lines = document.querySelectorAll(".line");
   const nav = document.querySelector(".nav");
-  const navListItem = document.querySelectorAll(".nav-list-item");
+  const navListItems = document.querySelectorAll(".nav-list-item");
 
   let burgerOpenFlag = false;
 
-  burgerIcon?.addEventListener("click", () => {
+  burgerButton?.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent button default action
     burgerOpenFlag = !burgerOpenFlag;
     lines.forEach((line) => line.classList.toggle("open"));
     nav.classList.toggle("open");
-    navListItem.forEach((item) => item.classList.toggle("open"));
+    navListItems.forEach((item) => item.classList.toggle("open"));
   });
 
   document.addEventListener("click", (event) => {
     if (!burgerOpenFlag) return;
-    if (!burgerIcon.contains(event.target) && !nav.contains(event.target)) {
+    if (!burgerButton.contains(event.target) && !nav.contains(event.target)) {
       burgerOpenFlag = false;
       lines.forEach((line) => line.classList.remove("open"));
       nav.classList.remove("open");
-      navListItem.forEach((item) => item.classList.remove("open"));
+      navListItems.forEach((item) => item.classList.remove("open"));
     }
   });
 }

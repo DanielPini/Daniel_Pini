@@ -24,6 +24,7 @@
 
 body {
   background-color: var(--body-background-color);
+  max-width: 100vw;
 }
 
 .full-page-height-div {
@@ -63,6 +64,7 @@ h2 {
 /* ********************************** */
 .metronome-container {
   background-color: var(--metronome-color);
+  max-width: 100vw;
   width: 600px;
   /* height: 600px; */
   margin: 10px auto;
@@ -387,6 +389,7 @@ input[type="number"] {
 /* *********** */
 .tap-section {
   background-color: var(--metronome-color);
+  max-width: 100vw;
   width: 600px;
   /* height: 600px; */
   margin: 10px auto;

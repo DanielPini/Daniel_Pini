@@ -138,8 +138,8 @@ export default class Metronome {
     metronomeWrapper.append(
       tempoSection,
       tempoChangeContainer,
-      commonTemposContainer,
       tempoInput,
+      commonTemposContainer,
       tempoTap,
       repertoireSelector,
       repertoireSelectorTemposContainer

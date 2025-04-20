@@ -1,6 +1,6 @@
-import Metronome from "/js/Metronome.js";
-import Tapper from "/js/Tapper.js";
-import tempoDatabase from "/js/examples.js";
+import Metronome from "../js/Metronome.js";
+import Tapper from "../js/Tapper.js";
+import tempoDatabase from "../js/examples.js";
 const selector = document.querySelector("#toolSelector");
 const toolContainer = document.querySelector(".tool");
 toolContainer.classList.add("metronome-container");

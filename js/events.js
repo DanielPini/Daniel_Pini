@@ -7,7 +7,7 @@ eventsDB.forEach((item) => {
   list += `
   <div class="event">
     <img
-      src="${item.eventImage ?? ``}"
+      ${item.eventImage ? `src="${item.eventImage}"` : ``}
       alt=""
       class="event-image" />
     <h2 class="event-title">${item.eventTitle}</h2>

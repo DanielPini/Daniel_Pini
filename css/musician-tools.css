@@ -51,9 +51,7 @@ h2 {
 #toolSelector {
   margin: 10px;
   margin-left: 60px;
-  height: 30px;
-  border-radius: 8px;
-  box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  width: fit-content;
 }
 
 #toolSelector:focus {

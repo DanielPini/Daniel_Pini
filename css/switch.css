@@ -1,0 +1,81 @@
+.tool-switcher {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+  user-select: none;
+}
+
+/* The switch - the box around the slider */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  width: 160px;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  height: 34px;
+  position: relative;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  width: 160px;
+  height: 34px;
+  background-color: lightgreen;
+  border: 1px solid grey;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Slider knob */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: orange;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(126px);
+  -ms-transform: translateX(126px);
+  transform: translateX(126px);
+}
+
+.switch-label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

@@ -6,9 +6,19 @@ const selector = document.querySelector("#toolSelector") as HTMLSelectElement;
 const toolContainer = document.querySelector(".tool") as HTMLDivElement;
 toolContainer.classList.add("metronome-container");
 
-let currentTool: "metronome" | "tapper" = "tapper";
+const checkbox = document.querySelector(".switch input") as HTMLInputElement;
+const labelText = document.querySelector(".tool-switcher") as HTMLLabelElement;
+
+let currentTool: "metronome" | "tapper" = "metronome";
 let metronome: Metronome | null = null;
 let tapper: Tapper | null = null;
+
+checkbox.addEventListener("change", () => {
+  labelText.textContent = checkbox.checked ? "Tapper" : "Metronome";
+  currentTool = checkbox.checked ? "tapper" : "metronome";
+  toolContainer.innerHTML = "";
+  renderTool();
+});
 
 const exampleTableContainer = document.querySelector(
   ".js-example-table-container"
@@ -20,12 +30,6 @@ examplesTable.classList.add("js-example-table");
 examplesTable.innerHTML = generateTempoTable(tempoDatabase);
 
 exampleTableContainer?.append(examplesTable);
-
-selector.addEventListener("change", () => {
-  currentTool = selector.value as "metronome" | "tapper";
-  toolContainer.innerHTML = "";
-  renderTool();
-});
 
 // Initial render
 renderTool();

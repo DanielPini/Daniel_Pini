@@ -4,19 +4,22 @@ import tempoDatabase from "./examples.js";
 const selector = document.querySelector("#toolSelector");
 const toolContainer = document.querySelector(".tool");
 toolContainer.classList.add("metronome-container");
-let currentTool = "tapper";
+const checkbox = document.querySelector(".switch input");
+const labelText = document.querySelector(".tool-switcher");
+let currentTool = "metronome";
 let metronome = null;
 let tapper = null;
+checkbox.addEventListener("change", () => {
+    labelText.textContent = checkbox.checked ? "Tapper" : "Metronome";
+    currentTool = checkbox.checked ? "tapper" : "metronome";
+    toolContainer.innerHTML = "";
+    renderTool();
+});
 const exampleTableContainer = document.querySelector(".js-example-table-container");
 const examplesTable = document.createElement("div");
 examplesTable.classList.add("js-example-table");
 examplesTable.innerHTML = generateTempoTable(tempoDatabase);
 exampleTableContainer === null || exampleTableContainer === void 0 ? void 0 : exampleTableContainer.append(examplesTable);
-selector.addEventListener("change", () => {
-    currentTool = selector.value;
-    toolContainer.innerHTML = "";
-    renderTool();
-});
 // Initial render
 renderTool();
 examplesTable.addEventListener("click", (e) => {

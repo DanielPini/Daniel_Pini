@@ -15,20 +15,22 @@
       rel="shortcut icon"
       href="favicon.ico"
       type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="/css/switch.css" />
     <title>Musician Tools</title>
   </head>
   <body>
     <header></header>
-    <select
-      name="toolSelector"
+    <div
+      class="switch-container"
       id="toolSelector">
-      <option value="metronome">Metronome</option>
-      <option
-        value="tapper"
-        selected>
-        Tapper
-      </option>
-    </select>
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+        <span class="tool-switcher">Metronome</span>
+      </label>
+    </div>
     <div class="full-page-height-div">
       <div class="tool"></div>
       <table class="tempi">

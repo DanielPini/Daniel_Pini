@@ -63,13 +63,13 @@ function generateTempoTable(database) {
       <td>
         <strong>Popular:</strong><br/>`;
         for (const pop of entry.examples.popular) {
-            table += `<a href="${pop.link}" target="_blank">${pop.title} – ${pop.artist}</a>
-        – <span class="tempo-number" data-tempo="${pop.bpm}">${pop.bpm} BPM</span><br/>`;
+            table += `<span class="tempo-number" data-tempo="${pop.bpm}">${pop.bpm} BPM</span> – <a href="${pop.link}" target="_blank">${pop.title} – ${pop.artist}</a><br/>
+        `;
         }
         table += `<br/><strong>Classical:</strong><br/>`;
         for (const classical of entry.examples.classical) {
-            table += `<a href="${classical.link}" target="_blank">${classical.title}</a>
-        – <span class="js-set-tempo-number tempo-number" data-tempo="${classical.bpm}">${classical.bpm} BPM</span><br/>`;
+            table += `<span class="js-set-tempo-number tempo-number" data-tempo="${classical.bpm}">${classical.bpm} BPM</span> - <a href="${classical.link}" target="_blank">${classical.title}</a> <br/> 
+      `;
         }
         table += `</td></tr>`;
     }

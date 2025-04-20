@@ -26,6 +26,8 @@ export default class Metronome {
   metronome: Timer;
   intervalId: number | null;
   selectedPiece: number;
+  tempoTap: HTMLButtonElement | null;
+  tapDelta: number;
 
   constructor(config: { tempo?: number } = {}) {
     this.tempo = config.tempo || 120; // Default tempo is 120 BPM
@@ -55,6 +57,8 @@ export default class Metronome {
     );
     this.intervalId = null;
     this.selectedPiece = 0;
+    this.tempoTap = null;
+    this.tapDelta = 0;
   }
 
   // Make all the elements of the metronome for loading on the page
@@ -154,6 +158,7 @@ export default class Metronome {
     this.commonTemposContainer = commonTemposContainer;
     this.tempoInput = tempoInput;
     this.playButton = playButton;
+    this.tempoTap = tempoTap;
   }
 
   // Attach event listeners
@@ -480,6 +485,21 @@ export default class Metronome {
     this.updateTempo();
   }
 
+  handleTap() {
+    if (this.tempoTap === null) return;
+    this.tempoTap.addEventListener("click", () => {
+      const tapTime = new Date().getTime();
+      this.tapDelta = tapTime - this.tapDelta;
+      if (this.tapDelta > 3000) {
+        this.tapDelta = new Date().getTime();
+        return;
+      }
+      const tempo = Math.round(60000 / this.tapDelta);
+      this.setTempo(tempo);
+      this.tapDelta = new Date().getTime();
+    });
+  }
+
   // Initialize the metronome by attaching event listeners and setting up the UI
   init(container: HTMLDivElement) {
     this.createElements(container); // Elements are created here
@@ -488,5 +508,6 @@ export default class Metronome {
     this.renderCommonTempos();
     this.generateRepertoireTempoButtonsArray();
     this.attachEventListeners(); // Attach listeners to elements
+    this.handleTap();
   }
 }

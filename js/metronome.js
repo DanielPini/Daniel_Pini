@@ -35,6 +35,8 @@ export default class Metronome {
         });
         this.intervalId = null;
         this.selectedPiece = 0;
+        this.tempoTap = null;
+        this.tapDelta = 0;
     }
     // Make all the elements of the metronome for loading on the page
     createElements(container) {
@@ -101,6 +103,7 @@ export default class Metronome {
         this.commonTemposContainer = commonTemposContainer;
         this.tempoInput = tempoInput;
         this.playButton = playButton;
+        this.tempoTap = tempoTap;
     }
     // Attach event listeners
     attachEventListeners() {
@@ -384,6 +387,21 @@ export default class Metronome {
         this.tempo = tempo;
         this.updateTempo();
     }
+    handleTap() {
+        if (this.tempoTap === null)
+            return;
+        this.tempoTap.addEventListener("click", () => {
+            const tapTime = new Date().getTime();
+            this.tapDelta = tapTime - this.tapDelta;
+            if (this.tapDelta > 3000) {
+                this.tapDelta = new Date().getTime();
+                return;
+            }
+            const tempo = Math.round(60000 / this.tapDelta);
+            this.setTempo(tempo);
+            this.tapDelta = new Date().getTime();
+        });
+    }
     // Initialize the metronome by attaching event listeners and setting up the UI
     init(container) {
         this.createElements(container); // Elements are created here
@@ -392,6 +410,7 @@ export default class Metronome {
         this.renderCommonTempos();
         this.generateRepertoireTempoButtonsArray();
         this.attachEventListeners(); // Attach listeners to elements
+        this.handleTap();
     }
 }
 //# sourceMappingURL=Metronome.js.map

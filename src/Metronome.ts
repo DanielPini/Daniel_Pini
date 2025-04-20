@@ -61,7 +61,7 @@ export default class Metronome {
   createElements(container: HTMLDivElement) {
     // Create a wrapper for all the metronome elements
     const metronomeWrapper = document.createElement("div");
-    metronomeWrapper.classList.add("metronome-inner-wrapper");
+    metronomeWrapper.classList.add("tap-section");
 
     const tempoSection = document.createElement("div");
     tempoSection.classList.add("tempo-section");
@@ -470,9 +470,14 @@ export default class Metronome {
   }
 
   updateTempo() {
-    this.metronome.updateTempo(this.tempo, this.beats);
+    this.metronome.updateTempo(this.tempo, (this.beats = 1));
     this.resetFlash();
     this.updateTempoDisplay();
+  }
+
+  setTempo(tempo: number) {
+    this.tempo = tempo;
+    this.updateTempo();
   }
 
   // Initialize the metronome by attaching event listeners and setting up the UI

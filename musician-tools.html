@@ -19,18 +19,103 @@
   </head>
   <body>
     <header></header>
+    <select
+      name="toolSelector"
+      id="toolSelector">
+      <option value="metronome">Metronome</option>
+      <option
+        value="tapper"
+        selected>
+        Tapper
+      </option>
+    </select>
     <div class="full-page-height-div">
-      <select
-        name="toolSelector"
-        id="toolSelector">
-        <option value="metronome">Metronome</option>
-        <option
-          value="tapper"
-          selected>
-          Tapper
-        </option>
-      </select>
       <div class="tool"></div>
+      <table class="tempi">
+        <thead>
+          <tr>
+            <th>Italien</th>
+            <th>Français</th>
+            <th>English</th>
+            <th>BPM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Larghissimo</td>
+            <td>Très large</td>
+            <td>Extremely broad / Very, very slow</td>
+            <td>10 – 40</td>
+          </tr>
+          <tr>
+            <td>Grave</td>
+            <td>Grave</td>
+            <td>Solemn / Very slow and serious</td>
+            <td>14 – 41</td>
+          </tr>
+          <tr>
+            <td>Largo</td>
+            <td>Large</td>
+            <td>Broad / Slow</td>
+            <td>40 – 60</td>
+          </tr>
+          <tr>
+            <td>Lento</td>
+            <td>Lent</td>
+            <td>Slow</td>
+            <td>52 – 68</td>
+          </tr>
+          <tr>
+            <td>Adagio</td>
+            <td>À l’aise</td>
+            <td>At ease / Slow and stately</td>
+            <td>60 – 80</td>
+          </tr>
+          <tr>
+            <td>Andante</td>
+            <td>Allant</td>
+            <td>Walking pace / Moderately slow</td>
+            <td>76 – 100</td>
+          </tr>
+          <tr>
+            <td>Moderato</td>
+            <td>Modéré</td>
+            <td>Moderate tempo</td>
+            <td>88 – 112</td>
+          </tr>
+          <tr>
+            <td>Allegretto</td>
+            <td>Légèrement allègre</td>
+            <td>Moderately fast / Light</td>
+            <td>100 – 128</td>
+          </tr>
+          <tr>
+            <td>Allegro</td>
+            <td>Allègre (joyeux)</td>
+            <td>Fast / Cheerful</td>
+            <td>112 – 160</td>
+          </tr>
+          <tr>
+            <td>Vivace</td>
+            <td>Vif</td>
+            <td>Lively / Brisk</td>
+            <td>~ 140</td>
+          </tr>
+          <tr>
+            <td>Presto</td>
+            <td>Pressé, Rapide</td>
+            <td>Very fast</td>
+            <td>140 – 200</td>
+          </tr>
+          <tr>
+            <td>Prestissimo</td>
+            <td>Très rapide</td>
+            <td>As fast as possible / Extremely fast</td>
+            <td>&gt; 188</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="js-example-table-container examples"></div>
     </div>
     <footer></footer>
     <script

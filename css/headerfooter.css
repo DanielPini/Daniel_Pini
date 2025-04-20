@@ -75,13 +75,15 @@ body {
 
 .nav__button {
   .nav {
+    opacity: 0;
+    pointer-events: none;
     position: relative;
     translate: -120px 10px;
     padding: 10px;
     width: 140px;
     padding: 10px;
     transition: var(--transition);
-    z-index: 999;
+    z-index: 0;
     .nav-list {
       display: flex;
       flex-flow: column;
@@ -89,7 +91,6 @@ body {
       list-style: none;
       transition: var(--transition);
       .nav-list-item {
-        opacity: 0;
         box-sizing: border-box;
         padding: 0px;
         margin-bottom: -17px;
@@ -122,7 +123,10 @@ body {
   transform: scale(1.1);
 }
 .nav.open {
+  pointer-events: all;
+  opacity: 1;
   background: rgba(255, 255, 255, 0.537);
+  z-index: 4;
 }
 .nav__about {
   position: relative;

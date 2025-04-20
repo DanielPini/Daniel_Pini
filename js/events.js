@@ -1,13 +1,13 @@
-import eventsDB from './data/eventsDB.js'
+import eventsDB from "./data/eventsDB.js";
 
-const events = document.querySelector("#events")
-let list = ""
+const events = document.querySelector("#events");
+let list = "";
 
-eventsDB.forEach(item => {
+eventsDB.forEach((item) => {
   list += `
   <div class="event">
     <img
-      src="${item.eventImage}"
+      src="${item.eventImage ?? ``}"
       alt=""
       class="event-image" />
     <h2 class="event-title">${item.eventTitle}</h2>
@@ -16,11 +16,11 @@ eventsDB.forEach(item => {
     </p>
     <p><date>${item.eventDate}</date></p>
   </div>
-`
-})
+`;
+});
 
 events.innerHTML = `
 <section class="events">
   ${list}
 </section>
-`
+`;

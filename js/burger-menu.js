@@ -6,7 +6,8 @@ const navListItem = document.querySelectorAll(".nav-list-item");
 
 let burgerOpenFlag = false;
 
-burgerIcon.addEventListener("click", () => {
+burgerIcon?.addEventListener("click", () => {
+  console.log("clicked");
   if (!burgerOpenFlag) {
     navList.style.pointerEvents = "auto";
     navList.style.visibility = "visible";

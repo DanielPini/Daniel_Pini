@@ -32,11 +32,6 @@ isMobile();
 // Listen for changes in screen size
 window.addEventListener("resize", isMobile);
 
-// Determine window size and set mobile flag and return the correct code for the flag set.
-function isMobile() {
-  mobile = window.innerWidth > 600 ? false : true;
-  header.innerHTML = generateHeaderHTML();
-}
 function generateHeaderHTML() {
   return `
 <div class="header">
@@ -104,64 +99,35 @@ footer.innerHTML = `<div class="footer">
     <div class="copyright">&copy 2025 Daniel Pini</div>
 </div>`;
 
-// const burgerIcon = document.querySelector(".js-nav__button");
-// const lines = document.querySelectorAll(".line");
-// const nav = document.querySelector(".nav");
-// const navList = document.querySelector(".nav-list");
-// const navListItem = document.querySelectorAll(".nav-list-item");
+function initialiseBurgerMenu() {
+  const burgerIcon = document.querySelector(".js-nav__button");
+  const lines = document.querySelectorAll(".line");
+  const nav = document.querySelector(".nav");
+  const navListItem = document.querySelectorAll(".nav-list-item");
 
-// let burgerOpenFlag = false;
+  let burgerOpenFlag = false;
 
-// burgerIcon?.addEventListener("click", () => {
-//   burgerOpenFlag = !burgerOpenFlag;
-//   // Div opens
-//   lines.forEach((line) => {
-//     line.classList.toggle("open");
-//   });
-//   nav.classList.toggle("open");
-//   navList.classList.toggle("open");
-//   navListItem.forEach((item) => {
-//     item.classList.toggle("open");
-//   });
-// });
-
-// document.addEventListener("click", (event) => {
-//   if (!burgerIcon.contains(event.target) && !nav.contains(event.target)) {
-//     burgerOpenFlag = false;
-//     lines.forEach((line) => {
-//       line.classList.remove("open");
-//     });
-//     nav.classList.remove("open");
-//     navList.classList.remove("open");
-//     navListItem.forEach((item) => {
-//       item.classList.remove("open");
-//     });
-//   }
-// });
-const burgerIcon = document.querySelector(".js-nav__button");
-const lines = document.querySelectorAll(".line");
-const nav = document.querySelector(".nav");
-const navListItem = document.querySelectorAll(".nav-list-item");
-
-let burgerOpenFlag = false;
-
-burgerIcon?.addEventListener("click", () => {
-  burgerOpenFlag = !burgerOpenFlag;
-
-  lines.forEach((line) => {
-    line.classList.toggle("open");
+  burgerIcon?.addEventListener("click", () => {
+    burgerOpenFlag = !burgerOpenFlag;
+    lines.forEach((line) => line.classList.toggle("open"));
+    nav.classList.toggle("open");
+    navListItem.forEach((item) => item.classList.toggle("open"));
   });
-  nav.classList.toggle("open");
-  navListItem.forEach((item) => {
-    item.classList.toggle("open");
-  });
-});
 
-document.addEventListener("click", (event) => {
-  if (!burgerIcon.contains(event.target) && !nav.contains(event.target)) {
-    burgerOpenFlag = false;
-    lines.forEach((line) => line.classList.remove("open"));
-    nav.classList.remove("open");
-    navListItem.forEach((item) => item.classList.remove("open"));
-  }
-});
+  document.addEventListener("click", (event) => {
+    if (!burgerOpenFlag) return;
+    if (!burgerIcon.contains(event.target) && !nav.contains(event.target)) {
+      burgerOpenFlag = false;
+      lines.forEach((line) => line.classList.remove("open"));
+      nav.classList.remove("open");
+      navListItem.forEach((item) => item.classList.remove("open"));
+    }
+  });
+}
+
+// Determine window size and set mobile flag and return the correct code for the flag set.
+function isMobile() {
+  mobile = window.innerWidth > 600 ? false : true;
+  header.innerHTML = generateHeaderHTML();
+  initialiseBurgerMenu();
+}

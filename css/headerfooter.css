@@ -78,12 +78,12 @@ body {
     opacity: 0;
     pointer-events: none;
     position: relative;
-    translate: -120px 10px;
+    translate: -95px 30px;
     padding: 10px;
-    width: 140px;
+    width: 100px;
     padding: 10px;
     transition: var(--transition);
-    z-index: 0;
+    z-index: 10;
     .nav-list {
       display: flex;
       flex-flow: column;
@@ -202,10 +202,16 @@ body {
   flex-direction: column;
   align-items: flex-end;
   width: 34%;
+  min-width: fit-content;
 }
 .footer-right a {
   color: var(--default-text-color);
   text-decoration: none;
+}
+.footer-right {
+  flex-flow: row;
+  position: relative;
+  margin-left: auto;
 }
 .contact {
   color: var(--default-text-color);
@@ -259,6 +265,7 @@ form {
   transform: translateY(-100%);
   font-size: 12px;
   text-transform: uppercase;
+  width: 100%;
 }
 
 @media only screen and (min-width: 600px) {
@@ -305,5 +312,10 @@ form {
         }
       }
     }
+  }
+  .footer-right {
+    flex-flow: column;
+    position: static;
+    top: unset;
   }
 }

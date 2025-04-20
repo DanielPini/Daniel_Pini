@@ -34,6 +34,7 @@ var __awaiter =
 import Timer from "../js/Timer.js";
 import piecesArray from "../js/pieces.js";
 import commonTempos from "../js/tempos.js";
+
 export default class Metronome {
   constructor(config = {}) {
     this.tempo = config.tempo || 120; // Default tempo is 120 BPM

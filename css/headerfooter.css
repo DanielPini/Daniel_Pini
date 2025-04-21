@@ -37,7 +37,7 @@ body {
   opacity: 1;
   position: relative;
   left: 7px;
-  top: 13px;
+  top: 0px;
   transition: all 100ms ease;
   cursor: pointer;
 }
@@ -181,7 +181,7 @@ body {
 .footer {
   width: 92vw;
   margin: 0 auto;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 1em;
@@ -200,7 +200,7 @@ body {
 }
 .footer-right {
   display: flex;
-  flex-direction: column;
+  flex-flow: row nowrap;
   align-items: flex-end;
   width: 34%;
   min-width: fit-content;
@@ -309,10 +309,13 @@ form {
     cursor: pointer;
     text-align: center;
   }
-
+  .footer {
+    display: flex;
+  }
   .footer-right {
     flex-flow: column;
     position: static;
     top: unset;
+    height: fit-content;
   }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Capitalise and Reverse</title>
+  </head>
+  <body>
+    <h1>Text Capitaliser and Reverser</h1>
+    <form action="">
+      <label for="text">Input text here</label>
+      <input
+        type="text"
+        name="text"
+        id="text" />
+      <button
+        type="submit"
+        id="submit">
+        Submit
+      </button>
+    </form>
+    <div class="result">
+      <h2>Result</h2>
+      <p class="processed-text">I am empty</p>
+    </div>
+    <script>
+      const form = document.querySelector("form");
+      const submit = document.getElementById("submit");
+      const userTextBox = document.getElementById("text");
+      const regex = /\b\w/g;
+      const resultText = document.querySelector(".processed-text");
+
+      // form.addEventListener("submit", (e) => {
+      //   e.preventDefault;
+      // });
+
+      submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("clicked");
+        processText();
+      });
+
+      function processText() {
+        let text = userTextBox.value;
+        text = text.replace(regex, function (letter) {
+          return letter.toUpperCase();
+        });
+        let array = text.split("");
+        array = array.reverse();
+        console.log(array);
+        text = array.join("");
+        resultText.textContent = text;
+        console.log(text);
+      }
+    </script>
+  </body>
+</html>

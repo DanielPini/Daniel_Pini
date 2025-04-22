@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import Timer from "./Timer.js";
 import piecesArray from "./pieces.js";
 import commonTempos from "./tempos.js";
@@ -302,35 +293,31 @@ export default class Metronome {
         }
     }
     // Set button icon to SVG text
-    setButtonIcon(button, path) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield fetch(path);
-            const svgText = yield response.text();
-            button.innerHTML = svgText;
-        });
+    async setButtonIcon(button, path) {
+        const response = await fetch(path);
+        const svgText = await response.text();
+        button.innerHTML = svgText;
     }
     // Toggle button state and metronome start/stop state
-    togglePlay(playButton) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.count = 0;
-            if (!this.isRunning) {
-                this.metronome.start();
-                this.flash();
-                playButton.classList.add("running");
-                yield this.setButtonIcon(playButton, "/assets/icons/pause.svg");
-                this.isRunning = true;
-            }
-            else {
-                this.metronome.stop();
-                if (this.intervalId !== null)
-                    clearInterval(this.intervalId);
-                this.intervalId = null;
-                playButton.classList.remove("running");
-                yield this.setButtonIcon(playButton, "/assets/icons/play.svg");
-                this.isRunning = false;
-            }
-            playButton.blur();
-        });
+    async togglePlay(playButton) {
+        this.count = 0;
+        if (!this.isRunning) {
+            this.metronome.start();
+            this.flash();
+            playButton.classList.add("running");
+            await this.setButtonIcon(playButton, "/assets/icons/pause.svg");
+            this.isRunning = true;
+        }
+        else {
+            this.metronome.stop();
+            if (this.intervalId !== null)
+                clearInterval(this.intervalId);
+            this.intervalId = null;
+            playButton.classList.remove("running");
+            await this.setButtonIcon(playButton, "/assets/icons/play.svg");
+            this.isRunning = false;
+        }
+        playButton.blur();
     }
     playClick() {
         if (this.count == this.beats)

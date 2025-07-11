@@ -5,50 +5,99 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="./css/welcome-page.css" />
-    <link
-      rel="stylesheet"
-      href="./css/headerfooter.css" />
-    <link
-      rel="stylesheet"
-      href="./css/style.css" />
-    <link
-      rel="stylesheet"
-      href="./css/conducting-home.css" />
-    <title>Daniel Pini | Home</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+      body {
+        height: 100vh;
+        background: #fff;
+        font-family: "Istok web";
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+        justify-content: center;
+      }
+      div {
+      }
+      .name {
+        font-size: 1.7rem;
+        line-height: 1.2;
+      }
+      .profession {
+        font-size: 1rem;
+      }
+      img {
+        max-width: 220px;
+        margin-bottom: 0;
+      }
+      .links {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 20px;
+      }
+      .links img {
+        width: 20px;
+      }
+    </style>
+    <title>Document</title>
   </head>
   <body>
-    <header></header>
-    <div class="filler">
-      <figure id="video-container">
-        <video
-          frameborder="0"
-          controls
-          controls-List="nofullscreen"
-          muted
-          autoplay
-          loop
-          poster="./assets/locus_poster.webp"
-          id="locus-video">
-          <source
-            src="./assets/locus_video.mp4"
-            type="video/mp4" />
-        </video>
-        <div class="shadow"></div>
-      </figure>
-    </div>
-    <footer></footer>
-    <script src="./js/headerfooter.js"></script>
+    <h1
+      class="name"
+      id="name">
+      DANIEL PINI
+    </h1>
+    <h2 class="profession">
+      SOFTWARE ENGINEER & <br />
+      FULL-STACK DEVELOPER
+    </h2>
+    <h2 class="profession">
+      CONDUCTOR & <br />
+      CELLIST
+    </h2>
+    <h3 class="contact">
+      <img
+        src="./assets/icons/email.png"
+        alt="email" /><br />
+      PARIS / SYDNEY
+    </h3>
+    <h3 class="links">
+      <a href="https://www.instagram.com/daniel_pini"
+        ><img
+          src="./assets/icons/instagram.svg"
+          alt="instagram"
+      /></a>
+      <a href="https://www.linkedin.com/in/daniel-pini-a19951305/"
+        ><img
+          src="./assets/icons/linked-in.svg"
+          alt="linked-in"
+      /></a>
+    </h3>
     <script>
-      const supportsVideo = !!document.createElement("video").canPlayType;
-      if (supportsVideo) {
-        // set up custom controls
-        // …
-        const video = document.getElementById("locus-video");
-        video.controls = false;
-        video.playbackRate = 0.65;
+      const name = document.getElementById("name");
+      const fontsList = ["Istok Web", "Helvetica", "Sans Serif", "Arial"];
+      let currentIndex = 0;
+      const length = fontsList.length;
+
+      setInterval(changeFont, 1000);
+
+      function changeFont() {
+        // move one step forwards,
+        if (currentIndex < length) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        // apply the font to name
+        name.style.fontFamily = fontsList[currentIndex];
       }
     </script>
   </body>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./css/welcome-page.css" />
+    <link
+      rel="stylesheet"
+      href="./css/headerfooter.css" />
+    <link
+      rel="stylesheet"
+      href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="./css/conducting-home.css" />
+    <title>Daniel Pini | Home</title>
+  </head>
+  <body>
+    <header></header>
+    <div class="filler">
+      <figure id="video-container">
+        <video
+          frameborder="0"
+          controls
+          controls-List="nofullscreen"
+          muted
+          autoplay
+          loop
+          poster="./assets/locus_poster.webp"
+          id="locus-video">
+          <source
+            src="./assets/locus_video.mp4"
+            type="video/mp4" />
+        </video>
+        <div class="shadow"></div>
+      </figure>
+    </div>
+    <footer></footer>
+    <script src="./js/headerfooter.js"></script>
+    <script>
+      const supportsVideo = !!document.createElement("video").canPlayType;
+      if (supportsVideo) {
+        // set up custom controls
+        // …
+        const video = document.getElementById("locus-video");
+        video.controls = false;
+        video.playbackRate = 0.65;
+      }
+    </script>
+  </body>
+</html>

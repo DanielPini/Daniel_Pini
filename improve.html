@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Istok Web";
+      }
+      body {
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .game-container {
+        height: 700px;
+        width: 80%;
+        max-width: 1000px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        /* background-color: white; */
+        margin: 0 auto;
+      }
+      label {
+        font-weight: bold;
+        font-size: 32px;
+        padding-left: 15px;
+      }
+      #success-chart {
+        margin: 15px;
+        width: calc(100% - 30px);
+        height: 2px;
+        appearance: none;
+        pointer-events: none;
+      }
+      #success-chart::-webkit-slider-runnable-track {
+        height: 18px;
+        background-color: blue;
+      }
+      #success-chart::-webkit-slider-thumb {
+        appearance: none;
+        border-radius: 0;
+        width: 18px;
+        height: 25px;
+        margin-top: -3px;
+        background-color: aliceblue;
+        border: 1px solid black;
+      }
+      .success-failure-container {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        gap: 30px;
+        margin: 10px;
+      }
+      button {
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        width: 100px;
+      }
+      button:active {
+        transform: scale(1.03);
+      }
+      #fail {
+        background: red;
+      }
+      #succeed {
+        background: green;
+      }
+      .message {
+        position: absolute;
+        width: 300px;
+        height: 70px;
+        border: 1px solid black;
+        background-color: white;
+        font-size: 18px;
+        text-align: center;
+        line-height: 35px;
+      }
+      #total-container {
+        text-align: left;
+        padding: 10px;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 2px;
+      }
+      table {
+        width: 124px;
+      }
+      .reset {
+        color: black;
+        width: 124px;
+        margin-top: 5px;
+      }
+      .reset[disabled] {
+        color: grey;
+        border: none;
+      }
+    </style>
+    <title>Improvement Game</title>
+  </head>
+  <body>
+    <div class="game-container">
+      <label for="success-chart">Piece Progression:</label>
+      <input
+        type="range"
+        name="success-chart"
+        id="success-chart"
+        max="6" />
+      <div class="success-failure-container">
+        <button id="fail">Failed</button>
+        <button id="succeed">Succeeded</button>
+      </div>
+      <div id="total-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Fails</th>
+              <th>Successes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="fails-count"></td>
+              <td id="successes-count"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="reset">Reset</button>
+      </div>
+    </div>
+    <script>
+      const successChart = document.getElementById("success-chart");
+      const failButton = document.getElementById("fail");
+      const successButton = document.getElementById("succeed");
+      const container = document.querySelector(".game-container");
+      const messageButtonsContainer = document.querySelector(
+        ".success-failure-container"
+      );
+      const totalContainer = document.querySelector("#total-container");
+      const failCell = document.getElementById("fails-count");
+      const successCell = document.getElementById("successes-count");
+      failCell.innerHTML = 0;
+      successCell.innerHTML = 0;
+      let successes = 0,
+        failures = 0;
+      const reset = document.querySelector(".reset");
+      reset.disabled = true;
+
+      successChart.value = 3;
+      window.addEventListener("click", (e) => {
+        if (
+          e.target !== failButton &&
+          e.target !== successButton &&
+          e.target !== reset
+        )
+          return;
+        if (e.target === reset) {
+          successes = 0;
+          failures = 0;
+          failCell.innerHTML = failures;
+          successCell.innerHTML = successes;
+        } else if (e.target === failButton) {
+          successChart.value--;
+          if (successChart.value < 1) {
+            replaceButtonsWithMessage();
+            const message = document.querySelector(".message");
+            failures++;
+            failCell.innerHTML = failures;
+            totalContainer.style.opacity = 1;
+            reset.disabled = false;
+            message.innerHTML = `<p>Oh no!</p><p>Try again and beat the game.</p>`;
+            document.body.style.backgroundImage =
+              "url(./assets/photos/crying-cat.webp)";
+            setTimeout(() => {
+              document.body.style.backgroundImage = "";
+              // container.style.backgroundColor = "";
+              successChart.value = 3;
+              message.remove();
+            }, 5000);
+          }
+        } else {
+          successChart.value++;
+          if (successChart.value > 5) {
+            replaceButtonsWithMessage();
+            const message = document.querySelector(".message");
+            successes++;
+            successCell.innerHTML = successes;
+            totalContainer.style.opacity = 1;
+            reset.disabled = false;
+            // container.style.backgroundColor = "lightgreen";
+            message.innerHTML = `<p>Congratulations!</p><p>You've improved 🎉</p>`;
+            document.body.style.backgroundImage =
+              "url(./assets/photos/Fireworks.webp)";
+            setTimeout(() => {
+              document.body.style.backgroundImage = "";
+              // container.style.backgroundColor = "";
+              successChart.value = 3;
+              message.remove();
+            }, 5000);
+          }
+        }
+      });
+
+      function replaceButtonsWithMessage() {
+        const message = document.createElement("div");
+        message.classList.add("message");
+        messageButtonsContainer.append(message);
+      }
+    </script>
+  </body>
+</html>

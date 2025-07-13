@@ -81,21 +81,37 @@
     </h3>
     <script>
       const name = document.getElementById("name");
-      const fontsList = ["Istok Web", "Helvetica", "Sans Serif", "Arial"];
+      const fontsList = [
+        "Istok Web",
+        "Futura",
+        "Sans Serif",
+        "Helvetica",
+        "Verdana",
+        "Times",
+      ];
+      name.style.fontFamily = fontsList[0];
       let currentIndex = 0;
       const length = fontsList.length;
 
-      setInterval(changeFont, 1000);
+      setInterval(changeFont, 700);
 
       function changeFont() {
         // move one step forwards,
-        if (currentIndex < length) {
+        if (currentIndex < length - 1) {
           currentIndex++;
         } else {
           currentIndex = 0;
         }
         // apply the font to name
+
         name.style.fontFamily = fontsList[currentIndex];
+        name.style.fontStyle = randomStyle();
+      }
+
+      function randomStyle() {
+        const styles = ["normal", "italic"];
+        console.log(styles[Math.round(Math.random())]);
+        return styles[Math.round(Math.random())];
       }
     </script>
   </body>

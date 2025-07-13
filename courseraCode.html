@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Coursera Code Challenges</title>
+  </head>
+  <body>
+    <h1>Coursera Coding Challenges</h1>
+    <div class="challenge-container">
+      <h2>Coding Challenge No. 1</h2>
+      <p>
+        Write a function that takes two integers namely hours and minutes,
+        converts them into seconds, and adds them together to display the totla
+        seconds
+      </p>
+      <div
+        class="numbers"
+        style="display: flex; flex-flow: column; max-width: 200px">
+        <label for="hours">Hours:</label>
+        <input
+          type="text"
+          name="hours"
+          id="hours" />
+        <label for="minutes">Minutes:</label>
+        <input
+          type="text"
+          name="minutes"
+          id="minutes" />
+        <p style="padding: 0; margin: 0">Seconds:</p>
+        <p
+          id="seconds"
+          style="
+            border: 1px solid black;
+            border-radius: 3px;
+            width: 200px;
+            height: 21.5px;
+            padding: 0;
+            margin: 0;
+          "></p>
+      </div>
+    </div>
+    <script>
+      const hours = document.getElementById("hours");
+      const minutes = document.getElementById("minutes");
+      const seconds = document.getElementById("seconds");
+      let h = 0,
+        m = 0;
+      window.addEventListener("input", (e) => {
+        const regex = /^\d*$/;
+        if (!(e.target == hours || e.target == minutes)) return;
+        if (!hours.value.match(regex) || !minutes.value.match(regex)) {
+          seconds.innerText = "Please enter an integer number";
+          return;
+        }
+        if (e.target == hours && hours.value > 0) {
+          h = hours.value * 60 * 60;
+        }
+        if (e.target == minutes && minutes.value > 0) {
+          m = minutes.value * 60;
+        }
+        seconds.innerText = h + m;
+      });
+      function convertHoursMinutes(hours, minutes) {
+        return hours * 3600 + minutes * 60;
+      }
+
+      function uniqueArray(arr) {
+        const uniqueArray = [];
+        arr.forEach((element) => {
+          if (!uniqueArray.includes(element)) {
+            uniqueArray.push(element);
+          }
+        });
+        console.log(uniqueArray);
+      }
+
+      uniqueArray([1, 2, 2, 6, 9, "dog", "9", "Dog", 1]);
+    </script>
+  </body>
+</html>

@@ -32,26 +32,7 @@
         font-weight: bold;
         font-size: 32px;
         padding-left: 15px;
-      }
-      #success-chart {
-        margin: 15px;
-        width: calc(100% - 30px);
-        height: 2px;
-        appearance: none;
-        pointer-events: none;
-      }
-      #success-chart::-webkit-slider-runnable-track {
-        height: 18px;
-        background-color: blue;
-      }
-      #success-chart::-webkit-slider-thumb {
-        appearance: none;
-        border-radius: 0;
-        width: 18px;
-        height: 25px;
-        margin-top: -3px;
-        background-color: aliceblue;
-        border: 1px solid black;
+        text-shadow: 0 0 5px white;
       }
       .success-failure-container {
         display: flex;
@@ -61,7 +42,7 @@
         margin: 10px;
       }
       button {
-        padding: 10px;
+        padding: 7px 10px;
         color: white;
         font-weight: bold;
         width: 100px;
@@ -108,17 +89,46 @@
         color: grey;
         border: none;
       }
+      .progression-container {
+        position: relative;
+        height: 30px;
+        width: calc(100% - 30px);
+        border-radius: 20px;
+        background-color: rgb(106, 106, 106);
+        overflow: hidden;
+        box-shadow: inset 0.2px 1px 7px rgb(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+      }
+      .progression {
+        width: 50%;
+        height: 100%;
+        border-radius: 20px;
+        background-color: rgb(6, 228, 0);
+        box-shadow: inset 0.2px -5px 7px rgb(0, 0, 0, 0.5),
+          inset -0.2px 5px 10px rgba(255, 255, 255, 0.4);
+      }
+      .percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        text-shadow: 0 0 5px black;
+        transform: skew(-15deg);
+      }
     </style>
     <title>Improvement Game</title>
   </head>
   <body>
     <div class="game-container">
       <label for="success-chart">Piece Progression:</label>
-      <input
-        type="range"
-        name="success-chart"
-        id="success-chart"
-        max="6" />
+      <div class="progression-container">
+        <div class="progression"></div>
+        <p class="percentage">50%</p>
+      </div>
       <div class="success-failure-container">
         <button id="fail">Failed</button>
         <button id="succeed">Succeeded</button>
@@ -142,7 +152,6 @@
       </div>
     </div>
     <script>
-      const successChart = document.getElementById("success-chart");
       const failButton = document.getElementById("fail");
       const successButton = document.getElementById("succeed");
       const container = document.querySelector(".game-container");
@@ -159,7 +168,29 @@
       const reset = document.querySelector(".reset");
       reset.disabled = true;
 
-      successChart.value = 3;
+      const progression = document.querySelector(".progression");
+      const percentageField = document.querySelector(".percentage");
+      const steps = 6;
+
+      let percentage = 50;
+      progression.style.backgroundColor = getColourValue();
+
+      function getStepPercentage() {
+        return 100 / steps;
+      }
+
+      function getColourValue() {
+        return `rgb(${255 - 255 * ((1 / 100) * percentage)}, ${
+          255 * ((1 / 100) * percentage)
+        }, 0)`;
+      }
+
+      function setProgressBar() {
+        progression.style.width = `${percentage}%`;
+        progression.style.backgroundColor = getColourValue();
+        percentageField.innerText = `${Math.round(percentage)}%`;
+      }
+
       window.addEventListener("click", (e) => {
         if (
           e.target !== failButton &&
@@ -173,8 +204,10 @@
           failCell.innerHTML = failures;
           successCell.innerHTML = successes;
         } else if (e.target === failButton) {
-          successChart.value--;
-          if (successChart.value < 1) {
+          percentage -= getStepPercentage();
+          percentage = Math.max(0, Math.round(percentage * 100) / 100);
+          setProgressBar();
+          if (percentage <= 0) {
             replaceButtonsWithMessage();
             const message = document.querySelector(".message");
             failures++;
@@ -186,14 +219,16 @@
               "url(./assets/photos/crying-cat.webp)";
             setTimeout(() => {
               document.body.style.backgroundImage = "";
-              // container.style.backgroundColor = "";
-              successChart.value = 3;
+              percentage = 50;
+              setProgressBar();
               message.remove();
             }, 5000);
           }
         } else {
-          successChart.value++;
-          if (successChart.value > 5) {
+          percentage += getStepPercentage();
+          percentage = Math.max(0, Math.round(percentage * 100) / 100);
+          setProgressBar();
+          if (percentage >= 100) {
             replaceButtonsWithMessage();
             const message = document.querySelector(".message");
             successes++;
@@ -206,8 +241,8 @@
               "url(./assets/photos/Fireworks.webp)";
             setTimeout(() => {
               document.body.style.backgroundImage = "";
-              // container.style.backgroundColor = "";
-              successChart.value = 3;
+              percentage = 50;
+              setProgressBar();
               message.remove();
             }, 5000);
           }

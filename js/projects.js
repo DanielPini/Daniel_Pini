@@ -3,11 +3,11 @@ const PROJECTS = [
   {
     id: "parts-we-give",
     title: "The Parts We Give (Web Game Engine)",
-    desc: "Custom JavaScript engine for an opera intro game; audio-reactive sequences via Howler, state & entity systems.",
+    desc: "Custom JS mini‑engine for an opera intro. Audio cues drive pacing, entities stay lean, and everything aims for smooth feel over heavy tech.",
     tags: ["JavaScript", "Howler", "Game Engine", "Audio"],
     role: "Solo",
     team: 1,
-    highlights: ["Entity system", "Audio cues", "Input loop"],
+    highlights: ["Light entity loop", "Audio timing", "Stable input feel"],
     mediaType: "image",
     media: {
       src: "./media/the-parts-we-give-1280.webp",
@@ -21,11 +21,11 @@ const PROJECTS = [
   {
     id: "coma-ecommerce",
     title: "CoMA Ecommerce Rebuild",
-    desc: "WordPress & WooCommerce overhaul: PHP templating, MySQL cleanup, performance & UX improvements.",
+    desc: "Stripped bloat from WooCommerce install: custom PHP templates, tidier queries, faster browse + cleaner checkout flow.",
     tags: ["WordPress", "PHP", "MySQL", "Performance"],
     role: "Lead Dev",
     team: 2,
-    highlights: ["Template refactor", "DB optimizations", "Checkout UX"],
+    highlights: ["Template cleanup", "Query trimming", "Checkout focus"],
     mediaType: "image",
     media: {
       src: "./media/coma-1280.webp",
@@ -38,16 +38,11 @@ const PROJECTS = [
   {
     id: "recitorii",
     title: "Recitorii Consultancy Portfolio",
-    desc: "Ecological urban design portfolio: semantic structure, mapping embeds, optimized typography strategy.",
+    desc: "Ecological design portfolio: semantic structure, map embeds tuned for load, typography and clarity over flash.",
     tags: ["HTML", "CSS", "SEO", "Accessibility"],
     role: "Front-End",
     team: 2,
-    highlights: [
-      "Semantic markup",
-      "Map integration",
-      "Core Web Vitals",
-      "UX overhaul",
-    ],
+    highlights: ["Semantic layout", "Lazy map mount", "Readable pacing"],
     mediaType: "image",
     media: {
       src: "./media/recitorii-1280.webp",
@@ -60,11 +55,11 @@ const PROJECTS = [
   {
     id: "stephen-fleri-portfolio",
     title: "Stephen Fleri Portfolio",
-    desc: "Artist portfolio site: responsive grid, lazy media, React enhancement layer for dynamic series filtering.",
+    desc: "Artist portfolio with React layer only where it helps: fast grid, filtering that feels immediate, media kept light.",
     tags: ["React", "JavaScript", "Responsive", "Performance"],
     role: "Developer",
     team: 1,
-    highlights: ["Adaptive image sets", "Filtering UI", "Accessibility audit"],
+    highlights: ["Adaptive images", "Smooth filtering", "A11y polish"],
     mediaType: "video",
     media: {
       src: "./media/stephen-fleri.webm",
@@ -77,11 +72,11 @@ const PROJECTS = [
   {
     id: "earthly-futures-calendar",
     title: "Earthly Futures Calendar Integration",
-    desc: "Custom events & booking calendar: data layer, recurrence parsing, admin UI for scheduling.",
+    desc: "Events & bookings calendar: recurrence logic kept readable, admin panel straightforward, load only what’s needed.",
     tags: ["JavaScript", "Calendar", "UX"],
     role: "Solo",
     team: 1,
-    highlights: ["Recurrence logic", "Admin tooling", "Lazy event loading"],
+    highlights: ["Recurrence parser", "Slim admin UI", "Lazy month fetch"],
     mediaType: "image",
     media: {
       src: "./media/calendar-1280.webp",
@@ -95,11 +90,11 @@ const PROJECTS = [
   {
     id: "straddle",
     title: "Straddle Poker Blinds Timer",
-    desc: "Tournament blinds timer: interval scheduler, audible stage alerts, responsive control panel.",
+    desc: "Simple browser blinds timer: drift‑corrected schedule, clear level transitions, no fluff.",
     tags: ["JavaScript", "Timing", "UI"],
     role: "Solo",
     team: 1,
-    highlights: ["Accurate timing", "Audio alerts", "Customizable blinds"],
+    highlights: ["Drift fix", "Audio level alerts", "Flexible schedule"],
     mediaType: "video",
     media: {
       src: "./media/straddle.webm",
@@ -112,11 +107,11 @@ const PROJECTS = [
   {
     id: "fable-arts-exhibitions",
     title: "FABLE ARTS Digital Exhibitions",
-    desc: "Interactive exhibition framework (2020–2025) for artists: modular layout, media loaders, bespoke and custom solutions.",
+    desc: "Long‑running exhibition system: modular layout pieces, preloaded media, artists onboarded without tech hurdles.",
     tags: ["HTML", "CSS", "JavaScript", "Content System"],
     role: "Lead Front-End",
     team: 3,
-    highlights: ["Modular templates", "Media preloading", "Artist onboarding"],
+    highlights: ["Plug‑in modules", "Media pipeline", "Artist onboarding"],
     mediaType: "image",
     media: {
       src: "./media/fable-arts-1280.webp",
@@ -158,6 +153,11 @@ function renderProjects(list) {
     .map((p) => {
       const tags = p.tags.map((t) => `<span>${t}</span>`).join("");
       const highs = p.highlights.map((h) => `<li>${h}</li>`).join("");
+      // Remove forced Case Study link. Only show links that actually exist.
+      const linkParts = [];
+      if (p.links.demo) linkParts.push(`<a href="${p.links.demo}">Link</a>`);
+      if (p.links.code) linkParts.push(`<a href="${p.links.code}">Code</a>`);
+      // If you later want conditional case study links, add: if (p.caseStudy) { ... }
       return `
       <article class="project-card" data-project="${p.id}">
         <div class="project-media">${renderMedia(p)}</div>
@@ -167,9 +167,7 @@ function renderProjects(list) {
         <ul class="project-highlights">${highs}</ul>
         <p class="project-meta">Role: ${p.role} • Team: ${p.team}</p>
         <div class="project-links">
-          ${p.links.demo ? `<a href="${p.links.demo}">Demo</a>` : ""}
-          ${p.links.code ? `<a href="${p.links.code}">Code</a>` : ""}
-          <a href="/case-studies/${p.id}.html">Case Study</a>
+          ${linkParts.join("") || ""}
         </div>
       </article>`;
     })

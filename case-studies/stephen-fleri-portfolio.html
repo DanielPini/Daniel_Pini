@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stephen Fleri Artist Portfolio | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Responsive portfolio for artist Stephen Fleri with React enhancement layer and accessibility focus."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Stephen Fleri Artist Portfolio",
+        "url": "https://danielpini.com/case-studies/stephen-fleri-portfolio.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "Responsive artist portfolio using HTML/CSS with React filtering layer and lazy media loading."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>Stephen Fleri Artist Portfolio</h1>
+      <p class="lead">
+        Responsive gallery experience with dynamic filtering, accessible
+        structure, and optimized media delivery.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Create a visually clean, fast-loading portfolio enabling users to
+          filter works by series and medium.
+        </p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>React enhancement layer for client-side filtering.</li>
+          <li>
+            Lazy-loaded image sets with intrinsic aspect ratio placeholders.
+          </li>
+          <li>Keyboard and screen reader accessible gallery navigation.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>index.html (semantic sections)
+React mount → #gallery-root
+fetch works.json → normalize categories
+filter state → render subset (virtual list ready)
+IntersectionObserver → image src swap</code></pre>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Large image payload → generated multiple sizes & used srcset.</li>
+          <li>Filtering jank → minimal state & memoized map.</li>
+          <li>A11y alt coverage → curated alt text per artwork.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Before</th>
+              <th>After</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Largest Image Payload</td>
+              <td>12.4 MB</td>
+              <td>4.1 MB</td>
+            </tr>
+            <tr>
+              <td>First Meaningful Paint</td>
+              <td>2.9 s</td>
+              <td>1.5 s</td>
+            </tr>
+            <tr>
+              <td>Accessibility Score</td>
+              <td>82</td>
+              <td>100</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          Improved engagement and reduced bounce with fast, filterable viewing
+          experience.
+        </p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="fable-arts-exhibitions.html">← Previous</a>
+        <a href="recitorii.html">Next →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

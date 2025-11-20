@@ -1,132 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daniel Pini | Gameplay & Systems Developer</title>
+    <link rel="preload" href="./css/portfolio.css" as="style" />
+    <link rel="stylesheet" href="./css/portfolio.css" />
+    <link rel="canonical" href="https://danielpini.com/portfolio.html" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
-    <title>Coding Portfolio</title>
-    <link
-      rel="stylesheet"
-      href="./css/portfolio.css" />
+      name="description"
+      content="Daniel Pini portfolio: interactive web, custom JS game engine, performance refactors, WordPress rebuilds."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Daniel Pini",
+        "url": "https://danielpini.com/portfolio.html",
+        "jobTitle": "Gameplay & Web Systems Developer",
+        "sameAs": [
+          "https://www.linkedin.com/in/daniel-pini-a19951305/",
+          "https://www.instagram.com/daniel_pini"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CreativeWork",
+            "name": "FABLE ARTS Digital Exhibitions",
+            "url": "https://danielpini.com/case-studies/fable-arts-exhibitions.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "The Parts We Give (Web Game Engine)",
+            "url": "https://danielpini.com/case-studies/parts-we-give.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Stephen Fleri Artist Portfolio",
+            "url": "https://danielpini.com/case-studies/stephen-fleri-portfolio.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Recitorii Consultancy Portfolio",
+            "url": "https://danielpini.com/case-studies/recitorii.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Straddle Poker Blinds Timer",
+            "url": "https://danielpini.com/case-studies/straddle.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "CoMA Ecommerce Rebuild",
+            "url": "https://danielpini.com/case-studies/coma-ecommerce.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Earthly Futures Calendar Integration",
+            "url": "https://danielpini.com/case-studies/earthly-futures-calendar.html",
+            "author": { "@type": "Person", "name": "Daniel Pini" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <header>
-      <a href=""><p>Item</p></a>
-      <a href=""><p>Item</p></a>
-      <a href=""><p>Item</p></a>
-      <a href=""><p>Item</p></a>
-    </header>
-    <section id="about-me-section">
-      <div id="headshot"></div>
-      <div id="nameplate">
-        <h1>Daniel Pini</h1>
-        <h2>Web Developer</h2>
-        <div id="buttons">
-          <a href="#projects-section"
-            ><div id="latest">See the latest works</div></a
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header class="site-header">
+      <div class="logo">Daniel Pini</div>
+      <nav class="nav primary-nav" aria-label="Primary">
+        <!-- Add real site links if needed -->
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <nav class="nav socials" aria-label="Social">
+        <a
+          href="https://www.instagram.com/daniel_pini"
+          aria-label="Instagram profile"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            role="img"
+            aria-hidden="true"
           >
-          <a href="./contact.html"><div id="contact-me">Contact me</div></a>
+            <rect
+              x="2.5"
+              y="2.5"
+              width="19"
+              height="19"
+              rx="5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor" />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/daniel-pini-a19951305/"
+          aria-label="LinkedIn profile"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            role="img"
+            aria-hidden="true"
+          >
+            <rect
+              x="2.5"
+              y="2.5"
+              width="19"
+              height="19"
+              rx="3"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <rect x="7" y="11" width="2.2" height="6.5" fill="currentColor" />
+            <circle cx="8.1" cy="8" r="1.3" fill="currentColor" />
+            <path
+              d="M13 11.4c0-1.2.8-1.9 2-1.9 1.2 0 2 .7 2 1.9v6.1h-2.2v-5.4c0-.5-.3-.9-.8-.9-.5 0-.8.4-.8.9v5.4H13v-6.1Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <a href="https://github.com/DanielPini" aria-label="GitHub profile">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            role="img"
+            aria-hidden="true"
+          >
+            <path
+              stroke="currentColor"
+              stroke-width="1.5"
+              fill="none"
+              d="M12 2.7c-5.2 0-9.3 4.2-9.3 9.3 0 4.1 2.6 7.6 6.1 8.9.4.1.5-.2.5-.4v-1.7c-2.5.6-3-.9-3-0.9-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.8 2.4.6.1-.5.3-.8.5-1-2-.2-4.1-1-4.1-4.5 0-1 .4-1.9 1-2.5-.1-.2-.5-1.2.1-2.4 0 0 .8-.3 2.6 1 .7-.2 1.4-.3 2.1-.3.7 0 1.4.1 2.1.3 1.8-1.2 2.6-1 2.6-1 .6 1.3.2 2.2.1 2.4.6.6 1 1.5 1 2.5 0 3.5-2.1 4.3-4.1 4.5.3.2.5.7.5 1.4v2.1c0 .2.1.5.5.4 3.5-1.3 6.1-4.8 6.1-8.9 0-5.1-4.2-9.3-9.4-9.3Z"
+            />
+          </svg>
+        </a>
+      </nav>
+    </header>
+    <main id="main">
+      <section id="hero" class="hero">
+        <h1 class="hero-title">Gameplay & Web Systems Developer</h1>
+        <p class="hero-subtitle">
+          I prototype responsive web experiences and performance-focused
+          gameplay systems: tooling, UI flows, audio-reactive mechanics, and
+          delivery pipelines.
+        </p>
+        <ul class="hero-metrics" aria-label="Key highlights">
+          <li><strong>15+</strong> prototypes</li>
+          <li><strong>12+</strong> production web pages</li>
+          <li><strong>30%</strong> perf gains (render / payload)</li>
+        </ul>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Get In Touch</a>
         </div>
-      </div>
-    </section>
-    <section id="what-we-do-section">
-      <div id="what-we-do">
-        <h2>What we do?</h2>
-      </div>
-    </section>
-    <section id="business-offers-section">
-      <div id="business-offers">
-        <h2>Unique Ideas For Your Business</h2>
-        <div id="offer-container">
-          <div class="offer">
-            <h3>Website design</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <button>Info</button>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+        <div id="projects-grid" class="projects-grid" data-projects>
+          <div class="project-card">
+            <a
+              class="project-link"
+              href="https://danielpini.com/case-studies/fable-arts-exhibitions.html"
+              aria-label="FABLE ARTS Digital Exhibitions case study"
+            >
+              <div class="project-media">
+                <picture>
+                  <source
+                    type="image/webp"
+                    data-srcset="./media/fable-arts-640.webp 640w, ./media/fable-arts-1280.webp 1280w"
+                  />
+                  <source
+                    type="image/png"
+                    data-srcset="./media/fable-arts-640.png 640w, ./media/fable-arts-1280.png 1280w"
+                  />
+                  <img
+                    data-src="./media/fable-arts-1280.png"
+                    alt="FABLE ARTS exhibition interface"
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="720"
+                  />
+                </picture>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">FABLE ARTS Digital Exhibitions</h3>
+                <p class="project-description">
+                  Interactive exhibition framework: audio-reactive visuals,
+                  modular content system, and performance optimization.
+                </p>
+              </div>
+            </a>
           </div>
-          <div class="offer">
-            <h3>Custom Web App Creation</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <button>Info</button>
+        </div>
+      </section>
+
+      <section id="skills" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="section-title">Skills & Technologies</h2>
+
+        <div class="skills-cats">
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <ul class="skill-badges">
+              <li data-t="Semantic, accessible HTML structure">HTML5</li>
+              <li data-t="Modern layout (Grid/Flex), theming">CSS3</li>
+              <li data-t="Modules, async, perf profiling">
+                JavaScript (ES2023)
+              </li>
+              <li data-t="Component architecture, state mgmt">React</li>
+            </ul>
           </div>
-          <div class="offer">
-            <h3>Desktop App Builds</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <button>Info</button>
+
+          <div class="skill-group">
+            <h3>Gameplay / Interaction</h3>
+            <ul class="skill-badges">
+              <li data-t="Custom loop, entity/state mgmt">Custom JS Engine</li>
+              <li data-t="Audio cues, timeline sync">Howler</li>
+              <li data-t="Timing, state transitions">State Machines</li>
+            </ul>
           </div>
-          <div class="offer">
-            <h3>Branding</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <button>Info</button>
+
+          <div class="skill-group">
+            <h3>Performance & Tooling</h3>
+            <ul class="skill-badges">
+              <li data-t="Network/LCP/CLS audits">Web Vitals</li>
+              <li data-t="Build optimization, code split">Bundling</li>
+              <li data-t="Scripted workflow & tasks">Automation</li>
+              <li data-t="Profiling & memory checks">Performance</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Backend / CMS</h3>
+            <ul class="skill-badges">
+              <li data-t="Template + plugin refactor">WordPress</li>
+              <li data-t="Queries, indexing, schema">MySQL</li>
+              <li data-t="Server-side customization">PHP</li>
+              <li data-t="Backend architecture">Node.js</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Workflow</h3>
+            <ul class="skill-badges">
+              <li data-t="Version control branching">Git</li>
+              <li data-t="Issue tracking & collaboration">
+                Project Coordination
+              </li>
+              <li data-t="Accessibility review process">A11y Auditing</li>
+              <li data-t="Testing + deployment gates">CI/CD (Planned)</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="projects-section">
-      <h2>Projects</h2>
-      <h2>Websites</h2>
-      <div id="project-card-container">
-        <div class="card">
-          <a href="https://fable-arts.com"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>FABLE ARTS</h3>
+      </section>
+
+      <section id="delivery" aria-labelledby="delivery-heading">
+        <h2 id="delivery-heading" class="section-title">
+          Web Engineering & Delivery
+        </h2>
+        <p class="about-text">
+          Experience deploying scalable front-end features: asset optimization
+          (code splitting, lazy media), semantic markup for accessibility,
+          modular component architectures, CI-assisted lint & test gates, and
+          user-focused iteration loops combining gameplay interactivity with
+          robust web UX.
+        </p>
+      </section>
+
+      <section id="about" aria-labelledby="about-heading">
+        <h2 id="about-heading" class="section-title">About</h2>
+        <div class="about-text">
+          <p>
+            I build interactive web experiences and lightweight JavaScript game
+            systems, focusing on performance, accessibility, and clear iteration
+            workflows. From multi‑year digital exhibition frameworks (FABLE
+            ARTS) to custom audio-driven mechanics (The Parts We Give), I
+            combine creative intent with technical discipline.
+          </p>
+          <p>
+            <strong>Focus Areas:</strong> gameplay loops, data & content
+            tooling, performance refactors (LCP/CLS), semantic & accessible
+            front ends, modular architecture.
+          </p>
+          <p>
+            <strong>Selected Impact:</strong>
+          </p>
+          <ul>
+            <li>
+              Designer iteration time cut ~40% via parameter/tooling workflows.
+            </li>
+            <li>
+              Ecommerce rebuild: reduced TTFB ~50% and improved checkout
+              conversion.
+            </li>
+            <li>
+              Portfolio/gallery payload reductions (≥60%) with responsive media
+              strategies.
+            </li>
+            <li>
+              Custom engine + audio synchronization for narrative game intro
+              (stable 60 FPS).
+            </li>
+          </ul>
+          <p>
+            <strong>Approach:</strong> instrument early (perf + accessibility),
+            favor small composable modules, automate repetitive setup, and
+            document configuration for non‑technical collaborators.
+          </p>
+          <p>
+            <strong>Current Goals:</strong> expanding CI/CD automation,
+            deepening audio-reactive interaction patterns, and exploring
+            progressive enhancement pathways for richer embedded game
+            prototypes.
+          </p>
         </div>
-        <div class="card">
-          <a href="./index.html"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>Personal Web Page</h3>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section-title">Contact & Resume</h2>
+        <div class="contact-wrapper">
+          <div class="resume-brief">
+            <h3>Resume Snapshot</h3>
+            <ul>
+              <li>2020–2025: FABLE ARTS interactive exhibitions.</li>
+              <li>Custom JS game engine (The Parts We Give).</li>
+              <li>Ecommerce rebuild (CoMA) + performance gains.</li>
+              <li>Tooling & calendar integration (Earthly Futures).</li>
+            </ul>
+            <p>
+              <a
+                class="btn tertiary"
+                href="/assets/Daniel_Pini_Resume.pdf"
+                download
+                >Download Full Resume</a
+              >
+            </p>
+          </div>
+          <form id="contact-form" novalidate>
+            <fieldset>
+              <legend>Get In Touch</legend>
+              <label>
+                Name
+                <input name="name" type="text" required autocomplete="name" />
+              </label>
+              <label>
+                Email
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+              </label>
+              <label>
+                Project Type
+                <select name="type" required>
+                  <option value="">Select…</option>
+                  <option>Web Development</option>
+                  <option>Gameplay / Interactive</option>
+                  <option>Performance / Refactor</option>
+                  <option>Consultation</option>
+                </select>
+              </label>
+              <label>
+                Message
+                <textarea
+                  name="message"
+                  rows="5"
+                  required
+                  maxlength="2000"
+                ></textarea>
+              </label>
+              <!-- Honeypot -->
+              <div style="position: absolute; left: -9999px">
+                <label
+                  >Leave blank
+                  <input type="text" name="hp" tabindex="-1" autocomplete="off"
+                /></label>
+              </div>
+              <button class="btn primary" type="submit">Send</button>
+              <p class="form-status" aria-live="polite"></p>
+            </fieldset>
+          </form>
         </div>
-      </div>
-      <h2>Web Apps</h2>
-      <div id="project-card-container">
-        <div class="card">
-          <a href="./index.html"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>Poker Blinds Timer</h3>
-        </div>
-        <div class="card">
-          <a href="./index.html"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>Poker Hand Calculator</h3>
-        </div>
-        <div class="card">
-          <a href="./index.html"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>Metronome</h3>
-        </div>
-      </div>
-      <h2>Branding</h2>
-      <div id="project-card-container">
-        <div class="card">
-          <a href="./index.html"></a>
-          <div class="overlay"></div>
-          <img
-            src="./assets//photos/terra_01.jpg"
-            alt="" />
-          <h3>FABLE ARTS</h3>
-        </div>
-      </div>
-    </section>
-    <footer>
-      <a href=""><p>Item</p></a>
-      <a href=""><p>Item</p></a>
-      <a href=""><p>Item</p></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini. All rights reserved.</p>
     </footer>
-    <script src="./js/burger-menu.js"></script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="./js/projects.js" defer></script>
+    <script src="./js/lazy-media.js" defer></script>
+    <script src="./js/prefetch.js" defer></script>
+    <script src="./js/perf.js" defer></script>
+    <script src="./js/skills.js" defer></script>
+    <script src="./js/contact.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FABLE ARTS Digital Exhibitions | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Multi-year interactive digital exhibition framework for artists (FABLE ARTS)."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>FABLE ARTS Digital Exhibitions</h1>
+      <p class="lead">
+        Framework powering interactive artist exhibitions (2020–2025): modular
+        layout, scalable media, narrative progression.
+      </p>
+
+      <section>
+        <h2>Scope</h2>
+        <ul>
+          <li>Template system for varying exhibition formats.</li>
+          <li>Media preloading & adaptive image sets.</li>
+          <li>Curator-friendly configuration JSON.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>config.json → loader
+build DOM modules (hero, gallery, narrative)
+attach progressive enhancement (transitions, captions)
+analytics hooks (engagement)</code></pre>
+      </section>
+
+      <section>
+        <h2>Performance Improvements</h2>
+        <p>
+          Reduced median image payload by switching to WebP + deferred
+          non-critical sections.
+        </p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          Consistent launch process for new exhibitions; reduced setup time for
+          each artist onboarding.
+        </p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="../portfolio.html">← Back</a>
+        <a href="stephen-fleri-portfolio.html">Next Project →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

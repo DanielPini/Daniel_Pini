@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CoMA Ecommerce Rebuild | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: WordPress/WooCommerce refactor with PHP templating, database optimization, and UX improvements."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "CoMA Ecommerce Rebuild",
+        "url": "https://danielpini.com/case-studies/coma-ecommerce.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "WooCommerce performance and UX overhaul using PHP, MySQL and template refactoring."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>CoMA Ecommerce Rebuild</h1>
+      <p class="lead">
+        Template refactor, database cleanup, and checkout UX improvements for a
+        WordPress commerce site.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Improve performance, reduce plugin bloat, and streamline purchase
+          funnel.
+        </p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Custom PHP templates replacing heavy page builders.</li>
+          <li>Query optimization & index review in MySQL.</li>
+          <li>Checkout field reduction & validation feedback.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>functions.php → enqueue minimal assets
+custom-template.php → lean markup
+DB audit → remove orphan meta
+perf hooks → transient caching</code></pre>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Legacy plugin conflicts → staged deactivation + replacement.</li>
+          <li>Slow product queries → added composite indexes.</li>
+          <li>Checkout abandonment → simplified steps & clearer errors.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Before</th>
+              <th>After</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Time To First Byte</td>
+              <td>850 ms</td>
+              <td>420 ms</td>
+            </tr>
+            <tr>
+              <td>Checkout Conversion</td>
+              <td>62%</td>
+              <td>74%</td>
+            </tr>
+            <tr>
+              <td>Asset Count</td>
+              <td>143</td>
+              <td>68</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>Faster browsing, higher conversion, easier maintenance footprint.</p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="straddle.html">← Previous</a>
+        <a href="earthly-futures-calendar.html">Next →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

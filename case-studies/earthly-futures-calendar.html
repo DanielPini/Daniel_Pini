@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Earthly Futures Calendar Integration | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Custom booking and events calendar integration with recurrence parsing and admin tooling."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Earthly Futures Calendar Integration",
+        "url": "https://danielpini.com/case-studies/earthly-futures-calendar.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "Custom calendar integration featuring recurrence logic, admin scheduling UI, and lazy event loading."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>Earthly Futures Calendar Integration</h1>
+      <p class="lead">
+        Events & booking calendar with recurrence handling, admin interface, and
+        performance-conscious loading strategy.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Enable staff to schedule recurring events and users to browse quickly
+          without overload.
+        </p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Recurrence rule parsing (weekly, monthly patterns).</li>
+          <li>Admin UI for create/update/delete events.</li>
+          <li>Lazy month data fetching & caching layer.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>events.json / events-api
+recurrence parser → expand instances
+calendar grid → virtualized weeks
+admin panel → form + validation</code></pre>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Complex recurrence edge cases → normalized rule schema.</li>
+          <li>Initial load clutter → deferred future months.</li>
+          <li>Admin error handling → inline validation & autosave drafts.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <p>
+          Reduced initial event payload by loading only current + next month;
+          cached expansions for repeat visits.
+        </p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          Simplified scheduling workflow and improved user navigation speed.
+        </p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="coma-ecommerce.html">← Previous</a>
+        <a href="../portfolio.html">Portfolio →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

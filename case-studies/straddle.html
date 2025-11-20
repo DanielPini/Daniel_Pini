@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Straddle Poker Blinds Timer | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Tournament poker blinds timer with precise scheduling, audio alerts, and responsive controls."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Straddle Poker Blinds Timer",
+        "applicationCategory": "GameTool",
+        "url": "https://danielpini.com/case-studies/straddle.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "HTML/CSS/JS blinds timer with interval scheduler and audio alerts."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>Straddle Poker Blinds Timer</h1>
+      <p class="lead">
+        Accurate tournament pacing tool with configurable blind levels and
+        audible transitions.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Provide a simple browser-based timer to manage blinds progression
+          without manual recalculation.
+        </p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Configurable blinds schedule JSON.</li>
+          <li>High-precision interval loop (drift correction).</li>
+          <li>Audio alert and visual flash on level change.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>schedule.json → parse levels
+Timer → setTimeout drift adjust
+UI update → remaining time & next level
+Audio cue → play on transition</code></pre>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>setInterval drift → timestamp difference correction.</li>
+          <li>User pause/resume → persisted state snapshot.</li>
+          <li>Mobile viewport scaling → fluid layout units.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <p>
+          Minimal CPU footprint; updates limited to once per second except on
+          transition frames.
+        </p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>Reliable pacing aid adopted for casual tournament sessions.</p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="recitorii.html">← Previous</a>
+        <a href="coma-ecommerce.html">Next →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

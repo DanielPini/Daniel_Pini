@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Parts We Give | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Custom JavaScript game engine and audio-reactive elements for The Parts We Give web introduction."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "The Parts We Give (Web Game Engine)",
+        "url": "https://danielpini.com/case-studies/parts-we-give.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "Custom JS engine, Howler-driven audio cues, entity/state systems for an opera intro experience."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>The Parts We Give (Web Game Engine)</h1>
+      <p class="lead">
+        Immersive prelude to a modern opera: bespoke JavaScript engine,
+        audio-reactive pacing, and lightweight entity/state system.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Create a web-playable intro with synchronized audio cues, fluid scene
+          transitions, and low setup friction for users.
+        </p>
+      </section>
+
+      <section>
+        <h2>Engine Design</h2>
+        <pre><code>// Core Loop
+requestAnimationFrame(loop)
+processInput()
+updateEntities(dt)
+dispatchAudioCues()
+render()</code></pre>
+        <ul>
+          <li>Entity registry with component-like data objects.</li>
+          <li>Timed audio triggers via Howler and timeline offsets.</li>
+          <li>
+            State manager for scene transitions (Intro → Exploration → Finale).
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Audio Integration</h2>
+        <p>
+          Mapped critical musical phrases to spawn, lighting, and pacing
+          adjustments using Howler events and timestamp arrays.
+        </p>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Desync risk → centralized timebase using performance.now().</li>
+          <li>Asset load delays → prefetch + progressive scene activation.</li>
+          <li>Input latency → simplified collision & no heavy physics.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Target</th>
+              <th>Achieved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frame Rate (avg)</td>
+              <td>60 FPS</td>
+              <td>59–60</td>
+            </tr>
+            <tr>
+              <td>Initial Load (network)</td>
+              <td>< 2.5 MB</td>
+              <td>2.1 MB</td>
+            </tr>
+            <tr>
+              <td>Input-to-effect latency</td>
+              <td>< 50 ms</td>
+              <td>32 ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>
+          Delivered a polished interactive intro with stable performance and
+          synchronized audio drama cues.
+        </p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="../portfolio.html">← Back</a>
+        <a href="fable-arts-exhibitions.html">Next Project →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

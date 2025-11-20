@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Audio-Reactive Combat Sandbox | Case Study</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: real-time FFT-driven combat pacing, adaptive difficulty, performance optimization."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Audio-Reactive Combat Sandbox",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "Prototype using Web Audio FFT analysis to drive spawn pacing and adaptive difficulty.",
+        "keywords": "Web Audio, Gameplay Systems, Performance Optimization",
+        "url": "https://your-domain.com/case-studies/audio-reactive.html"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>Audio-Reactive Combat Sandbox</h1>
+      <p class="lead">
+        FFT-driven enemy pacing with adaptive difficulty and frame budget
+        instrumentation.
+      </p>
+
+      <section>
+        <h2>Problem</h2>
+        <p>
+          Design a combat loop that responds to live audio energy without
+          causing erratic difficulty spikes or frame instability.
+        </p>
+      </section>
+
+      <section>
+        <h2>Constraints</h2>
+        <ul>
+          <li>Single-threaded JS runtime (browser).</li>
+          <li>Target stable 60 FPS on mid-tier hardware.</li>
+          <li>
+            Latency budget for audio sampling: &lt; 10 ms per update window.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>// FFT polling (every N frames)
+AnalyserNode → getFloatFrequencyData()
+Bucket energy → normalize → smoothing filter
+Difficulty controller → spawn interval map
+Frame overlay → perf panel</code></pre>
+        <div
+          class="diagram-placeholder"
+          style="
+            background: #1d242b;
+            border: 1px solid #2b343c;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+          "
+        >
+          TODO: Insert architecture diagram (PNG/WebP)
+        </div>
+      </section>
+
+      <section>
+        <h2>Performance Metrics</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Delta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frame Spikes (ms 95th)</td>
+              <td>19.8</td>
+              <td>13.6</td>
+              <td>-31%</td>
+            </tr>
+            <tr>
+              <td>Spawn Logic CPU (%)</td>
+              <td>12%</td>
+              <td>7%</td>
+              <td>-5pp</td>
+            </tr>
+            <tr>
+              <td>Update Allocation (KB/frame)</td>
+              <td>18</td>
+              <td>6</td>
+              <td>-66%</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="about-text">
+          Optimizations: batched spectrum sampling, object pool for enemy
+          entities, reduced garbage from transient arrays.
+        </p>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Volatile FFT peaks → applied exponential smoothing.</li>
+          <li>Spawn bursts → clamped derivative of energy change.</li>
+          <li>Memory churn → reused typed arrays.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>
+          Achieved smoother pacing with predictable difficulty curves and
+          reduced frame variance.
+        </p>
+      </section>
+
+      <section>
+        <h2>Lessons</h2>
+        <p>
+          Early instrumentation (perf overlay) guided targeted optimizations.
+          Audio-driven systems benefit from stabilization layers before feeding
+          gameplay.
+        </p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="../portfolio.html">← Back</a>
+        <a href="level-tool.html">Next Project →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

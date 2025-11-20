@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recitorii Consultancy Portfolio | Case Study</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Case study: Ecological urban design consultancy site focusing on semantic structure, mapping, and SEO performance."
+    />
+    <link rel="stylesheet" href="../css/portfolio.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Recitorii Consultancy Portfolio",
+        "url": "https://danielpini.com/case-studies/recitorii.html",
+        "author": { "@type": "Person", "name": "Daniel Pini" },
+        "description": "Consultancy portfolio with semantic HTML, map embedding, and Core Web Vitals optimization."
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo"><a href="../portfolio.html">Daniel Pini</a></div>
+    </header>
+    <main class="case-study">
+      <h1>Recitorii Consultancy Portfolio</h1>
+      <p class="lead">
+        Ecological urban design showcase emphasizing credibility, clarity, and
+        search discoverability.
+      </p>
+
+      <section>
+        <h2>Goal</h2>
+        <p>
+          Present projects and methodology with strong SEO, accessible markup,
+          and fast mobile performance.
+        </p>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>Semantic sectioning (header, main, article, aside).</li>
+          <li>Interactive map embeds with lazy initialization.</li>
+          <li>Structured data for services & organization profile.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Architecture</h2>
+        <pre><code>HTML base → semantic layout
+maps.js → IntersectionObserver mount
+services.json → dynamic cards
+schema injection → SEO boost</code></pre>
+      </section>
+
+      <section>
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li>Map script weight → deferred loading & idle callback.</li>
+          <li>Content hierarchy clarity → card taxonomy redesign.</li>
+          <li>Mobile LCP → prioritized hero image via preload.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Performance</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Before</th>
+              <th>After</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LCP (mobile)</td>
+              <td>3.4 s</td>
+              <td>1.8 s</td>
+            </tr>
+            <tr>
+              <td>Total JS</td>
+              <td>420 KB</td>
+              <td>180 KB</td>
+            </tr>
+            <tr>
+              <td>SEO Audit</td>
+              <td>84</td>
+              <td>98</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>Better organic visibility and improved mobile engagement metrics.</p>
+      </section>
+
+      <nav class="project-links" style="margin-top: 24px">
+        <a href="stephen-fleri-portfolio.html">← Previous</a>
+        <a href="straddle.html">Next →</a>
+      </nav>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Daniel Pini.</p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

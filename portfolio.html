@@ -216,8 +216,9 @@
               <div class="project-info">
                 <h3 class="project-title">FABLE ARTS Digital Exhibitions</h3>
                 <p class="project-description">
-                  Interactive exhibition framework: audio-reactive visuals,
-                  modular content system, and performance optimization.
+                  Interactive exhibition framework for artists, bespoke
+                  solutions, modular content system, and performance
+                  optimization.
                 </p>
               </div>
             </a>
@@ -285,133 +286,154 @@
       </section>
 
       <section id="delivery" aria-labelledby="delivery-heading">
-        <h2 id="delivery-heading" class="section-title">
-          Web Engineering & Delivery
-        </h2>
-        <p class="about-text">
-          Experience deploying scalable front-end features: asset optimization
-          (code splitting, lazy media), semantic markup for accessibility,
-          modular component architectures, CI-assisted lint & test gates, and
-          user-focused iteration loops combining gameplay interactivity with
-          robust web UX.
-        </p>
+        <div class="content-container">
+          <h2 id="delivery-heading" class="section-title">
+            Web Engineering & Delivery
+          </h2>
+          <div class="section-body">
+            <p class="about-text">
+              Experience deploying scalable front-end features: asset
+              optimization (code splitting, lazy media), semantic markup for
+              accessibility, modular component architectures, CI-assisted lint &
+              test gates, and user-focused iteration loops combining gameplay
+              interactivity with robust web UX.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading" class="section-title">About</h2>
-        <div class="about-text">
-          <p>
-            I build interactive web experiences and lightweight JavaScript game
-            systems, focusing on performance, accessibility, and clear iteration
-            workflows. From multi‑year digital exhibition frameworks (FABLE
-            ARTS) to custom audio-driven mechanics (The Parts We Give), I
-            combine creative intent with technical discipline.
-          </p>
-          <p>
-            <strong>Focus Areas:</strong> gameplay loops, data & content
-            tooling, performance refactors (LCP/CLS), semantic & accessible
-            front ends, modular architecture.
-          </p>
-          <p>
-            <strong>Selected Impact:</strong>
-          </p>
-          <ul>
-            <li>
-              Designer iteration time cut ~40% via parameter/tooling workflows.
-            </li>
-            <li>
-              Ecommerce rebuild: reduced TTFB ~50% and improved checkout
-              conversion.
-            </li>
-            <li>
-              Portfolio/gallery payload reductions (≥60%) with responsive media
-              strategies.
-            </li>
-            <li>
-              Custom engine + audio synchronization for narrative game intro
-              (stable 60 FPS).
-            </li>
-          </ul>
-          <p>
-            <strong>Approach:</strong> instrument early (perf + accessibility),
-            favor small composable modules, automate repetitive setup, and
-            document configuration for non‑technical collaborators.
-          </p>
-          <p>
-            <strong>Current Goals:</strong> expanding CI/CD automation,
-            deepening audio-reactive interaction patterns, and exploring
-            progressive enhancement pathways for richer embedded game
-            prototypes.
-          </p>
+        <div class="content-container">
+          <h2 id="about-heading" class="section-title">About</h2>
+          <div class="about-text">
+            <p>
+              I build interactive web experiences and lightweight JavaScript
+              game systems, focusing on performance, accessibility, and clear
+              iteration workflows. From multi‑year digital exhibition frameworks
+              (FABLE ARTS) to custom audio-driven mechanics (The Parts We Give),
+              I combine creative intent with technical discipline.
+            </p>
+            <p>
+              <strong>Focus Areas:</strong> gameplay loops, data & content
+              tooling, performance refactors (LCP/CLS), semantic & accessible
+              front ends, modular architecture.
+            </p>
+            <p>
+              <strong>Selected Impact:</strong>
+            </p>
+            <ul>
+              <li>
+                Designer iteration time cut ~40% via parameter/tooling
+                workflows.
+              </li>
+              <li>
+                Ecommerce rebuild: reduced TTFB ~50% and improved checkout
+                conversion.
+              </li>
+              <li>
+                Portfolio/gallery payload reductions (≥60%) with responsive
+                media strategies.
+              </li>
+              <li>
+                Custom engine + audio synchronization for narrative game intro
+                (stable 60 FPS).
+              </li>
+            </ul>
+            <p>
+              <strong>Approach:</strong> instrument early (perf +
+              accessibility), favor small composable modules, automate
+              repetitive setup, and document configuration for non‑technical
+              collaborators.
+            </p>
+            <p>
+              <strong>Current Goals:</strong> expanding CI/CD automation,
+              deepening audio-reactive interaction patterns, and exploring
+              progressive enhancement pathways for richer embedded game
+              prototypes.
+            </p>
+          </div>
         </div>
       </section>
 
       <section id="contact" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" class="section-title">Contact & Resume</h2>
-        <div class="contact-wrapper">
-          <div class="resume-brief">
-            <h3>Resume Snapshot</h3>
-            <ul>
-              <li>2020–2025: FABLE ARTS interactive exhibitions.</li>
-              <li>Custom JS game engine (The Parts We Give).</li>
-              <li>Ecommerce rebuild (CoMA) + performance gains.</li>
-              <li>Tooling & calendar integration (Earthly Futures).</li>
-            </ul>
-            <p>
-              <a
-                class="btn tertiary"
-                href="/assets/Daniel_Pini_Resume.pdf"
-                download
-                >Download Full Resume</a
-              >
-            </p>
-          </div>
-          <form id="contact-form" novalidate>
-            <fieldset>
-              <legend>Get In Touch</legend>
-              <label>
-                Name
-                <input name="name" type="text" required autocomplete="name" />
-              </label>
-              <label>
-                Email
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="email"
-                />
-              </label>
-              <label>
-                Project Type
-                <select name="type" required>
-                  <option value="">Select…</option>
-                  <option>Web Development</option>
-                  <option>Gameplay / Interactive</option>
-                  <option>Performance / Refactor</option>
-                  <option>Consultation</option>
-                </select>
-              </label>
-              <label>
-                Message
-                <textarea
-                  name="message"
-                  rows="5"
-                  required
-                  maxlength="2000"
-                ></textarea>
-              </label>
-              <!-- Honeypot -->
-              <div style="position: absolute; left: -9999px">
-                <label
-                  >Leave blank
-                  <input type="text" name="hp" tabindex="-1" autocomplete="off"
-                /></label>
+        <div class="content-container">
+          <h2 id="contact-heading" class="section-title">Contact & Resume</h2>
+          <div class="contact-wrapper">
+            <div class="contact-columns">
+              <div class="resume-brief">
+                <h3>Resume Snapshot</h3>
+                <ul>
+                  <li>2020–2025: FABLE ARTS interactive exhibitions.</li>
+                  <li>Custom JS game engine (The Parts We Give).</li>
+                  <li>Ecommerce rebuild (CoMA) + performance gains.</li>
+                  <li>Tooling & calendar integration (Earthly Futures).</li>
+                </ul>
+                <p>
+                  <a
+                    class="btn tertiary"
+                    href="/assets/Daniel_Pini_Resume.pdf"
+                    download
+                    >Download Full Resume</a
+                  >
+                </p>
               </div>
-              <button class="btn primary" type="submit">Send</button>
-              <p class="form-status" aria-live="polite"></p>
-            </fieldset>
-          </form>
+              <form id="contact-form" novalidate>
+                <fieldset>
+                  <legend>Get In Touch</legend>
+                  <label>
+                    Name
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      autocomplete="name"
+                    />
+                  </label>
+                  <label>
+                    Email
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      autocomplete="email"
+                    />
+                  </label>
+                  <label>
+                    Project Type
+                    <select name="type" required>
+                      <option value="">Select…</option>
+                      <option>Web Development</option>
+                      <option>Gameplay / Interactive</option>
+                      <option>Performance / Refactor</option>
+                      <option>Consultation</option>
+                    </select>
+                  </label>
+                  <label>
+                    Message
+                    <textarea
+                      name="message"
+                      rows="5"
+                      required
+                      maxlength="2000"
+                    ></textarea>
+                  </label>
+                  <!-- Honeypot -->
+                  <div style="position: absolute; left: -9999px">
+                    <label
+                      >Leave blank
+                      <input
+                        type="text"
+                        name="hp"
+                        tabindex="-1"
+                        autocomplete="off"
+                    /></label>
+                  </div>
+                  <button class="btn primary" type="submit">Send</button>
+                  <p class="form-status" aria-live="polite"></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     </main>

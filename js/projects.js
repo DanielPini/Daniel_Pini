@@ -14,7 +14,7 @@ const PROJECTS = [
       alt: "Intro scene from The Parts We Give web game",
       small: "./media/the-parts-we-give-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: { demo: "https://fable-arts.com/the_parts_we_give_the_game/" },
     year: 2025,
   },
   // Remaining 2025 projects (order arbitrary; adjust if needed)
@@ -32,7 +32,7 @@ const PROJECTS = [
       alt: "CoMA",
       small: "./media/coma-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: {},
     year: 2025,
   },
   {
@@ -42,14 +42,19 @@ const PROJECTS = [
     tags: ["HTML", "CSS", "SEO", "Accessibility"],
     role: "Front-End",
     team: 2,
-    highlights: ["Semantic markup", "Map integration", "Core Web Vitals"],
+    highlights: [
+      "Semantic markup",
+      "Map integration",
+      "Core Web Vitals",
+      "UX overhaul",
+    ],
     mediaType: "image",
     media: {
       src: "./media/recitorii-1280.webp",
       alt: "Recitorii consultancy site",
       small: "./media/recitorii-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: {},
     year: 2025,
   },
   {
@@ -66,7 +71,7 @@ const PROJECTS = [
       alt: "Stephen Fleri portfolio gallery",
       poster: "./media/stephen-fleri-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: { demo: "https://stephenfleri.com/" },
     year: 2025,
   },
   {
@@ -83,7 +88,7 @@ const PROJECTS = [
       alt: "Earthly Futures event calendar",
       small: "./media/calendar-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: { demo: "https://www.earthlyfutures.com/calendar/" },
     year: 2025,
   },
   // 2024
@@ -100,14 +105,14 @@ const PROJECTS = [
       src: "./media/straddle.webm",
       alt: "Straddle blinds timer interface",
     },
-    links: { code: "#", demo: "#" },
+    links: {},
     year: 2024,
   },
   // 2023
   {
     id: "fable-arts-exhibitions",
     title: "FABLE ARTS Digital Exhibitions",
-    desc: "Interactive exhibition framework (2020–2025) for artists: modular layout, media loaders, custom narrative sequencing.",
+    desc: "Interactive exhibition framework (2020–2025) for artists: modular layout, media loaders, bespoke and custom solutions.",
     tags: ["HTML", "CSS", "JavaScript", "Content System"],
     role: "Lead Front-End",
     team: 3,
@@ -118,7 +123,7 @@ const PROJECTS = [
       alt: "FABLE ARTS exhibition interface",
       small: "./media/fable-arts-640.webp",
     },
-    links: { code: "#", demo: "#" },
+    links: {},
     year: 2023,
   },
 ];

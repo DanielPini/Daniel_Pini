@@ -59,7 +59,8 @@ table {
 body {
   background: var(--bg);
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.55;
+  font-size: 21px; /* adjust from default if smaller */
 }
 
 .site-header {
@@ -85,12 +86,13 @@ body {
 }
 
 .hero-title {
-  font-size: var(--font-title);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
   margin-bottom: var(--space-2);
 }
 
 .hero-subtitle {
-  font-size: var(--font-sub);
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  line-height: 1.5;
   max-width: 60ch;
   margin: 0 auto var(--space-3);
 }
@@ -130,8 +132,9 @@ body {
 }
 
 .section-title {
-  margin: var(--space-5) var(--space-4) var(--space-3);
-  font-size: 1.6rem;
+  margin: var(--space-5) 0 var(--space-3); /* was var(--space-5) var(--space-4) var(--space-3) */
+  text-align: center; /* center heading itself */
+  font-size: 2.3rem;
 }
 
 .projects-grid {
@@ -157,9 +160,16 @@ body {
 }
 
 .about-text {
-  padding: 0 var(--space-4);
+  padding: 0;
   max-width: 70ch;
   margin-bottom: var(--space-5);
+}
+.about-text p,
+#delivery p,
+.resume-brief p,
+.section-body p {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 .about-text ul {
   margin: 0 0 var(--space-3);
@@ -167,8 +177,8 @@ body {
 }
 .about-text ul li {
   margin: 4px 0;
-  font-size: 0.8rem;
-  line-height: 1.3;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 .about-text strong {
   color: var(--accent);
@@ -187,6 +197,100 @@ body {
   opacity: 0.8;
 }
 
+/* Centering container (no new color blocks) */
+.content-container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Ensure delivery/about NOT inheriting extra grid behavior from contact */
+#delivery .content-container,
+#about .content-container {
+  display: block;
+}
+
+/* Separate contact layout so it stops influencing other sections via shared selector */
+#contact .content-container {
+  display: block;
+}
+
+/* New explicit contact columns wrapper (replace old contact-wrapper grid overrides) */
+.contact-columns {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  align-items: start;
+  margin-top: var(--space-3);
+}
+
+/* Remove conflicting centering rules on contact-wrapper */
+.contact-wrapper {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  display: contents; /* let .contact-columns control layout */
+}
+
+/* Resume and form panels now consistent width */
+.resume-brief,
+#contact form {
+  background: var(--bg-alt);
+  border: 1px solid #262d34;
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  box-sizing: border-box;
+}
+
+/* Headings consistent center then content left */
+#delivery .section-title,
+#about .section-title,
+#contact .section-title {
+  text-align: center;
+  margin: var(--space-5) 0 var(--space-3);
+  font-size: 2rem;
+}
+
+/* Inside panels, left-align text */
+.resume-brief h3,
+.about-text,
+#delivery .section-body,
+#contact form fieldset {
+  text-align: left;
+}
+
+/* Prevent hidden lateral shift caused by differing top margins */
+#delivery,
+#about,
+#contact {
+  padding: var(--space-5) 0 var(--space-4);
+}
+
+/* Form width fills its grid cell */
+#contact form {
+  width: 100%;
+}
+
+/* Optional: limit paragraph width for readability without shifting container */
+#delivery p,
+.about-text p {
+  max-width: 72ch;
+  margin-left: 0;
+}
+
+/* Remove any auto margin from paragraphs that could create uneven centering */
+.about-text p,
+#delivery p {
+  margin-right: 0;
+}
+
+/* Correct: project grid wrapper separate from section containers */
+.projects-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-5);
+}
+
 /* Skill matrix */
 .skills-cats {
   display: grid;
@@ -196,7 +300,7 @@ body {
 }
 
 .skill-group h3 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0 0 var(--space-2);
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -216,8 +320,8 @@ body {
   position: relative;
   background: #21272e;
   border: 1px solid #2d343c;
-  padding: 4px 10px;
-  font-size: 0.65rem;
+  padding: 6px 12px;
+  font-size: 0.72rem;
   border-radius: 14px;
   letter-spacing: 0.5px;
   cursor: default;
@@ -273,7 +377,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   margin-bottom: var(--space-2);
   letter-spacing: 0.5px;
 }
@@ -286,7 +390,7 @@ body {
   border: 1px solid #2d343c;
   padding: 8px 10px;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   resize: vertical;
 }
 
@@ -307,12 +411,12 @@ body {
 .resume-brief ul {
   margin: 0 0 var(--space-3);
   padding-left: 1rem;
-  font-size: 0.7rem;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .form-status {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   margin-top: var(--space-2);
   min-height: 16px;
   opacity: 0.85;
@@ -332,7 +436,7 @@ body {
   padding: var(--space-1) var(--space-2);
   border: 1px solid #2e353d;
   border-radius: var(--radius);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   display: flex;
@@ -340,7 +444,7 @@ body {
   align-items: baseline;
 }
 .hero-metrics strong {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--accent);
 }
 
@@ -354,6 +458,7 @@ body {
   gap: var(--space-2);
   position: relative;
   transition: var(--transition);
+  font-size: 0.95rem;
 }
 .project-card:hover {
   border-color: var(--accent);
@@ -388,14 +493,14 @@ body {
   gap: 4px;
 }
 .project-highlights li {
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   background: #232a31;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 4px;
   border: 1px solid #2e353d;
 }
 .project-meta {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   opacity: 0.7;
   margin: 0;
 }
@@ -438,6 +543,47 @@ body {
 }
 .primary-nav a:focus-visible,
 .socials a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Link readability override */
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Maintain button styling (keep existing) */
+.btn {
+  text-decoration: none;
+}
+
+/* Nav + social icons white and underlined */
+.nav a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Project links inside cards */
+.project-links a,
+.project-card a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Hover focus states */
+a:hover,
+a:focus {
+  color: #ffffff;
+  text-decoration: underline;
+  filter: brightness(1.1);
+}
+
+/* Keep accessibility focus outline */
+a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap");
+
+      :root {
+        --defaultSize: 400px;
+        --dotSize: 8px;
+        --dotSpacing: calc(6 * var(--dotSize));
+      }
+
+      html * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background: #333;
+        min-height: 100vh;
+      }
+      .background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        min-width: var(--defaultSize);
+        min-height: var(--defaultSize);
+        align-items: center;
+        border-radius: 100%;
+        background: black;
+        border: 1px dashed white;
+        overflow: hidden;
+      }
+      .fill-box {
+        position: absolute;
+        mix-blend-mode: difference;
+        background-blend-mode: multiply;
+        width: var(--defaultSize);
+        height: calc(2 * var(--defaultSize));
+        overflow: hidden;
+      }
+      .drop-box {
+        position: relative;
+        max-width: var(--defaultSize);
+        max-height: var(--defaultSize);
+        width: var(--defaultSize);
+        height: var(--defaultSize);
+        overflow: hidden;
+      }
+      .fill-line {
+        position: absolute;
+        top: 50%;
+        width: var(--defaultSize);
+        height: var(--defaultSize);
+        background:
+          radial-gradient(var(--dotSize) at center, white, black) 0 / 9px 9px
+            space,
+          white;
+        filter: brightness(0.8) blur(1px) contrast(999);
+        overflow: hidden;
+      }
+      .fill-line::after {
+        position: absolute;
+        inset: 0;
+        background-size: 6px;
+        mix-blend-mode: screen;
+      }
+      /* .spinner {
+  position: absolute;
+  left: calc(50% - 250px);
+  top: calc(50% - 250px);
+  border-radius: 500px 0 0 0;
+  background: rgba(255, 255, 255, 0.2);
+  width: 250px;
+  height: 250px;
+  transform-origin: 250px 250px;
+  animation: rotating 4s linear infinite;
+} */
+      .drop {
+        display: inline-block;
+        position: absolute;
+        color: white;
+        font-weight: bold;
+        top: 0;
+        font-family: "Doto", sans-serif;
+        font-size: 60px;
+        animation: rainFall 8s linear;
+      }
+
+      .splash {
+        position: absolute;
+        font-family: "Doto";
+        font-weight: bold;
+        color: white;
+        font-size: 30px;
+        bottom: -15px;
+      }
+
+      .time-left {
+        display: flex;
+        flex-flow: column nowrap;
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+      }
+
+      h1 {
+        margin: auto;
+        color: white;
+        font:
+          bold 28px "Doto",
+          sans-serif;
+        text-align: center;
+        text-shadow: 0px 0px 11px #ddd;
+        width: 85%;
+      }
+
+      @keyframes rainFall {
+        from {
+          top: 0px;
+        }
+        to {
+          top: calc(var(--defaultSize) - 20px);
+        }
+      }
+    </style>
+    <title>GLHF</title>
+  </head>
+  <body>
+    <div class="background">
+      <!-- <div class="spinner"></div> -->
+      <div class="time-left">
+        <h1 class="days"></h1>
+        <h1 class="time"></h1>
+      </div>
+      <div class="fill-box">
+        <div class="drop-box"></div>
+        <div class="fill-line"></div>
+      </div>
+    </div>
+    <script>
+      console.clear();
+      const daysBox = document.querySelector(".days");
+      const time = document.querySelector(".time");
+      const dropBox = document.querySelector(".drop-box");
+      const fillBox = document.querySelector(".fill-box");
+      const backgroundDiv = document.querySelector(".background");
+      const end = new Date(2026, 3, 2, 16);
+
+      const startNumber = 15 * 24 * 60 * 60;
+
+      const dotSize = 5;
+
+      const createRainDrop = () => {
+        const drop = document.createElement("span");
+        const dropBoxSize = dropBox.getBoundingClientRect();
+        const xPosition = Math.random() * dropBoxSize.width;
+        const splash = document.createElement("span");
+        splash.textContent = "v";
+        splash.classList.add("splash");
+        splash.style.left = xPosition + 7 + "px";
+        drop.textContent = "'";
+        drop.classList.add("drop");
+        drop.style.left = xPosition + "px";
+        dropBox.appendChild(drop);
+
+        setTimeout(() => {
+          dropBox.appendChild(splash);
+        }, 7850);
+        setTimeout(() => {
+          drop.remove();
+        }, 7900);
+        setTimeout(() => {
+          splash.remove();
+        }, 8000);
+      };
+
+      const interval = setInterval(() => {
+        createRainDrop();
+        const current = new Date();
+        const remaining = Math.floor((end - current) / 1000);
+        const fill = Math.round(100 - (remaining / startNumber) * 100);
+        fillBox.style.top = `${0 - fill}%`;
+        const days = Math.floor(remaining / 24 / 3600);
+        const hours = Math.floor(remaining / 3600 - days * 24);
+        const minutes = Math.floor(
+          remaining / 60 - hours * 60 - days * 24 * 60,
+        );
+        const seconds = Math.floor(
+          remaining - minutes * 60 - hours * 60 * 60 - days * 24 * 3600,
+        );
+        daysBox.textContent = `${days < 2 ? `${days} day` : `${days} days`}`;
+        console.log(daysBox);
+        time.textContent = `${hours < 10 ? `0${hours}` : hours} hours
+  ${minutes < 10 ? `0${minutes}` : minutes} minutes
+  ${seconds < 10 ? `0${seconds}` : seconds} seconds`;
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GNMCBLML6N"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-GNMCBLML6N");
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/ndacdevelopingstyle.css" />
+    <meta
+      property="og:description"
+      content="Navigating Distance and Closeness instruments, playable online"
+    />
+    <meta property="og:type" content="Website" />
+    <meta property="og:url" content="https://niki-johnson.com" />
+    <meta
+      property="og:image"
+      content="https://cimf.org.au/wp-content/uploads/2023/11/Niki-Johnson-headshot_photo_by_April_Josie-scaled-e1733714699319.jpeg"
+    />
+    <title>
+      Navigating Distance and Closeness with Niki and Hamish | Developing the
+      instruments
+    </title>
+  </head>
+  <body class="ndac-background developing-background">
+    <main class="developing-instruments-main">
+      <section class="developing-instruments-flex-layout">
+        <div class="stems-container">
+          <div class="ceramic-table-container">
+            <div class="object-wrapper">
+              <div class="object" id="object1"></div>
+              <div class="object" id="object2"></div>
+              <div class="object" id="object3"></div>
+              <div class="object" id="object4"></div>
+              <div class="object" id="object5"></div>
+            </div>
+            <picture>
+              <source
+                media="(min-width: 701px)"
+                srcset="./assets/images/ceramics.png"
+              />
+              <source
+                media="(max-width: 700px)"
+                srcset="./assets/images/ceramics-focussed.webp"
+              />
+              <img
+                id="ceramic-table"
+                src="./assets/images/ceramics.png"
+                alt="Table with numbered white ceramic instruments arranged."
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="audio">
+      <audio
+        id="clickSound1"
+        src="./assets/instrument_stems/ceramic7_c.mp3"
+      ></audio>
+      <audio
+        id="horizontalDragSound1"
+        src="./assets/instrument_stems/ceramic7_h.mp3"
+      ></audio>
+      <audio
+        id="verticalDragSound1"
+        src="./assets/instrument_stems/ceramic7_v.mp3"
+      ></audio>
+
+      <audio
+        id="clickSound2"
+        src="./assets/instrument_stems/ceramic6_c.mp3"
+      ></audio>
+      <audio
+        id="horizontalDragSound2"
+        src="./assets/instrument_stems/ceramic6_h.mp3"
+      ></audio>
+      <audio
+        id="verticalDragSound2"
+        src="./assets/instrument_stems/ceramic6_h.mp3"
+      ></audio>
+
+      <audio
+        id="clickSound3"
+        src="./assets/instrument_stems/ceramic1_c.mp3"
+      ></audio>
+      <audio
+        id="horizontalDragSound3"
+        src="./assets/instrument_stems/ceramic1_h.mp3"
+      ></audio>
+      <audio
+        id="verticalDragSound3"
+        src="./assets/instrument_stems/ceramic1_v.mp3"
+      ></audio>
+
+      <audio
+        id="clickSound4"
+        src="./assets/instrument_stems/ceramic4_c.mp3"
+      ></audio>
+      <audio
+        id="horizontalDragSound4"
+        src="./assets/instrument_stems/ceramic4_h.mp3"
+      ></audio>
+      <audio
+        id="verticalDragSound4"
+        src="./assets/instrument_stems/ceramic4_h.mp3"
+      ></audio>
+
+      <audio
+        id="clickSound5"
+        src="./assets/instrument_stems/ceramic2_c.mp3"
+      ></audio>
+      <audio
+        id="horizontalDragSound5"
+        src="./assets/instrument_stems/ceramic2_h.mp3"
+      ></audio>
+      <audio
+        id="verticalDragSound5"
+        src="./assets/instrument_stems/ceramic2_h.mp3"
+      ></audio>
+    </div>
+    <script src="./stems.js"></script>
+  </body>
+</html>

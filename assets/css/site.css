@@ -1,0 +1,574 @@
+/* danielpini.com
+   Light only. Colours are placeholders until the visual round. */
+
+/* Instrument Sans (SIL Open Font Licence, see /assets/fonts/OFL.txt).
+   Variable weight 400 to 700, Latin subset, served from this site. */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/instrument-sans.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/instrument-sans-italic.woff2") format("woff2");
+}
+
+:root {
+  --bg: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --rule: #d2d2d7;
+  --focus: #0071e3;
+  --font: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Segoe UI", Roboto, Arial, sans-serif;
+  --column: 40rem;
+  --gutter: 1.25rem;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem / 1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Header: navigation only on the homepage, name on the left elsewhere */
+
+.site-header {
+  max-width: calc(var(--column) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 1.25rem var(--gutter);
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 1rem;
+  font-size: 0.9375rem;
+}
+
+.site-header .home-link {
+  margin-right: auto;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-header ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+/* Homepage */
+
+.home {
+  max-width: calc(var(--column) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1.5rem, 6vh, 4.5rem) var(--gutter) 4rem;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: start;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  background: #f0f0f2;
+}
+
+.profile h1 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.profile .where {
+  color: var(--muted);
+}
+
+.sep {
+  margin: 0 0.4em;
+}
+
+.statement {
+  margin-top: 2.5rem;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  text-wrap: pretty;
+}
+
+.aside {
+  margin-top: 1.75rem;
+  max-width: 36rem;
+}
+
+.aside h2 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.aside p {
+  color: #424245;
+  text-wrap: pretty;
+}
+
+.aside .stack {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* Short laptop screens: take space from the top, never from the type */
+@media (min-width: 40rem) and (max-height: 760px) {
+  .site-header {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .home {
+    padding-top: 1rem;
+  }
+
+  .statement {
+    margin-top: 2rem;
+  }
+}
+
+/* Wider pages (Work, Music) share the header width with their content */
+
+body.wide {
+  --column: 60rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Work and Music: a list, and the selected item beside it */
+
+.index-page {
+  max-width: calc(var(--column) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1rem, 4vh, 3rem) var(--gutter) 2rem;
+}
+
+.index-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 2rem;
+}
+
+.index-list {
+  list-style: none;
+  padding: 0;
+}
+
+.index-intro {
+  margin-bottom: 1.25rem;
+}
+
+.index-group h2 {
+  margin: 1.5rem 0 0.25rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.index-list > .index-group:first-child h2 {
+  margin-top: 0;
+}
+
+.index-group .note {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.index-row > a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.index-row > a:hover,
+.index-row > a[aria-expanded="true"] {
+  color: var(--ink);
+}
+
+.index-row > a[aria-expanded="true"] span:first-child {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.year {
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry figure {
+  margin: 0 0 1.25rem;
+}
+
+.entry img,
+.entry video {
+  width: 100%;
+  border: 1px solid #e8e8ed;
+}
+
+/* Beside the list, images give way to the screen height so nothing scrolls */
+@media (min-width: 52rem) {
+  .index-detail .entry img {
+    width: auto;
+    max-width: 100%;
+    max-height: min(34vh, 24rem);
+  }
+
+  .index-detail .entry figure video,
+  .index-detail .entry figure.tall video {
+    width: auto;
+    max-width: 100%;
+    max-height: min(34vh, 24rem);
+  }
+}
+
+.entry figure.square img {
+  max-width: 18rem;
+}
+
+.entry figure.tall video {
+  width: auto;
+  max-width: 100%;
+  max-height: min(52vh, 30rem);
+}
+
+.entry h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.entry .by {
+  margin-top: 0.2rem;
+  color: var(--muted);
+}
+
+.entry p {
+  margin-top: 0.6rem;
+  max-width: 34rem;
+  color: #424245;
+  text-wrap: pretty;
+}
+
+.entry .what {
+  margin-top: 0.75rem;
+  color: var(--ink);
+}
+
+.entry .stack {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.entry .link {
+  margin-top: 0.9rem;
+}
+
+/* Which entry shows. With the script: the selected one. Without it: the
+   linked one, or the first. */
+.js .entry:not(.is-open) {
+  display: none;
+}
+
+html:not(.js) .index-detail .entry {
+  display: none;
+}
+
+html:not(.js) .index-detail .entry:target,
+html:not(.js) .index-detail:not(:has(:target)) .entry:first-child {
+  display: block;
+}
+
+/* On phones the open entry sits under its row (the script moves it there) */
+.index-row > .entry {
+  padding: 0.5rem 0 1.75rem;
+}
+
+/* The row above already names the project */
+.index-row > .entry h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.index-row > .entry .by {
+  margin-top: 0;
+}
+
+@media (min-width: 52rem) {
+  .index-layout {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    column-gap: 5rem;
+    align-items: start;
+  }
+
+  .index-list > :first-child > a {
+    padding-top: 0;
+  }
+
+  .index-detail {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+/* CV pages: software (/cv/) and music (/music/cv/). Each prints to one A4 page. */
+
+body.cv-page {
+  --column: 46rem;
+}
+
+.cv {
+  max-width: calc(var(--column) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1rem, 4vh, 3rem) var(--gutter) 3rem;
+  font-size: 0.9375rem;
+}
+
+.cv-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.75rem;
+  color: var(--muted);
+}
+
+.cv-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 1.5rem;
+  align-items: start;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cv-head h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.cv-role {
+  margin-top: 0.3rem;
+  font-size: 1.0625rem;
+}
+
+.cv-contact {
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
+
+.cv-contact a {
+  white-space: nowrap;
+}
+
+.cv-photo {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  background: #f0f0f2;
+}
+
+.cv h2 {
+  margin: 1.75rem 0 0.6rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  column-gap: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.cv-when {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-entry h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cv-entry h3 span {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.cv-entry p,
+.cv-entry ul {
+  margin: 0.15rem 0 0;
+  color: #424245;
+}
+
+.cv-entry ul {
+  padding-left: 1em;
+}
+
+.cv-entry li + li {
+  margin-top: 0.1rem;
+}
+
+@media (max-width: 34rem) {
+  .cv-entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
+  body {
+    font-size: 9pt;
+    line-height: 1.38;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .cv {
+    max-width: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .cv-head {
+    padding-bottom: 0.7rem;
+  }
+
+  .cv-head h1 {
+    font-size: 17pt;
+  }
+
+  .cv-role {
+    font-size: 10pt;
+  }
+
+  .cv-photo {
+    width: 15mm;
+    height: 15mm;
+  }
+
+  .cv h2 {
+    margin: 0.75rem 0 0.3rem;
+    font-size: 9pt;
+  }
+
+  .cv-entry h3 {
+    font-size: 9.5pt;
+  }
+
+  .cv-entry {
+    grid-template-columns: 22mm minmax(0, 1fr);
+    margin-bottom: 0.4rem;
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

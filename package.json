@@ -1,0 +1,17 @@
+{
+  "name": "danielpini.com",
+  "private": true,
+  "type": "module",
+  "description": "Personal site of Daniel Pini. Static HTML and CSS, with TypeScript compiled to assets/js.",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "check": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  }
+}

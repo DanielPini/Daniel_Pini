@@ -1,1 +1,13 @@
+# Dependencies
+node_modules/
+
+# TypeScript output. The deploy workflow builds it, so it is never committed.
+assets/js/
+
+# OS and editor files
 .DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.log

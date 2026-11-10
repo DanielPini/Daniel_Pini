@@ -2,121 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel Pini | Full-stack software engineer</title>
     <meta
       name="description"
-      content="Website of FullStack developer and musician Daniel Pini."
+      content="Daniel Pini is a full-stack software engineer in Paris, and CEO and co-founder of caedux, grant management software."
     />
-    <meta name="title" content="Daniel Pini | FullStack Dev & Musician" />
     <meta name="author" content="Daniel Pini" />
-    <meta property="og:url" content="https://danielpini.com" />
+    <link rel="canonical" href="https://danielpini.com/" />
+    <meta name="theme-color" content="#ffffff" />
+
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Daniel Pini | FullStack Dev & Musician"
-    />
+    <meta property="og:url" content="https://danielpini.com/" />
+    <meta property="og:title" content="Daniel Pini | Full-stack software engineer" />
     <meta
       property="og:description"
-      content="Website of FullStack developer and musician Daniel Pini."
+      content="Full-stack software engineer. CEO and co-founder of caedux."
     />
-    <meta
-      property="og:image"
-      content="https://danielpini.com/assets/photos/conducting-headshot.webp"
-    />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-weight: normal;
-        font-size: 1rem;
-      }
-      body {
-        height: 100vh;
-        background: #ccc;
-        font-family: "Istok web";
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        text-align: center;
-        gap: 50px;
-        justify-content: center;
-      }
-      .name {
-        font-size: 1.7rem;
-        line-height: 1.2;
-      }
-      .profession {
-        font-size: 1rem;
-      }
-      img {
-        max-width: 220px;
-        margin-bottom: 0;
-      }
-      .links {
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 20px;
-      }
-      .links img {
-        width: 20px;
-      }
-    </style>
-    <title>Daniel Pini</title>
-  </head>
-  <body>
-    <h1 class="name" id="name">DANIEL PINI</h1>
-    <h2 class="profession">FULL-STACK DEVELOPER</h2>
-    <h2 class="profession">
-      CONDUCTOR & <br />
-      CELLIST
-    </h2>
-    <h3 class="contact">
-      <img src="./assets/icons/email.png" alt="email" /><br />
-      PARIS / SYDNEY
-    </h3>
-    <h3 class="links">
-      <a href="https://www.instagram.com/daniel_pini"
-        ><img src="./assets/icons/instagram.svg" alt="instagram"
-      /></a>
-      <a href="https://www.linkedin.com/in/daniel-pini-a19951305/"
-        ><img src="./assets/icons/linked-in.svg" alt="linked-in"
-      /></a>
-    </h3>
-    <script>
-      const name = document.getElementById("name");
-      const fontsList = [
-        "Istok Web",
-        "Futura",
-        "Sans Serif",
-        "Helvetica",
-        "Verdana",
-        "Times",
-      ];
-      name.style.fontFamily = fontsList[0];
-      let currentIndex = 0;
-      const length = fontsList.length;
+    <meta property="og:image" content="https://danielpini.com/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daniel Pini, full-stack software engineer." />
+    <meta name="twitter:card" content="summary_large_image" />
 
-      setInterval(changeFont, 700);
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preload" href="/assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <script type="module" src="/assets/js/main.js"></script>
 
-      function changeFont() {
-        // move one step forwards,
-        if (currentIndex < length - 1) {
-          currentIndex++;
-        } else {
-          currentIndex = 0;
-        }
-        // apply the font to name
-
-        name.style.fontFamily = fontsList[currentIndex];
-        name.style.fontStyle = randomStyle();
-      }
-
-      function randomStyle() {
-        const styles = ["normal", "italic"];
-        return styles[Math.round(Math.random())];
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Daniel Pini",
+        "url": "https://danielpini.com/",
+        "image": "https://danielpini.com/assets/img/daniel-pini-400.webp",
+        "jobTitle": "Full-stack software engineer",
+        "worksFor": { "@type": "Organization", "name": "caedux", "url": "https://caedux.com/" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+        "knowsLanguage": ["en", "de", "fr"],
+        "sameAs": ["https://www.linkedin.com/in/daniel-pini/", "https://github.com/DanielPini"]
       }
     </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/music/">Music</a></li>
+          <li><a href="/cv/">CV</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="home">
+      <section class="profile" aria-labelledby="name">
+        <img
+          class="avatar"
+          src="/assets/img/daniel-pini-400.webp"
+          width="400"
+          height="442"
+          alt="Daniel Pini"
+        />
+        <div>
+          <h1 id="name">Daniel Pini</h1>
+          <p class="title">
+            Full-stack software engineer.<br />
+            CEO and co-founder of caedux.
+          </p>
+          <p class="where">
+            Paris<span class="sep" aria-hidden="true">·</span><a href="https://www.linkedin.com/in/daniel-pini/">LinkedIn</a>
+          </p>
+        </div>
+      </section>
+
+      <p class="statement">
+        I lead <a href="https://caedux.com/">caedux</a>. From opportunity to
+        acquittal, it helps organisations manage every grant with confidence.
+        I also build web software for arts organisations and small businesses
+        in Europe and Australia.
+      </p>
+
+      <section class="aside" aria-labelledby="build-label">
+        <h2 id="build-label">What I build</h2>
+        <p>
+          Websites and web apps that organisations rely on: online shops,
+          booking systems, publishing platforms, interactive works and games.
+          I look after the whole system, from the data to what visitors see,
+          and make it secure, fast, accessible and well documented.
+        </p>
+        <p class="stack">
+          TypeScript, Hono on Cloudflare Workers, Postgres, Drizzle, Stripe
+        </p>
+      </section>
+
+      <section class="aside" aria-labelledby="who-label">
+        <h2 id="who-label">Who for</h2>
+        <p>
+          <a href="/work/#coma">CoMA</a>,
+          <a href="/work/#runway">Runway Journal</a>,
+          <a href="/work/#straddle">Straddle Poker</a>,
+          <a href="/work/#fable-arts">FABLE ARTS</a>,
+          <a href="/work/#earthly-futures">Earthly Futures</a>,
+          <a href="/work/#jack-farman">Jack Farman</a> and
+          <a href="/work/#niki-johnson">Niki Johnson</a>.
+        </p>
+      </section>
+    </main>
   </body>
 </html>

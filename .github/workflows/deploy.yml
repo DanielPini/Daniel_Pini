@@ -1,0 +1,66 @@
+# Builds the TypeScript and publishes the site to GitHub Pages.
+# Pages must be set to deploy from GitHub Actions (Settings > Pages > Source).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # Only these paths are published. src/, node_modules/ and config stay out.
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp -R index.html 404.html CNAME favicon.ico robots.txt sitemap.xml assets work music cv ndac _site/
+          find _site -name .DS_Store -delete
+
+      # /ndac/ is live and linked from fable-arts.com. Fail the deploy if any of it is missing.
+      - name: Check NDAC is complete
+        run: |
+          test -f _site/ndac/index.html
+          expected=$(find ndac -type f ! -name .DS_Store | wc -l)
+          actual=$(find _site/ndac -type f | wc -l)
+          echo "ndac files: $actual of $expected"
+          test "$expected" -eq "$actual"
+          diff -r --exclude=.DS_Store ndac _site/ndac
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
